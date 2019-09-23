@@ -1,0 +1,565 @@
+Side 2
+--------------
+Here's what we are going to do today
+
+If you've done of this stuff before it'll be somewhat review
+But lots of folks haven't in Here
+
+Wake up your iMac
+I will share the screen pretty much every class session.
+
+Remind me to share if I forget. thx
+
+In theory this is being recorded. Sometimes it doesn't work. Sometimes the volume gets screwed up.
+
+Slide 5 and 6:
+--------------
+This is who I am
+
+Slide 7 and 8
+--------------
+Who are you?
+Turn around and spend a couple minutes finding out about the person next to you and behind you...
+
+Has everyone made a new file?
+
+Very collaborative class, especially in the 2nd half of the class.
+
+Other students in the class are some of the best resources.
+
+Anyone want to share something that they are worried about?
+
+Slide 9
+--------------
+Fun facts about Us
+
+Slide 10
+--------------
+Course Resources - Canvas
+
+Canvas is the main source for information
+
+My contact info at the top
+
+Ian is your TA. He is a great source of help.
+
+It's a difficult class. It's a great class. Use Ian, me, your classmates, google as sources of information and help.
+
+Walk through a few things on the site... Show them what isn't "cooked yet". Like some of the assignments
+
+Slide 11
+--------------
+Flipped Class 
+You are doing much of your learning at home. In class we are reviewing, giving you examples, reinforcing
+At home you should be keeping ahead of the reading before lecture.
+
+You will have time to to some work in many lectures during the 2nd half of the class. 
+In that way it is somewhat self pacing. But we move so fast that really you will want to keep on top of things.
+You will have access to other students and the instuctors in class.
+
+The flip side of this means you have to be self motivated. I won't give you all the answers to everything.
+
+You guys are capable of doing this. You are all UW students in the ischool.
+
+Typically we spend 1/2 of the class doing the lecture
+Then we spend the 2nd half of the class doing exercises and projects
+
+Slide 12
+--------------
+Course Resources
+The course book is here. It's really pretty good and the exercises, lectures and projects follow very closely.
+You will do well to stay up to date with this. It's not alot of reading.
+
+Notice it's a spider web (get it?)
+
+We generally do about a chapter a day, but we start off with more content.
+
+Slide 13
+--------------
+There are 2 main types of assignments
+Problem sets - definitely follow the readings
+
+These probably take about 3 to 4 hours a week. You'll have some time in class
+But you'll also likely have work to do outside of class
+
+We aren't super strict on due dates for problems sets, but you don't want to fall behind.
+
+In addition we have projects
+Pick something that you are excited about and want to work on.
+
+You can use it as a portfolio piece
+
+You can change over time, but it's better to be able to build on your previous work.
+
+Go to the page on Canvas (link on slide)
+
+Walk through the stages
+
+We can adjust as time goes. We've done it once.
+
+On lab on Thursday we'll do some brainstorming. And you will be encouraged to pick one of the topics
+But you can pick something else. It just is easier to combine if you pick things that are 
+somewhat related.
+
+These are due about every other week through the quarter.
+
+Slide 14
+--------------
+The time expectations is pretty heavy. Be prepared. The average amount of time per week has been about 18 hours even through
+typical 5 credit classes here take about 15 hours. 
+
+Slide 15 
+--------------
+Course Resources
+
+Slack is the best way to ask. And don't just ask Ian or Me. You can do that, but you should also propose to the #general 
+channel
+
+
+The goal is for you to learn. Use the methods that help you.
+
+Get help where-ever you need to. You have lots of resources
+
+Slide 16
+--------------
+We access by what you turn in. So do your own work.
+
+Don't split up the problem sets.
+
+Don't just copy code from others
+
+Collaboration. You can talk to other people about your work. Don't turn in work that you found on the net.
+If you use something from the net give credit for what you did.
+
+If you are working on an individual assignment. Don't have someone else fix it for you.
+
+Slide 17
+--------------
+Client-side Web Development
+
+We are doing work on the "Client side"
+
+On your own machine. Not the stuff happening on the web server
+
+Which of these two computers are we interested in working with? 
+
+Slide 18 and 19
+--------------
+Using the Internet
+When you go view a web page, what your computer does is to send an http request to a server asking for a web page
+
+That server then sends back a response 
+
+Your browser takes those files, combines it with the browser processing and figures out how to render them
+
+And turns them into the web page
+
+So what we are doing in this class is writing the source code for those files that the server provides to the Client
+
+Slide 21
+--------------
+Clone the starter code (for the demo)
+
+So this week might not be that important to clone the git repo of the demo we'll be doing in class
+You can instead just create the couple of files if you want. Or follow along
+
+If you look on the Canvas site you'll see a link to the "code on github" (show them)
+And if you look for the "lecture-demos" repo, you'll see the stuff I worked on in 
+class there. I check it in after each session.
+
+As the quarter goes on, there will be good examples there for you to refer back to.
+
+You can try and work around with me in lecture. 
+
+I think you all have had experience with git and github
+
+Slide 22
+--------------
+Visual Studio is really pretty good. It's free open source from Microsoft
+You can use another IDE, but if you don't already have one you use,
+this is a good one.
+
+command space, type "visual studio" and run it
+
+It's a lightweight editor. 
+
+Let's make a file called "index.html". this is the default file that a web page will serve if able
+request is made
+
+You will usually have at least 3 files open (html, css, jscript)
+
+If you drag the folder down to VS you automatically get these files opened in a tab each.
+
+
+Slide 23
+--------------
+So we have an index.html file with a sentence
+
+Slide 24
+--------------
+if you file/open in the finder and select chrome to open the file
+
+You'll see that we have a page!
+
+That's the idea, we add some source code to a file
+
+Notice that line breaks are ignored so there was some interpretation being done by the browser
+
+Slide 25
+--------------
+What if we want to say How the content is rendered?
+
+Slide 26
+--------------
+html
+
+A programing language
+
+Annotating Text to give semantic meaning to the Text
+
+It's not just a salad of words, they are structured in some way
+
+It's designed to allow documents to link to each other
+
+Slide 27
+--------------
+HTML Syntax
+
+basic syntax - we surround content with tags
+
+a tag has < and > with </ > as the ending syntax
+There are a bunch of different kinds of tags.
+
+Slide 28
+--------------
+Common tags
+
+h1, h2, p, a (anchor or hyperlink), img... expectations
+
+
+Slide 29
+--------------
+Practice
+
+add tags around the two lines for paragraph
+
+Add a top level heading <h1> as well
+<h1> Hello HTML </h1>
+
+Go back to the list of tags Walk through the items
+
+<h1>Hello HTML</h1>
+<p>write a sentence that says some stuff</p>
+
+<p>its way to early!</p>
+
+<em>look at me!</em>
+
+This is half of html
+
+Slide 30
+--------------
+The second piece to HTML of syntax is that these elements (the tag and it's content) is that
+these elements can contain attributes
+
+Giving further information to the elements
+
+These are basically variables. So the variable name followed by an '=' followed by the value
+strings have " " around them (quotes)
+
+Slide 31
+--------------
+So for example if we want have content that is a link to the ischool homepage
+
+<a href="https://ischool.uw.edu">Link to the ischool</a>
+
+The href is the variable, and the URL is the value
+
+To do an image:
+<!-- an image -->
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Husky_on_San_Francisco_sidewalk.jpg/220px-Husky_on_San_Francisco_sidewalk.jpg" alt="a husky puppy">
+
+We always want to have an alt attributes
+This gives alternate text instead of the image
+
+Images have no actual textual content. So we don't need to include the end tag.
+
+refresh the page and it's there!
+
+Attributes seem okay?
+
+you'll need to know which attributes that go with which tags
+
+href goes with anchor
+
+src goes with image
+
+Slide 32
+--------------
+Nesting elements
+The piece that makes it awesome and complicated. Its possible to nest these elements
+
+So a header can have other tags within 
+
+<h1>Hello <em>(with emphasis)</em> world!</h1>
+
+Notice that alot of these items are on the same line
+
+This is because these are inline tags
+
+You can embed <p>'s around to force line breaks
+
+Elements that contain elements, that contain elements
+
+Slide 33
+--------------
+What's wrong here?
+
+What's the problem with this set of html?
+<p>I <strong>never<strong> make mistakes</p>
+Didn't close the tag
+
+paste it in and you can see what happens
+
+Slide 34
+--------------
+Nesting Elements: Lists
+
+Slide 35
+--------------
+<ul>
+  <li>Pigeons</li>
+  <li>
+    Swallows:
+    <ol>
+      <li>African</li>
+      <li>European</li>
+    </ol>
+  </li>
+  <li>Budgies</li>
+</ul>
+
+
+
+Slide 36
+--------------
+Visual studio gives some shortcuts for keeping code indented correctly
+
+Bringing up the command pallette
+
+command shift p on mac, f1 on pc
+"format code" will automatically fix up your tabbing
+
+if you cmd / you will comment things automatically
+on pc cntrl / you comment things automatically
+
+slide 37
+--------------
+HTML for the Web
+
+Everything we write should be within an HTML elements (closing tag at bottom of page)
+
+within the html we have a body tag
+The body is the stuff we see
+
+
+
+
+Slide 38
+--------------
+All pages are represented by a tree of elements
+
+
+Slide 39
+--------------
+HTML for the Web
+
+We include the "!DOCTYPE html" , which is actually XML
+
+It's a declaration to say what kind of content is in this documents
+
+The <head>
+includes meta data 
+Infomration about the web page that doesn't show up on the page
+
+The <title> shows up on the tab of chrome
+
+meta charset - unicode character set. So the browser knows how to interpret unique characters
+
+author 
+
+Basically every web page you write will have this core set of hierarchy
+
+Slide 40
+--------------
+NPM
+
+Tooling app store for managing packages
+
+comes with node js 
+
+you run a command telling it to install software
+
+"npm install"
+
+We install some things globally (for my entire computer)
+or locally
+
+if you want to install and record
+
+Slide 41
+--------------
+Live-Server
+For example we can install "live server"
+
+sudo npm install -g live-server
+
+if you get permission denied, you need to use sudo (switch to admin mode and run the command)
+
+So now we install 'live-server'
+
+Now run live server from that directory
+
+If start modifying stuff and save the files, when it gets saved, the page automatically refreshes
+
+It's running a little web server
+
+You might want to run this from another terminal because live server eats up the session
+
+Slide 42
+--------------
+Testing our code
+
+Jest
+
+install globally first
+install dependencies that are added next
+
+then run the tests 
+
+
+Each problem set has a file called "package.json"
+This is where all the dependencies are stored
+
+Npm updates this file when it's installed first
+Then we run npm install with no other arguments and it looks in the package.json and it
+will install all the things listed that are dependencies
+
+the starter code has a file called "demo.spec.js" which is a jest test you can pass as arguments
+
+Slide 43
+--------------
+Travis Class
+
+Automatially runs the Jest Tests for you on the class github repos 
+
+You can test your stuff locally and work to pass before checking in.
+
+Slide 44 - Slide 46
+--------------
+Make the web pages look better
+
+Slide 47
+--------------
+css
+Cascading Style Sheets
+
+
+SLIDE 48
+--------------
+CSS Syntax
+It has it's own weird syntax
+
+There are a set of rules
+
+There are two pieces
+
+rules lists what values to assignment
+don't forget the semicolons
+
+selectors tell which elements the properties apply to
+
+SLIDE 49
+--------------
+
+SLIDE 50
+--------------
+font-family
+font-size
+padding
+...etc 
+
+
+We create a new file as a .css file
+style.css is a good name
+
+paste our rules
+
+h1 {
+  font-family: 'Helvetica';
+  color: white;
+  background-color: #333; /*dark gray*/
+}
+
+p {
+   font-size: 14pt;
+   font-family: Verdana, Arial, sans-serif;
+}
+
+<head>
+  <link rel="stylesheet" href="my-style.css">
+</head>
+
+
+Slide 52
+--------------
+Why two languages?
+
+Because we wnat to separate content from appearance
+
+concerns are separated so they don't get muddied together
+
+Slide 54
+--------------
+HTML is not used for appearence
+
+This is why we use "em" instead of "i" it doesn't mean anything.
+We want to use that have symantic meaning. The CSS can determine how that looks
+
+never use i or b tags
+
+Slide 55
+--------------
+Class selectors
+
+if we want to apply to a single paragraph, we can use a "class" selectors
+give the paragraph a name 
+<p class="highlighted">This text is highlighted!</p>
+
+then do this in CSS to select
+/* CSS */
+.highlighted { 
+  background-color: yellow;
+}
+
+Cascading is because they cascade... 
+
+last one on the page wins
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
