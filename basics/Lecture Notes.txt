@@ -41,7 +41,7 @@ Canvas is the main source for information
 
 My contact info at the top
 
-Elisa is your TA. She is a great source of help.
+Elisa (pronounced Allisa) is your TA. She is a great source of help.
 
 It's a difficult class. It's a great class. Use Elisa me, your classmates, google as sources of information and help.
 
@@ -98,8 +98,7 @@ Walk through the stages
 We can adjust as time goes. We've done it once.
 
 On lab on Thursday we'll do some brainstorming. And you will be encouraged to pick one of the topics
-But you can pick something else. It just is easier to combine if you pick things that are 
-somewhat related.
+But you can pick something else. It just is easier to combine if you pick things that are somewhat related.
 
 These are due about every other week through the quarter.
 
@@ -112,8 +111,7 @@ Slide 15
 --------------
 Course Resources
 
-Slack is the best way to ask. And don't just ask Ian or Me. You can do that, but you should also propose to the #general 
-channel
+Teams is the best way to ask. And don't just ask Elissa or Me. You can do that, but you should also propose to the #general thread.
 
 
 The goal is for you to learn. Use the methods that help you.
@@ -132,6 +130,11 @@ Collaboration. You can talk to other people about your work. Don't turn in work 
 If you use something from the net give credit for what you did.
 
 If you are working on an individual assignment. Don't have someone else fix it for you.
+
+Late assignments (click on the syllabus link)
+
+
+SHOULD BE ABOUT 30 MINUTES INTO CLASS
 
 Slide 17
 --------------
@@ -159,6 +162,7 @@ So what we are doing in this class is writing the source code for those files th
 Slide 21
 --------------
 Clone the starter code (for the demo)
+(You can also find this lecture demo repo from the "Code on Github" link on the canvas site.
 
 So this week might not be that important to clone the git repo of the demo we'll be doing in class
 You can instead just create the couple of files if you want. Or follow along
@@ -259,8 +263,7 @@ This is half of html
 
 Slide 30
 --------------
-The second piece to HTML of syntax is that these elements (the tag and it's content) is that
-these elements can contain attributes
+The second piece to HTML of syntax is that these elements (the tag and it's content) is that these elements can contain attributes
 
 Giving further information to the elements
 
@@ -380,7 +383,7 @@ It's a declaration to say what kind of content is in this documents
 
 The <head>
 includes meta data 
-Infomration about the web page that doesn't show up on the page
+Information about the web page that doesn't show up on the page
 
 The <title> shows up on the tab of chrome
 
@@ -389,6 +392,8 @@ meta charset - unicode character set. So the browser knows how to interpret uniq
 author 
 
 Basically every web page you write will have this core set of hierarchy
+
+the <body> is where all the stuff that shows up on the page shows up
 
 Slide 40
 --------------
@@ -515,7 +520,7 @@ Slide 52
 --------------
 Why two languages?
 
-Because we wnat to separate content from appearance
+Because we want to separate content from appearance
 
 concerns are separated so they don't get muddied together
 
