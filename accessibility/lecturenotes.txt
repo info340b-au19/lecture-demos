@@ -1,0 +1,251 @@
+How is it going?
+Issues getting npm, jest, live-server installed?
+
+Assignment 1 and 2 are there
+I'll get Assignment 3 available soon.
+
+Slide 2
+Overall plan today
+
+Slide 3
+Course Project
+
+Slide 4
+Project Ideas
+
+Slide 5:
+Project Stages
+
+Stage 2 is the biggest one
+You can use mock data
+
+Around 35 minutes into class
+
+Slide 6:
+In order to help facilitate interaction with you guys
+We use Poll Everywhere
+
+Has anyone not used Poll Everywhere
+
+You can use your phone, computer, whatever
+
+You should be able to go to pollev.com/login you should be able to login with your uw email
+
+if you go to pollev.com/timca you will see the polls that are active
+
+Take a minute to login please
+
+
+What is one question about material or about the course so far?
+-----------
+if you don' thave a question you can say "nope"
+
+
+Why don't we have a final?  It's a skills based test. Nothing to memorize. This is how real web development works
+
+Do we always have to use Jest for problem sets? Yes. 
+
+Will our homework be as detailed going forward? Yes they are detailed.
+
+We use GitHub because it's free and easy. But you can upload to any webhosting service that you want
+It doesn't work great when we get to routing with react. We'll try and figure out how to do this.
+
+what is the median grade for this class
+i think around 3 to 3.5
+there's no formal curve
+hard to get a 4.0 
+
+
+---------
+
+All HTML elements must contain a closing tag?
+
+False, for example image tags, link elements 
+HTML elements represent a piece of our tree. They are almost always containing some kind of content. But some elements
+don't contain any content. Technically image elements are self closing
+
+<img src="" alt="" /> in xml this is how you'd write it, but in modern html we just skip it.
+
+-------------
+
+Two paragraph elements 
+<p>foo</p><p>bar</p>
+
+False. They don't occur on the same line
+paragraph elements are considered block elements 
+
+Block elements have line breaks after them
+
+HTML like java ignore line space. It doesn't matter where the spaces are
+
+The test suites sometimes don't ignore line breaks so sometimes this can fail.
+
+In general we write them on separate lines just for readability
+
+--------------
+
+a 'head' element
+
+contains meta data information which is not directly displayed
+
+One of the most confusing things
+There are a couple elements that are similar
+
+<head> </head>
+meata, script tags, it's the head of the document
+
+
+<header> </header>
+this is a body element
+it represents the top section of the page, it shows up
+
+<h1> </h1>
+this is a heading tag
+
+the header might contain headings
+
+
+A header would never be inside of the head
+
+--------------------
+Which statement is true 
+
+It's possible to do things with CSS instead of using a <h1> heading
+
+Are they equivalent?
+Is CSS Better
+
+Chat among yourselves to see if you can come to an agreement
+
+CSS allows you to adjust more. 
+
+But if we are trying to make something a heading, the way to do it is with HTML 
+It's simpler, but mostly because for accessiblity reasons
+Bots, screen readers, etc... all can leverage when you use HTML because it
+has semantic meaning.
+
+You can still use CSS to customize headings if you want and retain the semantic meaning 
+that you intended to make this a heading.
+
+A div element is a block element. But otherwise it has no semantic meaning on
+its own.
+
+We can use <div> to group things
+
+ex
+<div>
+	<h1> heading </h1>
+	<p> subtitle </p>
+<div>
+
+So we can group, and we can also apply styling to the divs to make the box for the div one color and the element
+a different color
+
+-------------
+
+***** Go back to the Slides (slide 8)*******************************************
+
+Discuss in pairs
+What are three reasons to make sure web sites conform to web standards for accessiblity
+
+More folks can use it
+It's the law
+Easier to scale (standards)
+Different device coverage. Including devices we don't know about yet.
+It benefits everyone
+
+
+
+--------------------
+Slide 9
+
+Universal design
+curb cuts for example
+
+They help people besides wheelchairs, bikers, skateboarders, etc
+
+Working w/o a mouse can help people who just broke their arm
+Or lost their mouse
+
+It's not hard
+
+
+
+Demo of VoiceOver
+It reads you the content on your screen
+It's for blind people
+
+To open up voiceover
+Hit command f5
+
+Customize the reading voice
+
+Did you all get a chance to experience this? We want you to see how 2% to 4% of the population.
+It's really hard to navigate with a screen reader. We want to make it easy.
+
+-------------------
+
+Slide 12 
+Poll Question
+*** BACK to Poll Questions *************************************************************************
+
+Which techniques are used to support the PERCEIVABILITY of a web page? Select all that apply
+
+All of these things listed are techniques
+
+html - allows us to leverage the semantics that come with HTML. so headings are described as headings
+if you use them correctly, you can automatically generate table of contents for example
+
+using <sections> is helpful. it's got a little more meaning than a <div> because sections are parts of a web
+page, and divs can be used to just combine
+
+alt - makes it way easier to 
+
+aria-label - another standard for accessiblity support. it's like adding alt tags to things that
+aren't images
+So anything can have an alt tag, even like a <div>
+
+Particularly if you want to have a div to put in a background image to show an image because you
+want to customize with styling, and you still want an alt
+----------------
+
+Which of the following approaches are important for creating accessible web pages?
+
+
+
+-------------
+
+True or false, you should include a word such as "picture" or "image" so that screenerader knows there is an image?
+False - you don't need to add these
+
+
+All elements need an 'aria-label' attribute to make them accessible?
+
+all, most, or only a few
+
+In general we don't add aria-label to most elements.
+Things that are purely visual, then you want to add an aria label. But if there is text associated, then we don't need to add.
+
+<div class="search-image" aria-label="search"></div>
+
+example where you want to have a search image icon on your page and you want to be able to have alt text to describe
+but it's not a image.
+
+only use them for visual only elements. They are there for edge cases. Where things wouldn't normally be accessible.
+
+
+Note that there's a typical web page structure 
+
+--------------
+
+There are accessiblity checkers
+Look at the text
+WAVE is a good one
+Achecker is another
+
+include alt, if you have anything that's just an image, then use aria-label
+
+-------------
+
+Windows uses "narrator"
+JAWS was another one
