@@ -89,7 +89,7 @@ To do this, have this in your css file:
 Then hover over the selector
 -----------------------
 
-Which rule(s) will apply to links insidean element with class 'highlight', which is inside of a 'nav' element?
+Which rule(s) will apply to links inside an element with class 'highlight', which is inside of a 'nav' element?
 
 The answer is A and D
 
