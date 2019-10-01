@@ -1,0 +1,60 @@
+
+/* h1 {
+    color: white;
+} */
+
+.first p.second {
+    color:blue;
+}
+
+.first .second {
+    color:red
+}
+
+.boxes p {
+    border: 2px solid rebeccapurple;
+    padding: .5em;
+    padding-bottom: 2em;
+    margin-left: 1em;
+    background-color: orange;
+    width: 200px;
+    /* display: inline-block; */
+}
+
+p.thing-a {
+    margin-bottom: 2em;
+    padding-bottom: 4em;
+    float: right;
+}
+
+.thing-b {
+    margin-top: 1em;
+}
+
+
+a:link { color: hotpink }
+
+a:visited { color: rgb(39, 41, 172); }
+
+a:hover, a:focus { font-size: 3em;
+            color: orange;
+            font-weight: 900; }
+
+/* a:focus {  font-size: 3em;
+    color: orange;
+    font-weight: 900; */
+
+/* } */
+
+
+li:last-child {
+    color: orangered;
+}
+
+ li:nth-child(2){
+    color:magenta;
+}
+
+li:nth-of-type(even) {
+    background-color:#eee;
+}

@@ -1,0 +1,76 @@
+/* which selector syntax... */
+    /* A                Without the space between it is an 'AND' in css*/
+    /*                  <div class="alert success"> */
+    /*                  </div> */
+    .alert.success {
+        color: yellow;
+    }
+    
+    /* B                Find elements of the success class that are children of elements of the alert class*/
+        /*                  <div class="alert">
+                                <div class="success"> 
+                                </div>
+                            </div>                  */
+    .alert .success {
+        color: yellow;
+    }
+    
+    /* C                    Correct Answer, the comma acts like and 'OR' in css */
+    /*                      <div class="alert"> </div> */
+                            /* <div class="success"> </div> */
+    .alert, .success {
+        color: yellow;
+    }
+    
+    
+    /* D                    <div class="alert-- success">    */
+    /*                      </div> */
+    .alert--.success {
+        color: yellow;
+    }
+    /* ---------------------------------------------------------------------------------------------------------- */
+
+    /* Which rules will apply to links inside an element .... */
+
+    /* A                        Find a nav, then find any highlight elments inside that then find any anchor tags inside of that... works*/
+    nav > .highlight > a {
+        color: yellow;
+    }
+
+    /* B */
+    a > .highlight > nav {
+        color: yellow;
+    }
+
+    /* C */
+    nav, .highlight a {
+        color: yellow;
+    }
+
+    /* D                       Find any nav, then find any hight elements inside of that then find any anchor tags inside of that ... work */
+    /*                          The angle bracket says it doesn't need to be a direct child */
+    nav .highlight a {
+        color: yellow;
+    }
+    
+    
+    /* CSS Diner */
+    /* https://flukeout.github.io/  */
+
+    /* ---------------------------------------------------------------------------------------------------------- */
+    /* Which CSS Rule will correctly style the HTML?  */
+
+
+    /* A */
+    .first.second { color: green;}
+
+    /* B */
+    div > p {color: green; }
+
+    /* C */
+    div .second, #first {color: green}
+
+    /* D */
+    p:last-child {color: green; }
+
+    

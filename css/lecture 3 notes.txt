@@ -1,0 +1,298 @@
+Slide 2
+Project Topics
+Set of topics to work on
+
+Hoping that this will help get people to work on things that are similar for later in the quarter
+
+You are not required to work on one of these. You won't lose points at all
+But realize you might lose some of your work as we progress.
+-------------------------
+Slide 3
+Updating Problem Sets
+
+Once in a while there are errors in the problem sets
+We find bugs once in a while. Likely will have to be updated.
+If we need to fix bugs in the test suites. Then you need to upload
+
+We can't push to your indivdual repos. You need to pull it on your own. we will push the fixes the the main repo
+You will need to add another remote link to your repo (bookmark). 
+
+you don't have to name this reference link "upstream"
+
+I might need to give you the link to the repo because we use the same started code as sectionA 
+for example on problem 2 it's : info340a-wi19/problem-02-starter
+
+"git remote -v " will show you the remotes (bookmarks) you have attached to your repo
+
+git pull upstream master
+
+So now you can pull from origin, or from the other bookmark
+
+So you can pull 
+------------------------------
+
+SLIDE 4
+Infomatics Tutors
+
+In addition to Ian and me, there are other resources for Infomatic questions. 
+
+Feel free to ping them if you need help. 
+
+----------------------------
+
+SLIDE 5
+Poll Everywhere
+
+Have you don't the reading (through chapter 6) for today
+---
+This is totally anonymous - Just want to see if people are doing the reading.
+You'll do better if you keep up with the reading. Fortunately it isn't a large amount of reading
+
+
+What concepts should we go over from chapter 6 (or other questions)
+---
+Post none if you don't have any
+Psuedo Selectors
+CSS for specific browsers
+- in general we try and use css that is supported by all browsers. sometimes there are some new cutting edge
+features that show up. we try to not to use them
+Attribute Selectors
+
+
+Which selector syntax would you use to style elements with class 'alert' OR with class 'success'?
+
+The answer is C
+
+the comma acts like an OR in CSS
+
+if you have the <space> that says "children"... the descendent selector
+
+like this:
+<div class="alert>
+	<div class="success"> </div>
+</div>
+
+
+if we don't have a space at all, that's the case where the element has both properties.
+It has the class alert and success
+
+like this:
+<div class="alert success"> </div>
+
+Demo how Visual Code will show you the html structure of a css selector
+
+To do this, have this in your css file:
+
+.success .alert {
+ 	color: yellow
+	}
+Then hover over the selector
+-----------------------
+
+Which rule(s) will apply to links insidean element with class 'highlight', which is inside of a 'nav' element?
+
+The answer is A and D
+
+B and C are out
+
+Find any nav element, find any highlight element and then find any anchor elements inside of that
+
+The diff between A and D means that the > requires that the children are direct decendents
+ 
+So A and D are correct.
+
+CSS Diner game is linked in the text to practice
+
+-------
+Which CSS rule will correctly style the HTML?
+
+When we say it has both classes, the element has to have both.
+
+So <div class="first second">
+
+A does not have that. It's inside an element that has class="first", but that's not the same. 
+The element itself literally needs to have both classes.
+
+B this will make all the paragraphs green because they all are direct descendents of divs
+
+C .second, #first
+gets the first one right because within the class the
+the #first is an id, there is nothing with an id of "first"
+
+and the bottom one has a div that is of class "second" so it doesn't apply to that
+
+C is the right answer
+
+Only be as specific as we need to be
+
+Start with as general as possible
+
+d: p:last-child
+It applies to both of the paragraphs (even the second)
+
+-----
+
+SLIDE 6
+Simple CSS Selectors
+
+-----------------------
+
+SLIDE 7
+CSS Group Selectors
+
+AND
+OR
+Further down the page wins
+More specific wins
+
+--------------------------
+
+SLIDE 8
+
+Combined Selectors
+(no comma or space between)
+
+--------------------
+
+SLIDE 9
+Descendant Selectors
+
+Space between
+
+---------------------
+
+SLIDE 10
+Descendant Selectors (2)
+
+Child selectors > 
+
+
+-----------------
+
+SLIDE 11
+
+Psuedo classes
+Select elements based on what "state" the element is in
+
+
+-----------------
+
+SLIDE 12
+
+Psuedo-classes (2)
+
+checked, first, last child, 
+
+-----------------
+
+SLIDE 13
+
+nth selectors
+
+---------------------
+
+SLIDE 14
+
+Attribute Selectors
+
+attributes are parameters in some tags, like href in an anchor tg, src value in an image, or lang value in html tag
+
+
+----------------------
+
+SLIDE 15
+
+Chrome Dev Tools
+
+
+
+
+
+Psuedo Classes
+CSS supports a bunch of pseudo classes. 
+You are able to select something based on the context of the page or how other things will be rendered. 
+
+Index of standard pseudo=classes: https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes
+
+The way we write the pseudo selector:
+
+p:last-child 
+p:first-child
+P:nth-child()
+
+p:nth-child(2) {
+	color: yellow
+	}
+
+This would find paragraphs that are the 2nd child of a parent element
+
+<div>
+	<p> paragraph one </p>
+	<p> paragraph two </p>  <-- this one
+	<p> paragraph three </p>
+</div>
+
+Note that it's not the second paragraph, but the second child of a parent element
+
+<div>
+	<div class="success">
+		<p> paragraph one </p>   <--this one
+		<div>
+			<p> paragraph two </p>  
+			<p> paragraph three </p>    <-- this one
+		</div>
+	</div>
+</div>
+
+"of type" specifies that it's of a particular type
+
+
+The most common selector you will see is the hover
+
+a:hover {
+	font-size: 3em;
+	color: orange;
+	font-weight: 900;
+}
+
+applies a style whenever the mouse hovers over it
+
+em - relative size
+
+hover is almost always combined with the "focus" class
+
+If I hit <tab> through the elements
+so if the focus moves you can do the same as hover
+
+Screen readers use tabbing around
+
+
+so
+
+a:hover, a:focus {             <--- hover or focus
+	font-size: 3em;
+	color: orange;
+	font-weight: 900;
+}
+
+a:visited {
+	color: green;
+}
+
+Consider organizing your css file based on the layout of your page
+
+/*Header*/
+
+/*Main Section*/
+
+/*Footer*/
+
+The linter will probably warn you if you have more specific rules before less specific rules
+
+got back to minute 54 in video
+
+classes are more specific... more precise. it win's over generic things even if it's earier on the page
+
+developer tools console
+
+view/developer/developertools

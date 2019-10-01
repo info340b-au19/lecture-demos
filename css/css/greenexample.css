@@ -1,0 +1,16 @@
+   /* A */
+    /* .first .second { color: green;} */
+
+   /* B */
+    /* < div > p {color: green; } */
+
+    /* C */
+    /* div .second, #first {color: green} */
+
+    /* D */
+    /* p:last-child {color: green; } */
+
+    /* Other */
+    /* div.second { color: green; }
+
+    div.second p { color: orange; } */
