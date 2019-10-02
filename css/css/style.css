@@ -57,4 +57,5 @@ li:last-child {
 
 li:nth-of-type(even) {
     background-color:#eee;
+    /* background-color:green; */
 }

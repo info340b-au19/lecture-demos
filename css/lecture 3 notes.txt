@@ -1,4 +1,4 @@
-Slide 2
+Slide 2 and 3
 Project Topics
 Set of topics to work on
 
@@ -7,7 +7,7 @@ Hoping that this will help get people to work on things that are similar for lat
 You are not required to work on one of these. You won't lose points at all
 But realize you might lose some of your work as we progress.
 -------------------------
-Slide 3
+Slide 4
 Updating Problem Sets
 
 Once in a while there are errors in the problem sets
@@ -31,19 +31,19 @@ So now you can pull from origin, or from the other bookmark
 So you can pull 
 ------------------------------
 
-SLIDE 4
+SLIDE 5
 Infomatics Tutors
 
-In addition to Ian and me, there are other resources for Infomatic questions. 
+In addition to Elisa and me, there are other resources for Infomatic questions. 
 
-Feel free to ping them if you need help. 
+Feel free to ping them if you need help. I don't have the contact info yet
 
 ----------------------------
 
-SLIDE 5
-Poll Everywhere
+SLIDE 6
+Poll Everywhere - The goal is to get done through this quickly so you have time to do work at the end of class.
 
-Have you don't the reading (through chapter 6) for today
+Have you done the reading (through chapter 6) for today
 ---
 This is totally anonymous - Just want to see if people are doing the reading.
 You'll do better if you keep up with the reading. Fortunately it isn't a large amount of reading
@@ -54,8 +54,7 @@ What concepts should we go over from chapter 6 (or other questions)
 Post none if you don't have any
 Psuedo Selectors
 CSS for specific browsers
-- in general we try and use css that is supported by all browsers. sometimes there are some new cutting edge
-features that show up. we try to not to use them
+- In general we try and use css that is supported by all browsers. sometimes there are some new cutting edge features that show up. we try to not to use them. Some times there are moz-blank, ms-blink classes. 
 Attribute Selectors
 
 
@@ -63,20 +62,20 @@ Which selector syntax would you use to style elements with class 'alert' OR with
 
 The answer is C
 
-the comma acts like an OR in CSS
+The comma acts like an OR in CSS. I want this to be selected to this selector as well as this selector.
 
-if you have the <space> that says "children"... the descendent selector
+If you have a <space> between that says "children"... the descendent selector. Find elements that have success that are children of the success class.
 
-like this:
-<div class="alert>
+Like this:
+<div class="alert">
 	<div class="success"> </div>
 </div>
 
 
-if we don't have a space at all, that's the case where the element has both properties.
+If we don't have a space at all, (like option A) that's the case where the element has both properties.
 It has the class alert and success
 
-like this:
+Like this:
 <div class="alert success"> </div>
 
 Demo how Visual Code will show you the html structure of a css selector
@@ -87,57 +86,173 @@ To do this, have this in your css file:
  	color: yellow
 	}
 Then hover over the selector
+
 -----------------------
 
 Which rule(s) will apply to links inside an element with class 'highlight', which is inside of a 'nav' element?
 
-The answer is A and D
+The answer is A and D. Both find a nav element, with an element with highlight class, with and anchor tag within that.
 
 B and C are out
 
 Find any nav element, find any highlight element and then find any anchor elements inside of that
 
-The diff between A and D means that the > requires that the children are direct decendents
+The diff between A and D means that the > requires that the children are direct decendents. So in the A example, the element with the highlight class has to be directly within the nav element. It can't be within a <div> between even if it's a child. 
  
 So A and D are correct.
 
-CSS Diner game is linked in the text to practice
+CSS Diner game is linked in the text to practice https://flukeout.github.io<p
 
 -------
-Which CSS rule will correctly style the HTML?
+Which CSS rule will correctly style the HTML? 
 
+We want paragraphs that say they are green to be green. Those that say they are not green, they are not green.
+
+A - Must have both class first and second
 When we say it has both classes, the element has to have both.
 
 So <div class="first second">
 
-A does not have that. It's inside an element that has class="first", but that's not the same. 
-The element itself literally needs to have both classes.
+The first green one does not have that. It's inside an element that has class="first", but that's not the same. The element itself literally needs to have both classes.
 
-B this will make all the paragraphs green because they all are direct descendents of divs
+B "div > p" This will make all the paragraphs green because they all are direct descendents of divs
 
-C .second, #first
+C "div .second, #first"
 gets the first one right because within the class the
 the #first is an id, there is nothing with an id of "first"
 
-and the bottom one has a div that is of class "second" so it doesn't apply to that
+And the bottom one has a div that is of class "second" instead of a child of a div that has class "second".  so it doesn't apply to that. Tricky yes.
 
 C is the right answer
 
-Only be as specific as we need to be
+Only be as specific as we need to be. But only that specific.
 
 Start with as general as possible
 
 d: p:last-child
-It applies to both of the paragraphs (even the second)
+
+This is looking for paragraphs that are the last child of their parent. Thus: It applies to both of the paragraphs (even the second)
 
 -----
 
-SLIDE 6
+You're setting the 'font-size' for a paragraph, but want to be able to easily make a "large text" version of the page by changing a single property. What is the best unit to use?
+
+em
+pt
+px
+rem
+vw
+
+Apply one change to apply to everything so that when the page size changes the font changes as well?
+
+The answer is "em"
+The difference between these measurements:
+
+em - it's relative to the parent font size. It's the length of a letter m in theory. Relative to the parents font size. So if the parent size gets bigger, i get a little bit bigger too.
+
+1 em is usually 16 pixels
+
+rem - is dependent of the root of the page, the body element or the html element
+
+in general use rem or em. better for accessiblity reasons because users can 
+
+pixels is used when we know absolute sizeing like pictures because we know the pixels of pictures sometimes.
+
+but heavilty use em and rem when using text sizing.
+
+vw - viewport width. neat, but annoying.
+no-one uses pt
+
+--------------
+In the below diagram of the box model, which CSS property corresponds to each section?
+
+a,b,c,d
+
+a content
+b padding 
+c border
+d margin
+
+#5
+
+We're talking about spacing around content
+
+In code - look at the boxes class
+
+short cut property
+.box p {
+	border: 1px solid black;
+
+
+Notice that the margins collapse onto each other.
+
+padding is considered part of the content, so if you specify a background color it also will be part of the padding. But not the margin.
+
+
+float, in general do not look good. They aren't the way to do things today.
+Now there are better options (flexbox)
+
+Float is going to take your object out of normal flow.
+
+
+display:inline 
+
+you can't set width on inline elements 
+
+If you want to specify width or height, you call it "inline-block"
+
+Float are really confusing. Don't freak out about doing this. We'll use flexbox
+
+
+
+Pseudo Selectors **** **** *** ***
+https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes#Index_of_standard_pseudo-classes
+
+Index of standard pseudo-classes
+
+Let's apply styles based on the state of a thing. like whether the mouse is hovering, or if a checkbox is checked, or if it's the last child of a particular type of a parent element.
+
+The way you write a psuedo selector is by naming the element followed by a colon, then the attribute
+
+p:last-child
+p:first-child
+p:nth-child(4) - every 4th element  - there are different syntax
+p:nth-child(even) - every even element
+
+last of type
+nth of type
+
+Click on the examples
+
+the most common is the "hover" 
+
+a:hover{
+}
+
+hover is almost always also tied with focus
+
+a:hover, a:focus {
+
+}
+
+In general, put more specific rules further down your file
+
+But you also might want to organize your css by section
+
+/* header */
+
+/*main*/
+
+/*footer*/
+
+*** *** *** ** ****
+
+SLIDE 7
 Simple CSS Selectors
 
 -----------------------
 
-SLIDE 7
+SLIDE 8
 CSS Group Selectors
 
 AND
@@ -147,21 +262,21 @@ More specific wins
 
 --------------------------
 
-SLIDE 8
+SLIDE 9
 
 Combined Selectors
 (no comma or space between)
 
 --------------------
 
-SLIDE 9
+SLIDE 10
 Descendant Selectors
 
 Space between
 
 ---------------------
 
-SLIDE 10
+SLIDE 11
 Descendant Selectors (2)
 
 Child selectors > 
@@ -169,7 +284,7 @@ Child selectors >
 
 -----------------
 
-SLIDE 11
+SLIDE 12
 
 Psuedo classes
 Select elements based on what "state" the element is in
@@ -177,7 +292,7 @@ Select elements based on what "state" the element is in
 
 -----------------
 
-SLIDE 12
+SLIDE 13
 
 Psuedo-classes (2)
 
@@ -185,13 +300,13 @@ checked, first, last child,
 
 -----------------
 
-SLIDE 13
+SLIDE 14
 
 nth selectors
 
 ---------------------
 
-SLIDE 14
+SLIDE 15
 
 Attribute Selectors
 
@@ -200,10 +315,26 @@ attributes are parameters in some tags, like href in an anchor tg, src value in 
 
 ----------------------
 
-SLIDE 15
+SLIDE 16
 
 Chrome Dev Tools
 
+Developer tools
+
+View/developer
+developer tools
+
+Built into chrome
+
+Give info as the page is currently being rendered
+
+It shows the html
+
+When you mouse over the html, it highlights the page
+
+click on the arrow in the box in the upper left and you can do the inverse
+
+When you select an element, it also shows you the styles that are currently being applied
 
 
 
