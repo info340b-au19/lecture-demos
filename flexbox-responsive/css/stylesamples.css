@@ -1,0 +1,11 @@
+/* the width here won't actually apply because it is "inline" */
+#element {
+    display: inline;
+    width: 200px;
+}
+
+#element2 {
+    display: inline-block;
+    width: 200px;
+}
+

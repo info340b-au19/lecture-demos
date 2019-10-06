@@ -1,0 +1,94 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: lightblue;
+}
+
+/* on a larger screen, use a red background */
+@media (min-width: 768px) {
+    /* in here will apply at >768 */
+    body {
+        background-color:greenyellow;
+    }
+
+    button {
+        background-color: white;
+    }
+}
+
+@media (min-width:1200px) {
+    body {
+        padding: 0 3em;
+    }
+}
+
+.real-content {
+    display:none;
+}
+
+/*small screens*/
+@media (min-width:568px) {
+    .real-content {
+        display:block;
+    }
+
+    .warning {
+        display:none;
+    }
+}
+
+
+/* navigation */
+/* nav li {
+    display: inline-block;
+    border: 1px solid black ;
+    border-bottom-width:5px;
+    padding: .5em;
+} */
+
+/* nav li {
+    display: inline;
+    width: 200px;
+} */
+
+
+/* container */
+.boxes {
+    padding: .5em 0;
+    background-color: rebeccapurple;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+
+ /* items */
+.boxes div {
+    background-color: orange;  
+    margin: .25em;
+    /* border: .25em solid rebeccapurple; */
+    padding: .25em;
+    flex-grow: 1;
+    flex-basis: 200px;
+}
+
+.boxes .a {
+    /* flex-grow: 5; */
+}
+
+/* items */
+button {
+    font-size: 1.5em;
+    margin: 0 .5em;
+    flex-basis: 230px;
+}
+
+/* container */
+.buttons {
+    margin-bottom: 2em;
+    display: flex;
+    justify-content: center;
+}
+
+

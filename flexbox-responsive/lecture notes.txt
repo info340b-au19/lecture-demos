@@ -1,0 +1,240 @@
+
+Project proposals are due Sunday night
+
+2 weeks from now is the first major stage
+
+We'll talk about layout stuff today
+
+Flexbox is probably the most complex thing we'll discuss today
+
+SLIDE 2
+----------------------
+Plan for today
+
+
+SLIDE 3
+----------------------
+Poll Everywhere
+
+Have you done your reading for today (chapter 7)
+
+It's better to read beforehand, but still make sure to read the text
+
+---
+What concepts from chapter 7 should we go over (or other questions)
+
+Flexbox, flex containers in a flex container
+flex shrink, flex grow
+floating - away to move something to the side. we don't use it all that often.
+it's not really very good for doing columns, or complicated layout
+
+inline block
+
+---
+Which of the following are true about 'inline elements?
+
+TRUE - They are positioned horizontally next to each other by default 
+
+FALSE They are positioned vertically 
+- these are block elements - 
+
+FALSE - 'div' elements are an example of an 'inline' element
+- div elements are block elements
+- span are inline
+
+FALSE - You can specify their width and height properties via CSS
+- if you have an inline element, you can't specify width and height. if you try and add a width property it won't work.
+- if you want it to be inline and you wnat to specify, then you use "inline-block" property
+
+See the stylesample.css example for #element - NOTE that if you hover over the width property in visual code it will say it
+won't be applied
+This is the reason inline-block was created. 
+
+The place this is used most of the time is if you are in a situation doing a nav bar.
+
+Show the example in the demo 
+
+There are a ton of ways to do nav bars. This is a quick way to format a nav bar. 
+
+FALSE - They can contain 'block' elements inside of them
+- you can't put a block element inside of an inline. YOu can, but it's malformed. It probably won't look the way expect
+-block elements can contain block and inline elements
+-inline elements shouldn't contain block elements
+
+
+TRUE - They can be made into block elements w/in CSS
+- yes, using inline-block. You do this using the display property
+- display: "block", "inline", or "inline-block", "none" to switch the property
+
+----
+In the below diagram of the box model, which CSS property corresponds to each section?
+
+- 5 is correct - a content, b padding, c border, d margin
+
+padding is a good default to alter if you are trying to keep two elements apart
+margin is the more useful if you have a border and if you want to keep the borders apart (if there is a border)
+
+margins collapse, so if you have side by-side-elements the browser will collapse and use the larger of the two margins
+
+padding is contained completely within the element, so if both elements say they need space, that is honored by the browser
+and not collapsed.
+
+----
+
+
+Which of the below CSS rules is equivalent to the first? 
+This one is harder
+
+The correct answer is D. The first number is top and bottom, second number is left and right
+
+The reason for this question, you can declare alot of properties using shortcut properties
+You can enumerate all 4 for padding,
+But writing out 4 rules when they are the same, there is likely a 
+
+padding: 0
+set's all to 0
+
+padding 0 .4em; left/right and top/bottom
+
+Borders have lots of options as well with this.
+
+Border: 1px solid black;
+
+border-bottom-width: 5px;
+https://developer.mozilla.org/en-US/docs/Web/CSS/border 
+You can play around with this. the order should be "width, style, color", but it seems to work in other orders
+
+if you don't specify the values, you'll get the default or whatever is inherited from the element.
+
+------
+
+To make an element fixed to the bottom of the window, which of the following properties would you need to specify? 
+(Select all that apply)
+
+position: fixed
+bottom: 0
+
+This is probably the most common.
+
+You don't make it "absolute". If you make it both fixed and absolute, the absolute will override and make it absolute if its
+done after in the css file. 
+
+You've moved it from the normal flow, so you need to specify where it goes.
+
+SLIDES 4 - 7 are the screen shots of the poll-everywhere questions
+------------------------------
+
+About 42 Minutes into the class
+
+SLIDE 8
+Demo: Flexbox
+
+The idea of flexbox is a newish CSS standard. CSS 3 divides some things into groups that can be used together 
+The goal of flexbox is to solve the problem of having multiple columns on a page
+
+People used to try and use a crazy number of floats in weird ways.
+
+Flexbox is designed to help with that
+
+First let's walk through some things with Flexbox:
+----------------------
+
+SLIDE 9
+Box Sizing rule
+
+An elements padding, border and margin can be used to put space between elements on a page
+
+However - when you assign an explicit width or height to an element the dimension doesn't include the padding or border when
+calculating the size of the element of the page.
+
+This can get confusing when working with complex layouts (like flexbox) 
+
+You can do this with the "box-sizing: border-box;" property.
+
+You typically would apply to all elements on the page, thus the * {} . 
+
+You might want to do this across all css files.
+
+Best practice is just to use border-box for box-sizing.
+
+---------------------
+
+SLIDE 10
+Flexbox 2 elements
+
+To use a Flexbox layout you need to style two different class elements
+1 )  container (parent) - which acts as a container for the 
+2 )  item (child) - child elements are nested inside the container 
+
+The name of the container in the example is : "flex-container". It's not required to be called that. 
+What's important is that the display is "flex". However, kind of cool to be semantically accurate using "flex-container"?
+In our demo, the container is ".boxes"
+
+flex-grow: specifies which "share" or ratio of any extra space in the container the item should take
+Example if a container is 500px and the items take 400px, this determines where the extra 100px is given to each item
+
+flex-shrink: works similarly but in reverse. So if the container space is smaller than the size required by the items
+then this determines what share or ratio the item should shrink to accommodate overflow.
+In general we keep this at default, except if you want to make sure that one item does not shrink by giving flex-shrink: 0;
+
+
+flex-basis: allows you to specify initial dimensions of a particular item
+Using % lets you easily size columns for layout
+----------------------------------
+
+SLIDE 11
+Flexbox Base example
+
+Here we have the basic components to demonstrate flexbox
+
+The html has a section of class .boxes
+
+We've made the .boxes class to be a flexbox container by adding "display: flex;"
+
+Notice the background colors show what's the container and what's the items
+
+--------------------------
+SLIDE 12
+Flexbox: Flex-grow
+
+Flexgrow does the math to fill extra space in container when the size of the items doesn't fill it.
+
+------------------------
+
+SLIDE 13
+Flexbox: Flex-grow (2)
+
+Add a class to the top div item and make give it 3 (rather than 1)
+
+See what it does
+
+-------------------
+
+SLIDE 14
+Flexbox properties
+flex-grow
+flex-shrink
+flex-basis
+
+Here's how the calculation is done when you use integers
+---------------------------------
+
+SLIDE 15
+
+Flexbox: Lots of properties
+Flex-direction
+
+Go to the link to show folks where to get more examples
+
+SLIDE 16
+One more thing: Inline block
+
+As we discussed in the poll questions, an unordered list is a pretty good way to 
+represent nav items. If we want to format these horizontally across the page
+and format the boxes around them, using inline-block is a good way
+
+------------------------------------
+
+SLIDE 16
+
+External Fonts
