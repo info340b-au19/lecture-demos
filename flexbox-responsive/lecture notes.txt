@@ -132,9 +132,11 @@ Demo: Flexbox
 The idea of flexbox is a newish CSS standard. CSS 3 divides some things into groups that can be used together 
 The goal of flexbox is to solve the problem of having multiple columns on a page
 
-People used to try and use a crazy number of floats in weird ways.
+People used to try and use a crazy number of floats in weird ways. This broke across different browsers and it was very complicated.
 
-Flexbox is designed to help with that
+Flexbox is designed to help with that. 
+
+Flexbox allows you to efficiently lay out elements inside of a container (like columns within a page) so that space is efficiently distributed. This also has the advantace that columns have matching heights.
 
 First let's walk through some things with Flexbox:
 ----------------------
@@ -144,8 +146,7 @@ Box Sizing rule
 
 An elements padding, border and margin can be used to put space between elements on a page
 
-However - when you assign an explicit width or height to an element the dimension doesn't include the padding or border when
-calculating the size of the element of the page.
+However - when you assign an explicit width or height to an element the dimension doesn't include the padding or border when calculating the size of the element of the page.
 
 This can get confusing when working with complex layouts (like flexbox) 
 
@@ -157,6 +158,8 @@ You might want to do this across all css files.
 
 Best practice is just to use border-box for box-sizing.
 
+This is very useful when using flexbox because it does alot of automatic sizing and things.
+
 ---------------------
 
 SLIDE 10
@@ -167,7 +170,7 @@ To use a Flexbox layout you need to style two different class elements
 2 )  item (child) - child elements are nested inside the container 
 
 The name of the container in the example is : "flex-container". It's not required to be called that. 
-What's important is that the display is "flex". However, kind of cool to be semantically accurate using "flex-container"?
+What's important is that the display is "flex". However, kind of cool to be semantically accurate using "flex-container".
 In our demo, the container is ".boxes"
 
 flex-grow: specifies which "share" or ratio of any extra space in the container the item should take
@@ -180,6 +183,7 @@ In general we keep this at default, except if you want to make sure that one ite
 
 flex-basis: allows you to specify initial dimensions of a particular item
 Using % lets you easily size columns for layout
+
 ----------------------------------
 
 SLIDE 11
@@ -193,11 +197,33 @@ We've made the .boxes class to be a flexbox container by adding "display: flex;"
 
 Notice the background colors show what's the container and what's the items
 
+Walk through what we have on the slide
+
+html
+- we have a section of class boxes
+- the boxes are divs with paragraphs within
+
+css
+- notice box-sizing to make the width include the padding and border 
+- our flex container is the .boxes section. we know that becuse the display is set to "flex"
+- our items are the divs within the .boxes class. 
+- for this example we set the margin to 5px to give them the space between (the purple between)
+
+
+NOW DEMO
+
 --------------------------
 SLIDE 12
 Flexbox: Flex-grow
 
 Flexgrow does the math to fill extra space in container when the size of the items doesn't fill it.
+
+It specifies what “share” or ratio of any extra space in the container the item should take up. That is, if the container is 500px wide, but the items’ only takes up 400px of space, this property determines how much of the remaining 100px is given to the item
+
+The value is a unitless number (e.g., 1 or 2, defaulting to 0), and the amount of remaining space is divided up proportionally among the items with a flex-grow. So an item with flex-grow:2 will get twice as much of the remaining space as an item with flex-grow:1. If there are 4 items and 100px of space remaining, giving each item flex-grow:1 will cause each item to get 25px (100/4) of the extra space. If one of the items has flex-grow:2, then it will get 40px of the extra space, while the other three will only get 20px
+
+
+
 
 ------------------------
 
@@ -208,6 +234,11 @@ Add a class to the top div item and make give it 3 (rather than 1)
 
 See what it does
 
+Notice that when I shrink the browser, there is less extra space to allocate.
+
+Notice that flexboxes only get as small as they need to.
+
+flex-shrink: 0; - will make it unshrinkable
 -------------------
 
 SLIDE 14
@@ -217,6 +248,18 @@ flex-shrink
 flex-basis
 
 Here's how the calculation is done when you use integers
+
+
+If I don't want something to shrink (behave more like inline elements so that they wrap)
+You add a property to the container
+
+.boxes {
+	display: flex;
+	flex-wrap: wrap; 
+	background-color: rebeccapurple;
+}
+
+
 ---------------------------------
 
 SLIDE 15
@@ -237,4 +280,33 @@ and format the boxes around them, using inline-block is a good way
 
 SLIDE 16
 
+Inline block
+
+Without any CSS, html elements follow a default flow on the page based on the order they appear in the HTML. Layout is based on whether the element is a block element or an inline element.
+
+As mentioned in Chapter 3, inline elements (e.g., <em>, <a>, <span>) are put next to each other on a single line (left to right, unless you specify a right-to-left language). Block elements (<p>, <ul>, <div>) are placed on subsequent “lines”, from top to bottom.
+
+However, you can force an element to be either block or inline by declaring the display CSS property:
+
+display: inline;
+
+display: inline-block;
+
+display: none; == hides the element
+
+There are several other more specific settings, the most useful of which is inline-block. This lets you treat an element as inline (no line break after), but also gives you the ability to specify its width, height, and other properties only adjustable on block elements. This is particularly useful for making things like lists (<ul>) appear “inline”.
+
+-------------------------
+
+SLIDE 17
+
 External Fonts
+
+The most popular icon set is called Font Awesome. You can include the Font Awesome font by linking to it as any other stylesheet:
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+This will load the stylesheet from a Content Delivery Network (CDN), which is a web service intended to quickly serve files commonly used by multiple websites. In particular, browsers will cache (save) copies of these files locally, so that when you visit a different website (or the same website for a second time), the file will already be downloaded. We will load most of the CSS and JavaScript frameworks used in this class from a CDN.
+
+The .min before the .css extension in the filename is a convention to indicate that the file is minimized: all extraneous spaces, comments, etc. have been removed to make the file as small and quick to download as possible.
