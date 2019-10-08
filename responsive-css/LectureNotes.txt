@@ -1,0 +1,220 @@
+Slide 2
+
+Plan for today
+
+Project stage 2 is due in 2 weeks on Sunday night.
+
+------------------
+Slide 3
+Project Stage 1
+
+-----------------
+SLIDE 4
+Poll Everywhere
+----
+
+Q1 - What concepts/questions should we go over from this chapter (7)?
+
+media queries?
+flexbox wrap - won't wrap if you set the items to be a percent (like 50%), because
+they will continue to adjust rather than wrap.
+----
+
+Q2 - Which of the following are important when designing websites for mobile devices?
+
+All of them...Some of them might be more, but all are important
+
+Walk through all 6 items
+
+Layout - have things in single columns on small screens
+
+Media - bandwidth constricted. data plan might be an issue, but also performance. Smaller images, smaller resolution images
+
+Fonts - Large enough fonts.
+
+Navigation-  Not over loading. Using the hamburger menu is a good idea. collapsable, hidden, so only have
+
+Inputs - Make buttons big enough, thick fingers, etc
+
+Content - Use mobile specific features like tel links which allow you to reduce real estate used on the small screens
+
+----
+Q2 - Mobile first design involves...
+
+adding additional functionality when moving to super-capapbe devices (progressive enhancement).
+
+Progressive enhancement. Our primary target should be a phone. 
+And then, if we are lucky that someone has something more than a phone, they get additional functionality.
+
+We want people on mobile devices to get all the necessary features, and users with more, get extra features.
+
+An escalator is an example of graceful degradation. 
+
+----
+Q3 - In a mobile-first approach, a sites design and style (read CSS) should have:
+
+We will use "normal" styling for mobile, and media queries for desktops/laptops
+
+We write our CSS for mobile devices,
+
+Then we use media queries (if statements) such that we can add those additional features that they support
+
+----
+
+Q4 - In a CSS file, media queries should be written
+
+At the bottom of the file in general
+
+We do this because of the way media queries work. For the new CSS rules to work, we need to make sure that the
+rules for media queries come after we have set what the default behavior is going to be.
+
+It is possible to put them in the middle if you have CSS setup in sections of your page.
+For example if your nav css is all at the top, then your body is all in the middle of the CSS file, etc
+then you could intermix the media queries for nav closer to the top where all the default CSS resides., etc
+
+
+
+---- 
+Q5 - True of False: A media query can contain muliple rules
+
+True: in general we are going put lots of rules within the media query rather than doing each rule independently
+
+
+-----------------------
+
+SLIDE 5 
+Example Snapshot from the app I work on from yesterday showing the mobile/desktop/tablet usage
+
+
+-----------------------
+
+SLIDE 6
+Example - Browser usage on the site as well
+
+-----------------------
+
+SLIDE 7
+Demo: Media queries
+
+-----------------------
+
+SLIDE 8
+Media queries
+
+You've probably seen how sometimes mobile browsers shrink content to fit the smaller screen.
+
+The page appears  zoomed out
+To use the page you have to enlarge. It works, but often not very well.
+
+-----------------------
+SLIDE 9
+Specifying Viewport
+
+First let's look at our demo code again: Jump to Visual Studio and show the html file and the css file
+
+In the html file we have these six paragraphs which are within divs to break them up. They are each with in the 
+section of class "boxes". Allows us to use CSS to make them into boxes and control width and height.
+
+flex-basis of 50% means that initially takes up 50% of the parents space
+
+
+We can keep mobile browsers from automatically shrinking by specifing the viewport option to "shrink-to=fit=no"
+
+
+To keep our page from automatically shrinking we need to add a new meta tag.
+
+In the index.html:   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+
+You are going to want to add this to your boiler plate template for this class. 
+
+------------------
+
+SLIDE 10
+Media Queries (CSS file)
+In our css, we can use "Media Queries" to apply rules like an "if" statement based on the size of the screen
+
+Media queries generally go at the bottom
+
+We go from small
+
+@media (min-width:768px) (with what condition) when my miniumn width is bigger than this, then apply this set of rules
+
+Bootstrap came up with this number, it's somewhat arbitrary, but bootstrap set this in their code, and we just kind of follow.
+
+
+
+This example here. If the width is > 768, apply these rules.
+
+You must put full rules including the selector inside the media query body
+
+In the demo - now uncomment the 768 rule
+
+Notice how it turns blue
+
+Notice in developer tools, you can see the dimensions
+
+Also if you click on the "responsive" dropdown filter you can see what it would look like on different mobile devices.
+
+You can also manually type the size of dimensions if you select "responsive". Useful!!
+
+-------------------------------
+SLIDE 11
+
+Media Queries (CSS file)
+
+The way we're going to basically do this going forward is to stack our media queries on top of each other getting the 
+media queries for larger devices further down the file
+
+Here we have 768px followed by 992px
+
+
+The reason this works, is that as soon as the browser gets larger, it just continues to add the rules down the file...
+and they can override the rules previous in the file
+
+If we switch the order around, we can get weird behavior.
+
+The last on the page wins, so can get screwed up... that's why we go smaller, to bigger, to bigger down the file
+
+You could use the AND to fix this, but considered poor coding style  ex==> @media (min-width: 768px) and (max-width:992px){ }
+
+-----------------------------
+
+SLIDE 12
+
+Media Queries (CSS)
+
+Basic Recommended Structure:
+
+read the slide... it's pretty self evident
+
+
+------------------------
+SLIDE 13
+
+Responsive FlexBox
+
+We can be smart about this with flexbox
+
+Here we have an example that initially we just stack items
+
+But as things get larger we use flexbox to show things in multiple columns
+
+
+In my example, initially the items are not in a flexbox container
+
+Once I get to 768, it becomes a flexbox
+
+at 992 i set the basis to 25% which makes it 4 columns
+
+at 1200 i make it "auto" which fills the space.
+
+
+
+
+
+
+
+
+
+
+
