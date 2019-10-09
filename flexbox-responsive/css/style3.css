@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box;
+}
+
+.boxes {
+    display: flex;
+    background-color: rebeccapurple;
+    flex-wrap: wrap;
+ }
+
+.boxes div {
+    background-color: orange;
+    margin: 5px;
+    flex-basis: 200px;
+   /* flex-basis: 20px; */
+   /* flex-basis: 15%; */
+    flex-grow: 1;
+} 
+
+ .boxes .a {
+    flex-grow: 3;
+    flex-shrink: 0;
+} 
+
+ li {
+    display: inline-block;
+    padding: 50;
+    border: 1px solid black ;
+    border-bottom-width:5px;
+}
