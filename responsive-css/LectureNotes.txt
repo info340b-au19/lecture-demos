@@ -1,12 +1,52 @@
+There are two basic demo files. Start with the index-start.html and style-start.css. It shows the basic media queries progression. You uncomment the media queries along the way
+
+The second demo file is the "simpleflexboxmediaqueryexample.html and simpleflexboxmediaqueryexample.css which shows how to change from 2 column to 3 column as the screen gets larger.
+
+Also note how to hide the text once the screen gets small in the first demo file. We set display:none and then for all screens larger than 568, we reset the display to block.
+
+
+
 Slide 2
 
 Plan for today
 
-Project stage 2 is due in 2 weeks on Sunday night.
+We'll talk about stage 1
+We'll do some poll everywhere
+We'll do some demoing of media queries
+Then we'll have work time
+
+Project stage 1 is due in 2 weeks on 10/23.
 
 ------------------
 Slide 3
 Project Stage 1
+
+There are 4 basic parts to our 
+
+Static version of our application
+It doesn't need to have any interactivity other than hyperlinks
+We're practicing writing html/css
+
+The buttons don't really need to do anything, but they should look good
+
+Your not being graded on your design, but make it look good. 
+
+This is not migrating your spec (stage-0) over to being responsive. 
+
+We will make it responsive, so it looks good on mobile devices.
+
+Your layout will change as the screen size changes. So for example if you have a multi column flexbox on a normal computer, it might be a single column on a small phone screen.
+
+We're working on CSS and layout in this assignment.
+
+There are really 2 basic things that all the apps will have
+1) a home page where the user will select filters and make a query
+2) a page that shows the returning of that data
+
+So you will want to mock those things up.
+
+Questions?
+
 
 -----------------
 SLIDE 4
@@ -26,29 +66,49 @@ All of them...Some of them might be more, but all are important
 
 Walk through all 6 items
 
-Layout - have things in single columns on small screens
+Layout - have things in single columns on small screens. It's much easier to scroll up and down on a small screen rather than left and right.
+
+From Text:
+"Layout: On mobile devices, blocks of content should stack on top of each other, rather than sitting side by side in columns—mobile devices want to only scroll on one axis. fixed content should be kept to a minimum, as it reduces the amount of scrollable screen real-estate."
+
+As you gain more screen space on desktops, you will want to break content up into columns or otherwise constrain its width so that it doesn’t stretch to ridiculous lengths; this helps with readability.
 
 Media - bandwidth constricted. data plan might be an issue, but also performance. Smaller images, smaller resolution images
 
+From Text:
+"Media: Small screens don’t have enough space to necessitate very large, high-resolution images and video. Moreover, large images have large file sizes, and so will take a long time to download on slow mobile connections (not to mention eating away at limited data plans). Use compressed or lower-resolution images on mobile, and consider using background colors or linear gradient fills instead of background images. You can use higher-resolution media (and more of it!) on desktops, which usually have higher bandwidth available for downloading."
+
 Fonts - Large enough fonts.
+
+From Text:
+"Fonts: Make sure to use a large enough font that it is readable on small screens… but don’t make headings or callout text too large so that you lose that precious real estate! You can make them more styled and prominent on desktop, where there is room for such flourishes. Be sure to use relative units to accommodate mobile user preferences and screen size variation. Also remember that special web fonts you may be downloading will also take up extra bandwidth!"
 
 Navigation-  Not over loading. Using the hamburger menu is a good idea. collapsable, hidden, so only have
 
+From Text:
+"Navigation: Site navigation links take up a lot of room on small screens and may end up wrapping to multiple lines. Use small tab bars, or menu icons (e.g., the “hamburger icon”) to show complex menus on command. Most CSS frameworks provide some kind of collapsible navigation for mobile devices."
 Inputs - Make buttons big enough, thick fingers, etc
 
+
 Content - Use mobile specific features like tel links which allow you to reduce real estate used on the small screens
+
+From Text: "Content: For some sites, you may even want to adjust what content is shown to mobile users as opposed to desktop users. For example, a phone number might become a large telephone icon with a tel: hyperlink on mobile phones, but simply appear as a normal telephone number on desktop displays."
+
+Also:
+"Input and Interaction: Tap/click targets need to be large-enough on mobile to select using a finger, especially for people with poor eyesight or thick fingers. Tiny icons placed right next to one another, or one-word hyperlinks are difficult to select accurately. Specifying a data type on form fields (e.g., email address, phone number, date, integer) also generates optimized on-screen keyboards, making data entry much easier."
+
 
 ----
 Q2 - Mobile first design involves...
 
-adding additional functionality when moving to super-capapbe devices (progressive enhancement).
+adding additional functionality when moving to super-capable devices (progressive enhancement).
 
 Progressive enhancement. Our primary target should be a phone. 
 And then, if we are lucky that someone has something more than a phone, they get additional functionality.
 
 We want people on mobile devices to get all the necessary features, and users with more, get extra features.
 
-An escalator is an example of graceful degradation. 
+An escalator is an example of graceful degradation. It always works as a stairs, but when we have electricity it is a moving stairs. But as graceful degradation, it's an escalator until it breaks down, and then it's a stairs.
 
 ----
 Q3 - In a mobile-first approach, a sites design and style (read CSS) should have:
@@ -59,6 +119,8 @@ We write our CSS for mobile devices,
 
 Then we use media queries (if statements) such that we can add those additional features that they support
 
+The default behavior is this, and if we have a larger screen we will add functionality or do something different
+
 ----
 
 Q4 - In a CSS file, media queries should be written
@@ -67,6 +129,7 @@ At the bottom of the file in general
 
 We do this because of the way media queries work. For the new CSS rules to work, we need to make sure that the
 rules for media queries come after we have set what the default behavior is going to be.
+Remember that the if the media query applies, it will replace the default behavior. Thus it's further down the page.
 
 It is possible to put them in the middle if you have CSS setup in sections of your page.
 For example if your nav css is all at the top, then your body is all in the middle of the CSS file, etc
@@ -106,12 +169,17 @@ You've probably seen how sometimes mobile browsers shrink content to fit the sma
 The page appears  zoomed out
 To use the page you have to enlarge. It works, but often not very well.
 
+Mobile web browsers will do some work on their own to adjust the web page in response to screen size—primarily by “shrinking” the content to fit. This often produces the effect of the website being “zoomed out” and the user enlarging the web page to a readable size and then scrolling around the page to view the content. While it may “work” it is not an ideal user interaction—this behavior can also interfere with attempts to be explicit about how webpages should adjust to the size of the screen.
+
+To fix this, you need to specify the viewport size and scale by including an appropriate <meta> element in your HTML:
+
 -----------------------
 SLIDE 9
 Specifying Viewport
 
 First let's look at our demo code again: Jump to Visual Studio and show the html file and the css file
 
+Remember what we have in this sample code from Monday:
 In the html file we have these six paragraphs which are within divs to break them up. They are each with in the 
 section of class "boxes". Allows us to use CSS to make them into boxes and control width and height.
 
@@ -121,9 +189,13 @@ flex-basis of 50% means that initially takes up 50% of the parents space
 We can keep mobile browsers from automatically shrinking by specifing the viewport option to "shrink-to=fit=no"
 
 
-To keep our page from automatically shrinking we need to add a new meta tag.
+To keep our page from automatically shrinking we need to add a new meta tag to the html.
+
+We want to tell the browser that our web page has responsive css inside it. It will adjust for size.
 
 In the index.html:   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+
+This is in the text.  The big important part is "shrink-to-fit=no". 
 
 You are going to want to add this to your boiler plate template for this class. 
 
@@ -142,18 +214,17 @@ We go from small
 Bootstrap came up with this number, it's somewhat arbitrary, but bootstrap set this in their code, and we just kind of follow.
 
 
-
 This example here. If the width is > 768, apply these rules.
 
 You must put full rules including the selector inside the media query body
 
 In the demo - now uncomment the 768 rule
 
-Notice how it turns blue
+Notice how it turns green
 
 Notice in developer tools, you can see the dimensions
 
-Also if you click on the "responsive" dropdown filter you can see what it would look like on different mobile devices.
+Also if you click on the "responsive" dropdown filter you can see what it would look like on different mobile devices. This is cool!
 
 You can also manually type the size of dimensions if you select "responsive". Useful!!
 
@@ -162,8 +233,7 @@ SLIDE 11
 
 Media Queries (CSS file)
 
-The way we're going to basically do this going forward is to stack our media queries on top of each other getting the 
-media queries for larger devices further down the file
+The way we're going to basically do this going forward is to stack our media queries on top of each other getting the media queries for larger devices further down the file
 
 Here we have 768px followed by 992px
 
@@ -171,7 +241,7 @@ Here we have 768px followed by 992px
 The reason this works, is that as soon as the browser gets larger, it just continues to add the rules down the file...
 and they can override the rules previous in the file
 
-If we switch the order around, we can get weird behavior.
+If we switch the order around, we can get weird behavior. Really what happens it that the css gets reloaded when the browser resizes, and the media queries code itself disappears and just the styling that applies is there, so the bottom rule wins.
 
 The last on the page wins, so can get screwed up... that's why we go smaller, to bigger, to bigger down the file
 
@@ -202,11 +272,8 @@ But as things get larger we use flexbox to show things in multiple columns
 
 In my example, initially the items are not in a flexbox container
 
-Once I get to 768, it becomes a flexbox
+we might want to switch the number of columns from 2 to 3 as it gets larger
 
-at 992 i set the basis to 25% which makes it 4 columns
-
-at 1200 i make it "auto" which fills the space.
 
 
 

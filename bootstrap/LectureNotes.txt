@@ -1,0 +1,114 @@
+SLIDE 2
+Agenda 
+
+-------------------
+SLIDE 3
+Stage 1
+Use HTML and CSS to make a static version of your app
+Basically build a "screenshot" or "wireframe" of what you hope to build
+
+What it will look like even though the buttons don't necessarily work
+
+You should consider doing this on paper before you start trying to do it in consider
+
+Built from scratch using HTML and CSS
+
+Show you can apply these things you've learned
+
+You can use bootstrap, it will likely be easier and cooler
+
+But you have to do some CSS on your own as well. Not just bootstrap
+
+You can look at examples, but don't get a bootstrap template and then paste your own stuff in
+
+You get credit for what you do yourself. 
+
+Accessible and responsive
+alt tags, aria labels, semantic html, make sure headings line up
+
+Make sure it's responsive. Needs to work as well on mobile devices and larger devices
+
+Noteable design difference btween mobile and desktop. They should look different and feel different (media queries)
+
+Polished and engaging
+
+Adding some cooler more advanced features (like transitions... etc to make it look good ) 
+
+Need a main page, the second click is really just to show a second main page after it's been clicked (so at least 2 pages. but don't make it too many pages)
+
+if you click on a button - it will show a second ("after" version) of that page... or at least show that a page that you could go to.
+
+-------------------
+
+SLIDE 4
+Example of how relative sizes are calculated
+
+Look at the code on the SLIDE
+
+Notice that I've explicitly set the root (html) font size to 40px
+and that i've set the div font size to 50px.
+
+So when we ask thingb to be .5em, it's .5x50 (the parent size)
+when we ask thing a to be 1rem it's 1x40px (the root size)
+
+
+Also, in general use Use display properties rather than positioning if you don't want things to overlap.
+So "inline", "inline-block", "block"
+
+and then use flexbox if you want more complicated things
+
+Rather than positioning absolute or float. You are welcome to do either, but these let the browser take care of 
+alot of stuff you might have to tweak if you position on your own.
+
+
+-----------------
+
+SLIDE 6
+bootstrap
+
+it's a framework.
+
+a set of styling that someone else wrote that you can use
+
+here is predefined stylesheet. it's the oldest one. it's very popular. 
+The big competitor is called "materialize". it's good too. 
+
+
+SLIDE 7
+
+Where to get bootstrap
+
+We get it from a CDN. Cach'ing in the internet.
+If any other property has used this before on your machine, it doesn't get downloaded again.
+
+
+
+SLIDE 8
+
+Bootstrap : http://tiny.cc/bootstrapdemo
+
+
+
+example of taking a link and make it look like a button so that it will take you to another page (for stage 1)
+
+<a href="http://getbootstrap.com/" class="btn btn-primary"> Get Bootstrap</>
+
+
+
+two things to get bootstrap to be responsive
+-do the viewport thing we already showed you
+
+- add <body class="container"> to your html ----- container is a bootstrap class. It manages the margins around the stuff you have added
+
+
+If you don't want your title to get resized with the page but span the whole width, then don't put the heading inside the <body> element
+but instead make the "container" class fit in the <main> element so <header> is outside
+
+play with it, you can put stuff like background color outside the container.
+
+you might need to add another level of div to get this stuff to span colors outsdie of the page margins
+
+
+--------------
+Work-time
+
