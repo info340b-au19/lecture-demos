@@ -1,11 +1,17 @@
 SLIDE 2
 Agenda 
 
+How are you guys doing getting your project ideas?
+
+How do you feel about using the project board (kanban?)
+
 -------------------
 SLIDE 3
 Stage 1
 Use HTML and CSS to make a static version of your app
 Basically build a "screenshot" or "wireframe" of what you hope to build
+
+It's a mockup
 
 What it will look like even though the buttons don't necessarily work
 
@@ -36,11 +42,28 @@ Adding some cooler more advanced features (like transitions... etc to make it lo
 
 Need a main page, the second click is really just to show a second main page after it's been clicked (so at least 2 pages. but don't make it too many pages)
 
+You are not building a "log-in" home page. You are building the main page where you will interact... and then the second page of what  you app will look like once you've taken action.
+
 if you click on a button - it will show a second ("after" version) of that page... or at least show that a page that you could go to.
 
 -------------------
+Slide 4
+The "second" page
 
-SLIDE 4
+This is where you show what happens when interaction has occurred. 
+
+Adding a splash page (login page), is fine if you want to do it. It's where you might want to do your splashy transition stuff.
+
+
+--------------------------
+SLIDE 5
+Review Poll
+
+Things we should cover today?
+
+
+-------------------------
+SLIDE 6
 Example of how relative sizes are calculated
 
 Look at the code on the SLIDE
@@ -53,37 +76,204 @@ when we ask thing a to be 1rem it's 1x40px (the root size)
 
 
 Also, in general use Use display properties rather than positioning if you don't want things to overlap.
-So "inline", "inline-block", "block"
+So "inline", "inline-block", "block" and then use flexbox if you want more complicated things
 
-and then use flexbox if you want more complicated things
+Rather than positioning absolute or float. You are welcome to do either, but these let the browser take care of  alot of stuff you might have to tweak if you position on your own.
 
-Rather than positioning absolute or float. You are welcome to do either, but these let the browser take care of 
-alot of stuff you might have to tweak if you position on your own.
+-----------------------------
+SLIDE 7
+Other questions:
 
+How much commenting should we do in the code?
 
+How many lines of code should phase 1 include?
+
+Can we use Bootstrap?
+
+Do I have to implement the topic I chose from Phase 0?
+
+When to use class vs ids vs tags (joel never uses the id element) because an id is a unique element on the page, thus this rule is specific.
+Use classes and tags. Tags are good for general content. All headings look this way. All links look this way.
+Styling individual parts of the page, that's when classes. Can reuse all nav bars. 
+
+tags, h1's, paragraphs, etc...
+
+Class is a classification. It's the type of paragraph. 
+
+Kind of squishy answer, but 
 -----------------
 
-SLIDE 6
-bootstrap
+SLIDE 8
+Bootstrap
 
-it's a framework.
+It's a framework.
 
-a set of styling that someone else wrote that you can use
+It's a bunch of css somebody wrote that we can use.
+
+You link it 
 
 here is predefined stylesheet. it's the oldest one. it's very popular. 
 The big competitor is called "materialize". it's good too. 
 
-
-SLIDE 7
+-----------------------
+SLIDE 9
 
 Where to get bootstrap
+
+Click on the link: https://getbootstrap.com
+
+Scroll down and select the link to CSS Only (the min version)
+
+Note we link it into the <head> of our html file. It's a link just like what we do with our own CSS file.
+
+You can open it (just grab the css file).
+
+Notice it's the "min" minimize file. 
+
+Since CSS ignores white space, they delete it all so it's smaller. It's difficult to read.
+
+Open in the browser. 
+
+Get rid of the min.
+
+It looks alot like the css we write. It's alot of css.
+
+If you scroll down far enough, you'll see @media queries
+
+It's all stuff we've done. But it's like 10,000 lines of code. And it's tested.
+
 
 We get it from a CDN. Cach'ing in the internet.
 If any other property has used this before on your machine, it doesn't get downloaded again.
 
+_--------------------------------
+SLIDE 10
+JUST BY LINKING
+
+Open the demo code
+
+Load bootstrap before you load your own.
+
+If you want your rules to override, you need you to load yours last
+
+Show the example of the h1 modifications in your style.css
+
+Swap the order, show that yours no longer overrides
+
+Bootstrap has a list of class rules, for example: .textimportant changes everything blue for elements
+
+--------------------------------------
+SLIDE 11
+Utility Classes
+
+Now go to the bootstrap site and show the colors: Click on Documentation, then Utilities
+
+Bootstrap is a giant list of classes
+
+colors - There are a bunch of different colors you can apply.
+Lots of examples on the site.
+
+.bg-primary - means background primary (blue)
+
+.text-primary - means the text is blue 
+
+So we don't have to write the css.
+
+We can modify spacing 
+
+m for margin
+p for padding
+
+Note that I have some code that changes the margin on the header that's commented out.
+
+YOu can use bootstraps version of flexbox
+
+.d-flex
 
 
-SLIDE 8
+buttons
+class="btn btn-primary"
+
+Look at the "get bootstrap"
+
+Notice how it looks like a button.
+
+
+Bootstraps documentation is generally pretty good.
+
+There are alot of examples
+
+For example forms
+
+It shows the exact html. And further down shows how to modify with examples.
+
+
+You could write all this stuff yourself, but bootstrap gives you alot of this.
+
+--------------------------------------
+SLIDE 12
+UTILITY DISPLAY CLASSES
+
+Bootstrap - display example
+
+It's responsive
+
+It's built around media queries
+
+.d-(value)
+
+d-none -     by default don't show
+d-md-block  - but when it gets to be medium width, make this block
+
+<header class="bg-dark d-none d-md-block">
+
+So background dark, by default don't display, but once it gets to medium size show the header as block.
+
+----------------------------------------
+SLIDE 13
+
+It reads left to right. Does the exact same thing as media query.
+
+It provides a vast number of responsive classes
+
+The breakpoints can be found in the layout section of bootstrap
+
+---------------------------------------
+Slide 14
+
+The grid system
+YOu can use this without having to even do the flexbox stuff on your own
+
+Rows and Columns
+
+
+You have to put everything in the container class. You can see this in the header and the main elements
+Without this, you get no margin
+
+The magic of the container class itself has some responsiveness to it. It's nice behavior
+
+You need the container class to do the grid thing too.
+
+-----------------------------------
+
+Slide 15
+
+It's built along a series of columns. By default it assumes 12 columns that can get filled.
+
+Then you specify how many cells each of these should fill
+
+So to take up 1/2 of the space, you would say: <div class="col-6">
+
+The grid is like the best part of bootstrap
+
+YOu can make them responsive
+
+col-6 - by default
+col-lg-3 - when it gets bigger
+
+------------------------
+
+SLIDE 10
 
 Bootstrap : http://tiny.cc/bootstrapdemo
 
