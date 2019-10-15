@@ -1,0 +1,9 @@
+.backgroundimage {
+    display: inline-block;
+    padding: 50;
+    border: 1px solid black ;
+    height:400px;
+    width:400px;
+    /* border-left-width:5px;
+    border-bottom-width:5px; */
+}

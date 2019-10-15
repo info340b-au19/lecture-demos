@@ -1,0 +1,499 @@
+
+Slide 2
+Plan for Today
+
+
+-----------------------------
+SLIDE 3
+PollEverywhere:
+How is your progress on Stage 1? 
+
+-- If you are using bootstrap, then I'd expect you still to have 5 to 10 rules you've done in your own css file so maybe 20 to 30 lines of code
+
+--  The intension is that the page is styled and looks good. But you also need to show you can write your own css
+
+Would you like to spend the first half going over Javascript?
+
+Any questions about the project? About Javascript?
+
+
+--------------------------
+SLIDE 4
+
+How do you make a background image accessible?
+
+It depends on how you are using the image. If you are just using the background as a background and it has
+not semantic meaning. You don't make it accessible. 
+If however, you are trying to include an image on the page for meaning. Then you 
+
+normally 
+<img scr="mypicture.png" alt="Description of picture"> -- normal picture
+
+<div style="background-image: url(mypicture.png" aria-label="Description of the Picture"></div>
+
+Note this has inline style, which we generally don't want to do.
+
+-------------------------
+
+SLIDE 5
+
+Screen reader only class:
+
+It's a way of assigning an element to only appear on screen readers.
+
+.SR Class in bootstrap
+There's a media query that checks to see if there is a screen available 
+
+This is likely what bootstrap is doing. 
+
+.sr-only {
+    display: none;
+}
+
+@media screenreader {
+    .sr-only {
+        display: block;
+    }
+}
+
+It hides the element except for screen readers. One application is if you have a "skip to main content" link that you only want to 
+
+-------------------
+
+SLIDE 6
+Example Projects
+
+
+-----------------
+
+SLIDE 7
+
+Javascript is not Java 
+
+It's our 3rd major language from this course 
+HTML
+CSS
+And now Javascript and we'll work with this for most of the rest of the class
+
+You will probably feel like REACT is a 4th language because it's the syntax is so different, but it's still javascript. It's just a really different way of writing javascript.
+
+jscript is there to make our websites to be interactive.
+
+So when you click on a webpage, button, hover, filter jscript lets you modify things in the DOM
+
+java was the most popular language at the time jscript was released so it was a marketing ploy to get folks to be interested
+
+Kind of like...
+
+-----------------
+
+SLIDE 8
+
+The Transmophers movie tagging along with the Transformers
+They aren't the same. Marketing gimic
+
+Trying to get someone to think... hey that's a language everyone is using
+
+There are some things that look similar but they are quite different
+
+It's an official implementation of ECMAScript which is a standard
+European Computer Manufactures Association - Org that controls that sets the standard for jscript
+
+ES stands for ECMA Script. ES6 is version 6 of javascript
+
+
+----------------------------------
+SLIDE 9
+
+javascript is included in it's own external file... so we have a 3rd file. It typcally has a .js extension
+
+we usually put it in a /js folder
+
+******OPEN UP THE DEMO CODE
+
+Show the js directory
+
+
+We include the file using the "script" tagging. It's a script tag.
+
+<script src="path..."><script>
+
+It's got a src attribute, not an href attribute... just to be difficult i guess
+
+So we include this somewhere in our html file
+
+It doesn't show on the screen, but instead is executed when the browser hits that line in the HTML
+
+It's typically included either 
+
+1 in the head
+2 at the bottom of your body tag
+
+When do you want it run?
+
+At the end of the head, before the page has been rendered?
+
+Or at the bottom of the body tag
+
+The preferred is to put at the end of the body. For performance reasons. This way users see the page before the script is run.
+
+There are other ways to do it... like using "load-later" or something like that
+
+---------------------
+
+SLIDE 10
+Hello World
+
+We log things out in javascript, rather than printing
+
+system.out.println() is how you did it in java. 
+
+This is the equivalent in javascript.
+
+javascript has a console, and a log() function off of that.
+
+"use strict" is described in the course text. It's a declaration to the browser, to try and report weird syntax rather than just trying to work through it. It tells the browser to report the errors so we can see them for debugging.
+
+We use the console view to see the logging
+
+We can run javascript code directly from the console to test stuff out
+
+The errors show up in the console.
+
+Always have it open in when doing development work
+
+It's basically a command line for our browser
+
+You can type directly into the browser:
+
+Type this into the console ->   console.log("hello dawg fans")
+
+This is the same developer tools we've used before, but before we were looking at the elements tag
+
+
+-------------------
+
+SLIDE 11
+Structuring Javascript
+One confusing thing for folks coming from java:
+
+In java code, you have a main. 
+
+We don't have a main method in js. 
+
+JS runs the script top to bottom.
+
+It's an interpreted language.
+
+If you add a second line, it runs that immediately after the previous line
+
+Its similar to an R script
+
+You can think of the file as your entire main method. It just runs from top to bottom.
+
+------------------
+
+SLIDE 12
+JS Syntax: C-based
+
+In terms of syntax its based on C, which means it looks alot like Java
+
+foo() - means its calling a function
+
+bar.baz - it's accessing a field, or running a method on an object
+
+The main differences are:
+
+Dynamic Typing - 
+
+Objects - 
+
+Functions - higher order functions (next time) kind of mind blowing
+
+Other stuff is very similar to java 
+---------------------
+
+SLIDE 13
+JavaScript Variables
+
+All variables are dynamically typed. You don't declare what type it is when you declare.
+We just make variables.
+
+We use "let" 
+
+Can use "const" or "var" 
+
+"let" is better practice because of scoping.
+
+Type into the console: let x = 'hello';
+
+
+You can assign different types to variables
+
+Here it starts as a string, then ends up as number below
+
+Once declared it doesn't need to be declared again (let)
+
+Name variables with their data type in the variable name: eg: xStr = 'hello';
+Then if you do xStr = 10
+
+you'll see you might be doing something you didn't intend to do
+
+Any unassigned variable is given "undefined" value
+
+Its alot like NULL in java. 
+
+You don't get an error. It won't break since it's not compiled
+
+camelCase is good practice in jscript
+----------------------------
+
+SLIDE 14
+Variable types
+
+There's no difference between ints and floats. Numbers are numbers. 
+
+Strings work the same in java
+
+They can be written in single quotes or double quotes in jscript. Best style is to be consistent.
+
+Style guide: single quotes for strings, unless typing out a block of text
+
+Booleans - same as other languages
+
+Arrays:
+1) We don't declare a type (just need to add the '[]' brackets)
+2) We can have different data types within the array (even arrays as elements within arrays)
+
+We access and mutate arrays using [] syntax --- 'square bracket notation'
+
+If we try and access something out of bounds, you'll get "undefined". it doesn't break
+
+Arrays can change size. If you assign something out of bounds will add to the array. And Any
+blank spots will be "undefined'.
+
+Arrays have methods too. The most useful is "push"
+You can use .push to add to the end of an array
+
+
+-----------------------
+
+SLIDE 15
+Nested Arrays
+
+Arrays can contain arrays (2 dimensional array)
+
+Walk through the example on the Slide
+
+Paste the code into the Console
+
+
+-------------------
+
+SLIDE 16
+Type Coercion
+
+What are the values of the expressions: Do this in the console... type directly in there
+
+'40' + 2 => 402 - it's a string
+'40' - 4 => 36 - its a number
+
+This is the brutal part of jscript data types.... it tries to coerce
+
+'40' - '2'
+
+javascript coerces because it knows that strings can't be deleted
+
+let num = 10
+let str = '10'
+
+but when it comes to adding --- it concatenates them because strings can be concatenated "402"
+
+use the triple = sign to compare so that both value and type are the same
+
+'' == 0
+
+both can be coerced to "false' so the interpreter does that...
+
+So it's tricky and confusing and buggy
+
+-------------------
+
+SLIDE 17
+Objects
+
+java has hashmaps, but they aren't really objects
+
+
+a key-value pair, like a hashmap in java
+similar to a dictionary in python
+slimilar to a list in REACT
+
+A way of mapping from a key to a value that is stored.
+
+Like an array but the indices are strings rather than numbers
+
+We define them in curly braces {}
+
+In javascript you can omit the quotes for the indices
+
+ages = {'sarah':42, 'amit':35, 'zhang':13}
+
+same as:
+
+ages = {sarah:42, amit:35, zhang:13}
+
+---
+like arrays the values of objects don't have to be the same
+and int key, str key, list... all within the same object
+
+empty objects {}
+
+---------------------
+
+SLIDE 18
+Accessing Properties
+
+We use square bracket notation to access values with the key as our index
+
+ages['alice']
+
+Any key that's not in the list will get 'undefined' returned
+
+If we assign a value to a key that hasn't been created yet, will be added to the object
+
+example : show in the console
+First create: ages = {'sarah':42, 'amit':35, 'zhang':13}
+
+Then access:
+ages['fred'] ==> you'll get undefined
+
+Then assign
+ages['fred'] = 19;
+
+and type in 
+ages
+and you'll see it's been added
+
+Objects are unsorted. There is no ordering associated. 
+
+Can't access ages[0]; There is no 0'th element. And there is no key named '0'.
+
+So when you put in a key that doesn't exist, it doesn't complain too much, but it means that key doesn't have a value in the object.
+
+----------------------
+
+SLIDE 19
+ACCESSING Properties
+
+The values inside of objects are usually called Properties
+
+We access with bracket notation
+
+Here is a person object
+It has 4 keys
+
+
+one of the keys "favorites" is another object which has 3 keys
+one of those keys is an array
+
+So it's pretty complex
+
+We can have the value inside the bracket as a variable, 
+
+Walk through the example...
+
+
+
+Using bracket notation also allows us to use variables to access properties.
+let favFood = person['favorites'][topic];
+---------------
+
+SLIDE 20
+The other thing we can do with objects when doing javascript is we are also allowed to 
+access using '.' notation. 
+
+The last two slides are the same. Dot notation is quicker to type and less noisy.
+
+You have to use bracket notation, when you want the key to be a variable of some kind.
+
+So whenever you are using a variable, you have to use the bracket. 
+
+"person.favorites[topic]"
+
+In javascript if instead you used: let favFood = person.favorites.topic;
+
+It doesn't know that topic is a variable, it thinks it's a key you are trying to access. 
+
+You can mix and match bracket and dot notation. In general use dot notation, unless you have to access something using a variable you've declared.
+
+--------------------
+
+SLIDE 21
+type conversion
+
+Skip this one
+
+-----------------------
+
+
+SLIDE 22
+Data Tables
+
+Arrays of objects
+
+Shared Properties
+
+Arrays of objects or arrays of rows
+
+As long as the objects all match up, then we can handle things cleanly
+
+
+--------------------
+
+SLIDE 23
+FOR Loops
+
+for (let i=0; i>array.length; i++)   => works great
+
+You can also use these constructs from javascript
+
+"for in" or "for of" 
+
+for of - for arrays
+
+for in - for objects
+
+We don't usually loop through objects, but we do loop through arrays
+
+You might loop through an array of objects to display one property of an object.
+
+-----------------
+
+SLIDE 24
+Functions
+
+Functions are like static methods in java
+
+we declare "function" then the parameter list
+
+Everything is public
+
+Things get returned or they don't. 
+
+don't need to give the variable a type (like all variables in javascript)
+
+
+We'll do more on functions next class
+
+------------------------
+
+
+
+
+
+
+
+
+
+
