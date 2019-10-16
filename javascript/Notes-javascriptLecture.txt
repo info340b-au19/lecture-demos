@@ -58,6 +58,44 @@ This is likely what bootstrap is doing.
 
 It hides the element except for screen readers. One application is if you have a "skip to main content" link that you only want to 
 
+*****SKIP THIS TODAY***************
+Other topics from joel's class this fall (19)
+-when to use flexbox
+-difference between nth-of-type and nth-child
+-framework vs library vs api
+
+https://www.w3schools.com/cssref/tryit.asp?filename=trycss3_nth-child
+
+YOu can play with this (replace nth-child with nth-of-type to see the diff behavior):
+<!DOCTYPE html>
+<html>
+<head>
+<style> 
+p:nth-child(odd) {
+  background: red;
+}
+
+p:nth-child(even) {
+  background: blue;
+}
+</style>
+</head>
+<body>
+
+<p>The first paragraph.</p>
+<p>The second paragraph.</p>
+<ol>
+<p> hey </p>
+</ol>
+<p>The third paragraph.</p>
+<p>The fourth paragraph.</p>
+
+<p><b>Note:</b> Internet Explorer 8 and earlier versions do not support the :nth-child() selector.</p>
+
+</body>
+</html>
+
+**** SKIP THIS TODAY*************
 -------------------
 
 SLIDE 6
@@ -227,6 +265,8 @@ Can use "const" or "var"
 
 Type into the console: let x = 'hello';
 
+typeof x -> gives "string"
+
 
 You can assign different types to variables
 
@@ -283,10 +323,15 @@ Nested Arrays
 
 Arrays can contain arrays (2 dimensional array)
 
+It's an array of arrays
+
 Walk through the example on the Slide
+There are 4 arrays in this example
+
 
 Paste the code into the Console
 
+We do lots of nesting of arrays in jscript
 
 -------------------
 
@@ -317,6 +362,8 @@ both can be coerced to "false' so the interpreter does that...
 
 So it's tricky and confusing and buggy
 
+Thus use triple equals '===' when comparing
+
 -------------------
 
 SLIDE 17
@@ -327,11 +374,11 @@ java has hashmaps, but they aren't really objects
 
 a key-value pair, like a hashmap in java
 similar to a dictionary in python
-slimilar to a list in REACT
+similar to a list in REACT
 
 A way of mapping from a key to a value that is stored.
 
-Like an array but the indices are strings rather than numbers
+Like an array, but the indices are strings rather than numbers
 
 We define them in curly braces {}
 
@@ -391,7 +438,7 @@ The values inside of objects are usually called Properties
 We access with bracket notation
 
 Here is a person object
-It has 4 keys
+It has 4 keys, or aka 4 properties
 
 
 one of the keys "favorites" is another object which has 3 keys
@@ -425,7 +472,7 @@ In javascript if instead you used: let favFood = person.favorites.topic;
 
 It doesn't know that topic is a variable, it thinks it's a key you are trying to access. 
 
-You can mix and match bracket and dot notation. In general use dot notation, unless you have to access something using a variable you've declared.
+You can mix and match bracket and dot notation. In general use dot notation, unless you have to access something using a variable .
 
 --------------------
 
@@ -447,6 +494,8 @@ Shared Properties
 Arrays of objects or arrays of rows
 
 As long as the objects all match up, then we can handle things cleanly
+
+This is common. It works well because we can loop through each row and we know what the properties are.
 
 
 --------------------
