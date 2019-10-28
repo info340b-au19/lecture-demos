@@ -32,14 +32,14 @@ ball.attr('cy', 95)
 
 
 
-// slide 13 buttons 
+// // slide 13 buttons 
  
-let buttons = $('button');
+// let buttons = $('button');
 
-// let buttons = $('button, p');
+// // let buttons = $('button, p');
 
 
-buttons.addClass('btn-success')
+// buttons.addClass('btn-success')
 
 
 //slide 14 - adding new element
@@ -69,13 +69,13 @@ buttons.addClass('btn-success')
 // })
 
 
-$('img')
-    .mouseenter(function(event) {
-        $(event.target).attr('src', 'img/surprised.png')
-    })
-    .mouseleave(function(event) {
-        $(event.target).attr('src', 'img/happy.png')
-    })
+// $('img')
+//     .mouseenter(function(event) {
+//         $(event.target).attr('src', 'img/surprised.png')
+//     })
+//     .mouseleave(function(event) {
+//         $(event.target).attr('src', 'img/happy.png')
+//     })
 
 //     // psuedo code to show click instead... and using a global state variable
 //     //  .click(function(){
@@ -92,7 +92,7 @@ $('img')
 // })
 
 
-// // SLIDE 17 JQuery Animation Effects
+// SLIDE 17 JQuery Animation Effects
 
 // const state = {
 //     playground: {
@@ -109,8 +109,8 @@ $('img')
 //             state.playground.ballAtTop = false
 //         } )
 //     } else {
-//         ball.attr({ cx: 225, cy:95 })
-//         ball.css({ cx: 225, cy:95 })
+//         ball.attr({ cx: 225, cy:95 });
+//         ball.css({ cx: 225, cy:95 });
 //         state.playground.ballAtTop = true
 //     }
 // })

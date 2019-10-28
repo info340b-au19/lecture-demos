@@ -2,23 +2,21 @@
 Github - get the lecture demo
 slides.com
 
-Slide 2 - Here again are some links to resources for mental health. 
-
-Slide 3
+Slide 2
 Plan for today
 
-I have moved the due date for Stage 2 to be Tuesday Feb 19
+Stage 2 is due Wednesday November 6
 
-Stage 3 is currently set to be due 2 weeks later on Tuesday March 5
-Stage 4 is set to be due Friday March 15.
+Stage 3 is currently set to be due 2 weeks later on Wednesday Nov 20
+Stage 4 is set to be due Friday Dec 6.
 
 
-Slide 4 - 
+Slide 3 - 
 CheckIn Poll
 
 ----------------
 
-Slide 5
+Slide 4
 How much data do we need for stage 2?
 Some, not alot.
 10 to 20 rows of data in a csv or json file would be sufficient. Not 100 mb because github will choke
@@ -29,9 +27,11 @@ Previously JQuery made life easier to do DOM manipulation across all browsers. N
 Mostly because you refrain from jquery so you don't want to download a 50k script file if you don't need it.
 Also, there are situations where other libraries/frameworks don't play nicely with jQuery
 
+And it doesn't work well with React
+
 ------------------
 
-SLIDE 6
+SLIDE 5
 
 jQuery is powerful and easy to use. It's easier than directly manipulating the DOM through
 the document object and jscript. 
@@ -45,19 +45,28 @@ Stage 3 we will be moving to react so you probably won't be using jQuery
 
 --------------
 
-Slide 7
+Slide 6
 JQuery is an example of an external libary. We use these so we don't have to build everything ourselves.
-You grab jQuery as an external library
 
 JQuery is like the bootstrap of javascript
 
+Sometimes you can build a method almost as quickly, but jquery has been tested, it's clean, likely efficient.
+
+You grab jQuery as an external library 
+
+--> https://jquery.com/
+Then click on "download" and scroll down to the CDN (content delivery network)
+Then click on the CDNJS CDN link
+
+This gives you links
+
+You'll use the 3.41/jquery.min.js (minified version)
+
 Use the CDN so you don't have to download locally
 
-Pro-tip: Visual Studio Code will automatically download the type definitions for any library listed 
-as a dependency in the project’s package.json. For example, if you include Lodash as a dependency 
-(by installing it with npm install --save lodash), then just typing the _. will cause VS Code to 
-provide autocomplete options. This makes it a good idea to install JavaScript libraries via npm, 
-even if you plan on loading the library from a CDN instead of from a local file.
+Show the script added at the bottom of the demo.
+
+Pro-tip: Visual Studio Code will automatically download the type definitions for any library listed as a dependency in the project’s package.json. For example, if you include Lodash as a dependency (by installing it with npm install --save lodash), then just typing the _. will cause VS Code to provide autocomplete options. This makes it a good idea to install JavaScript libraries via npm, even if you plan on loading the library from a CDN instead of from a local file.
 
 jQuery is common enough that it's likely that your users have it already 
 on their machines and won't pay the download cost either
@@ -65,8 +74,10 @@ on their machines and won't pay the download cost either
 You need to put the jQuery script above your own jscript file is loaded. Otherwise your script
 won't know about jQuery.
 
+If we are going to use jquery, then you need to run it before your script.
+
 -------------------
-SLIDE 8
+SLIDE 7
 
 jQuery is a global object we can use. 
 
@@ -74,6 +85,9 @@ jQuery() takes a css selector, just like document.queryselector()
 
 
 In practice, noone uses jQuery(), instead they use the $() alias
+It's a nickname. 
+
+
 
 Lodash is another library that is popular. It uses "_" as the alias. 
 Why Lodash?
@@ -86,28 +100,34 @@ Creating composite functions
 
 
 ----------------
-SLIDE 9
+SLIDE 8
 Almost all jQuery methods are getter and setter functions. If you pass an argument you are usually setting.
 If you aren't passing an argument you are getting the value.
 
-SLIDE 10
+SLIDE 9
 Here's the html code to create the objects on the slide. It's using svg. 
 
 
-SLIDE 11
+SLIDE 10
 Let's look at jQuery in action with the demo
 
 we get a jQuery object with the 'h1' selector
 see it returns a jquery function wrapper. 
 
 
-SLIDE 12
+SLIDE 11
 Use jQuery to place the ball
 
 
 Just about every method does the change and returns a reference back to the changed object
 
-so
+in our initial example we have (example1) :
+ball.attr('cx',225);
+ball.attr('cy',95);
+
+since the first call returns a reference to the object again, we can chain
+
+so (example 2)
 ball.attr('cx', 225).attr('cy', 95)
 
 another syntax is:
@@ -116,8 +136,11 @@ ball
     .attr('cy', 95)
 
 
-Take a look at the jQuery attr() documentation
-It's really good. 
+(example 3) is where we pass in an object with both attributes
+
+
+Take a look at the jQuery attr() documentation. There's a link on the side of the slide.
+It's really good.  Maybe the best you can find.
 
 Lots of ways to call it.
 Code snippets
@@ -126,7 +149,10 @@ Navigation on the left hand side which is a taxonomy of jQuery. Really helpful
 
 Another way to call the attr() method is to pass in key value pairs
 
-SLIDE 13
+You will want to know how to access this documentation for the homework.
+
+
+SLIDE 12
 
 Buttons
 
@@ -134,7 +160,12 @@ NOTE - This example grabs every "button".
 
 The CSS selector method in jScript is automatically a "foreach"
 
-SLIDE 14
+Every button on the page in our example. 
+
+You don't need to do a query selector all, and then forEach loop to set the attritutes you want.
+
+
+SLIDE 13
 
 Adding a new element
 
@@ -145,12 +176,17 @@ append is for jquery, appendchild is for queryselector
 
 Don't add a bunch of new content in jQuery
 
+Remember that we don't want to do a whole lot of content through our jscript as a general rule. 
+
 You can also create just the element:
 
 let newP = $("<p>")
 
-SLIDE 15
+---------------------------------------
+SLIDE 14
 Event listeners
+
+This is how you register them in jquery. 
 
 click()
 mousedown()
@@ -181,21 +217,30 @@ The common thing to do then is to wrap this event object in a jQuery function ca
 All parameters are optional in jScript. But in our examples here we want to use
 the event attributes.
 
-SLIDE 16 - JQuery Demo - the slide up demo
+
+SLIDE 15 - JQuery Demo - the slide up demo
 Event listener example 2
+
+Animiation
 
 1000 miliseconds
 
 jQuery effects are what we are showing here. Look online
 
+It sets the display to none after the height gets down to 0.
 
-SLIDE 17
+slideup, slidedown, fadein, fadeout, etc... these are some effects available in jquery for animation.
 
-Note we have a const state object where we can set the playground-ball at top whether it's at the
-top of the slide
+--------------
+SLIDE 16
+
+Note we have a const state object where we can set the playground-ball at top whether it's at the top of the slide
+
+note we "animate" the ball
 
 on click, we 
 check to see if the ball is at the top or not
+
 if it is, animate the slide (1000 miliseconds to the bottom of the slide
 then set the ball to that spot, and set the const to false
 
