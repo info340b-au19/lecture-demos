@@ -1,68 +1,81 @@
 'use strict';
 
-//slide 11
+//slide 10 with a different example from the slide
 
 let head1 = jQuery('h1');
 // let head1 = $('h1');
 console.log(head1);   //see it's an object
 
-head1.text('Hello world!');  //setter
-console.log(head1.text())/  
+// head1.text('Hello world!');  //setter
+// console.log(head1.text());  
 
-$('h1').text('changed to hello galaxy!')  //setter
-console.log(head1.text());
+// $('h1').text('changed to hello galaxy!')  //setter
+// console.log(head1.text());
 
-
+//slide 11
 
 let ball = $('circle')
 
-//// slide 12 ball
-// ball.attr('cx', 225)     //set individually
-// ball.attr('cy', 95)
+// slide 12 ball
+//example 1 syntax
+ball.attr('cx', 225)     //set individually
+ball.attr('cy', 95)
 
 
 // method chaining, works because each method returns a reference to the changed element
 
-ball.attr('cx', 225).attr('cy', 95);   //chained
+// //example 2 syntax
+// ball.attr('cx', 225).attr('cy', 95);   //chained
 
+// // example 3 syntax
 // ball.attr({ cx: 225, cy:95 }) // or i can pass in an object with the key value pair
 
 
 
 // slide 13 buttons 
  
-let buttons = $('button')
+let buttons = $('button');
+
+// let buttons = $('button, p');
 
 
-// buttons.addClass('btn-success')
+buttons.addClass('btn-success')
 
 
 //slide 14 - adding new element
 
-////DOM
+// //DOM
 
+// // part1, remind how to create a new element in DOM
 // let newP = document.createElement('p')   //example using the DOM create element
 // newP.textContent = "I'm new!"
 
 
-
+// // part 2, show how to create in jquery
 // let newP = $("<p>I'm <em>new</em>!</p>")    //example using jquery
 // console.log(newP)
 
+// // part 3, we stilln need to add to the DOM
 // $('#text .card-body').append(newP)
+// // $('#text .card-body').prepend(newP)  // move it to the start
 // $('#text .card-body').prepend("<p>I'm first!</p>")
 
 
 
 ////Slide 15 - Event Listeners - mouseenter and mouseleave (hover)
 
-// $('img')
-//     .mouseenter(function(event) {
-//         $(event.target).attr('src', 'img/surprised.png')
-//     })
-//     .mouseleave(function(event) {
-//         $(event.target).attr('src', 'img/happy.png')
-//     })
+// $('img').click(function() {
+//     console.log('you clicked me');
+// })
+
+
+$('img')
+    .mouseenter(function(event) {
+        $(event.target).attr('src', 'img/surprised.png')
+    })
+    .mouseleave(function(event) {
+        $(event.target).attr('src', 'img/happy.png')
+    })
 
 //     // psuedo code to show click instead... and using a global state variable
 //     //  .click(function(){
