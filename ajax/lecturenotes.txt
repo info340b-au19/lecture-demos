@@ -1,0 +1,254 @@
+Get lecture demo repo on github
+slides.com
+bring up visual code
+
+Administrative stuff:
+Grading is really slow. Still shooting for Friday, but it might slip to saturday.
+
+By end of today we will have covered everything you need for stage 2.
+
+One week from today we will start react. This will be a different way of doing things.
+Perhaps better to be completely done with stage2 assignment, but will give until next
+Sunday to complete.
+
+
+Slide 2
+Any questions about things from chapter 14 or earlier?
+
+Slide 3
+
+AJAX demo
+
+Slide 4
+HTML Forms
+But first, let's talk about HTML Forms...
+
+THis is a way to gather data from a user.
+
+This is a simple form on the demo screen
+
+There's an input element
+There's a button to submit
+
+Slide 5
+When you click submit, the browser sends out an http request, just as if you had clicked on a hyperlink but the content of the form
+will dependon what was on the form.
+
+In this example we are using "method=get" could use post
+
+Get adds parameters to the query string
+
+The Action attribute provides the URI. In this example the URI is "/signup", this is where we want to send the request to.
+
+If we go to live server, you can see what is on the query string ... react and stars are added as parameters
+
+So you can see through a form, we can make a get call to this api with some query parameters and get back the data in json format.
+
+We want to do this in code so that we get the data for our program.
+
+We will write java script code that will send the http request instead of using a form.
+
+
+
+SLIDE 6
+AJAX - Asynchronous Javasript and XML
+
+Created by Microsoft in the 90s for it's email. GMail and others also adopted and it has become a standard.
+
+Even though the acronym says XML, it sends back json now
+
+SLIDE 7
+
+XML is a syntax  of structured data. You can define your own tags
+
+Talk about the TAXSaver use of XML
+
+HTML is a subset of XML
+
+SLIDE 8
+XML is wordy and awkward
+JSON is smaller, easer to parse. 
+It's a collection of key value objects
+
+
+Look at this example between XML and JSON
+
+This JSON is a good example of what you could also manually store as a global var in your
+code if you didn't get the ajax call
+
+
+
+SLIDE 9
+AJAJ never took off. But that's really what it is.
+
+
+AJAX is a technique for having code (javascript) send the http request rather than the user
+
+SLIDE 10
+To do this (in this form example) we have to intercept and event from happening... more on that in a second
+
+SLIDE 11
+Example code where we are intercepting the event with our own from.
+
+Now that we've prevented the form from doing what it normally would do we can make the http request through javascript
+
+SLIDE 12
+AJAX requests are built on browser provided xmlhttprequest, but we don't do this. It's too
+complicated. 
+
+This was developed in the 90's.
+
+SLIDE 13
+
+We use the fetch() method which is available in the DOM's API on modern browsers.
+
+Fetch is not supported by all browsers
+
+Look at the caniuse site 
+
+For those browsers that don't support fetch(), we can use polyfill that replicates the api for older
+browsers
+
+You have to include this library in your html file like other libraries
+
+Remember you need to include it before you include your own .js files for scope
+
+Here's a github repo for window.fetch (on the slide)
+
+Grab the library from a CDN
+
+All you have to do is include the script file and it will work because the script is there. It defines fetch() for us that works on non-supported browswers.
+
+SLIDE 14
+AJAX requests are asynchronous... 
+At some point in the future the response comes back.
+
+The request goes out... (hey professor, i need some help)
+Then some time in the future, it comes back but hopefully you continue to do stuff
+
+The request is sent. But it doesn't return the data. Instead it returns a "promise".
+
+A promise is an IOU
+
+It's like a bag tag. Imagine that you are at a chain restaraunt... the buzzer
+
+When it's your turn, it'll buzz
+
+
+
+SLIDE 15
+When the promise if fulfilled, we have a callback function that can be used with the .then method
+
+You provide the call back with the line of code
+promise.then(successCallback, rejectCallback)
+
+where the second parameter is optional
+
+We provide the callback. What we want to do when the promise is fulfilled.
+
+When it's ready, execute this function.
+
+The function is passed in the response that we got from the request. So when the buzzer buzzes, it gives
+us information in the parameter telling us about what we got buzzed about.
+
+If the function gets denied, we can provide that second parameter
+
+It reads a little like english.
+
+Sending the request for data and handling it don't happen at the same time. 
+
+So if you provide code further down in your file, but not in the callback
+
+Polyfill Fetch version 3 works with node but not with browswers, so we need to include the 2.04 deal
+
+Now demo the pause with the first version of fetch (not the cascading version)
+
+
+
+
+
+SLIDE 16
+
+Here's the tricky part 
+But wait... the return to the callback is still not actually the data.
+
+Why? because the return is actually the response
+
+Think about getting waiting for a package, yet when it comes, you have another big task to do before
+you can actually get to the data. It's like ordering an ikea table or something and you get the box
+but you can't do anything with it for a while.
+
+The info is actually in there, but it's encoded and just a bunch of 0's and 1's.
+
+Fortunately there is a method with fetch that does this automatically without alot of work.
+
+So we need to get the data using response.json() method. 
+
+To make things more complicated, response.json() also does not directly return the data... it also returns a promise
+Why? because it's also an asynchronous method... it takes time for the json file to be created
+
+It takes some time. It's kind of slow. There's a moment we have to wait
+
+Its like when the buzzer comes, you get another buzzer
+
+
+SLIDE 17
+Returning Promises
+
+So to handle this, we have to provide another callback function for the 2nd Promises
+Again we do this with the line
+
+SecondPromise.then(function(secondData))
+
+In this slide (17), the upper function returns a NewPromise which is the "secondData" parameter passed to the outerPromise.then callback
+
+The return new promise is a way of reassigning the original promise with this new second promise...
+I mean, not just wait until the second buzzer actually occurs?
+
+
+SLIDE 18
+We can clean all this up with this syntax. We get rid of alot of the intermediate variables
+
+
+
+SLIDE 19
+IF it fails
+
+CATCH - what to do if something explodes
+
+.catch is another method (like .then) that you can call on a promise
+
+the catch will catch it if it happens at any time regardless of where in the chain the error occurs
+
+It also takes in a callback function
+
+We can also have a final .then because catch and all of these .then's return a promise
+
+It's like a "finally" block in java
+
+In the problem set there's a spinner, we want to turn off the spinner even if things fall apart.
+
+This is as complicated as our chaining will get in this class
+
+Demo that the chaining still will run the final .then even if there is an error
+
+
+The thing to note, is that you can't directly manipulate the data in the normal flow of 
+your file when it's asynchronous. You have do to it within the second .then() callback when the 
+json object is finally there.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
