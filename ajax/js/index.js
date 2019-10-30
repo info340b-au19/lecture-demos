@@ -1,61 +1,93 @@
 'use strict';
 
-let state = {
+// SLIDE 11 part A - start by showing the form to grab data  
+// let form = document.querySelector('form');                      // grab the form element
+// form.addEventListener('submit', function(event) {               // listen for when the submit event occurs
+//     event.preventDefault();                                     // prevent the default behavior from happening ( the form sends the http request)
+//     console.log("Form sumbmitted!");
+
+//     // SLIDE 11 part B - grab the query from the form
+//     let inputBox = document.querySelector('#queryInput');       // grab the value that is input into the form
+//     let query = inputBox.value;
+//     console.log("searching for", query);
+
+//     //SLIDE 11 part C - send AJAX request ourselves
+//     let url = "https://api.github.com/search/repositories?q="+query
+//     console.log("sending request to", url);
+
     
-    sortorder: 'default',
-    filter: 'default'
-  };
+    
+    // // send the request!
+   
+    // //version 1 -- SLIDE 15 --- -just show a callback on the promise from fetch
+    
+    // let promise = fetch(url)
+    // promise.then(function(response){
+    //     console.log(response);
+    // })
 
-function renderDataList(data){
-    let list = document.querySelector('ol');
-    list.innerHTML = ''; //empty out old
-    data.forEach((item) => {
-        list.appendChild(renderDataItem(item));
-    });
-}
+    // console.log("do more stuff");       //see how the asynch works? this line shows up in the console before the promise is returned
 
-function renderDataItem(data) {
+   
+   
+    // // version 2 ---SLIDE 16 and 17 ---- but wait, fetch doesn't return the data it returns the response
+    // // so we need to call the .json() method to actually get a usable data 
+    // // but .json() also asyncronous so it returns a promise so we need to 
+    // // register another callback function with it
 
-    let li = document.createElement('li');
-    let textoncard = data.name + 'age: ' +data.age;
-    li.textContent = textoncard;
-    console.log(data);
-    return li;
-}
+    // let promise = fetch(url)
+    // let updatedBuzzer = promise.then(function(response){
+    //     let encodePromise = response.json() //extract json content from response
+    //     return encodePromise;       
+    // })
+    
+    // // so now we can do the callback for the updated buzzer... here we're no longer in a promise
+    // updatedBuzzer.then(function(data){
+    //     console.log(data);
+    // })
+
+// //version 3 --- SLIDE 18 ---clean up version 2 using chaining them together
+// //these 4 lines (console.log doesn't count) is how you get data
+
+
+// fetch(url)
+//     .then(function(response){
+//         return response.json();       
+// })
+//     .then(function(data){
+//     console.log(data);
+// })
+
  
-let form = document.querySelector('form');                      // grab the form element
-form.addEventListener('submit', function(event) {               // listen for when the submit event occurs
-    event.preventDefault();                                     // prevent the default behavior from happening (
-    console.log("Form sumbmitted!");
+ 
+// // version 4 --SLIDE 19 -- show how to handle errors
 
-  
-    fetch("data/employees.json")
-    .then(function(response){
-        return response.json();       
-})
-    .then(function(data){
-        renderDataList(data);
-})
-})
 
-let sortbybutton = document.querySelector('#sortbutton')
-sortbybutton.addEventListener('click', function(event) {
-    console.log("sort button clicked");
-    sortList();
-})
+//     fetch(url)
+//         .then(function(response){
+//             return response.json();       
+//         })
+//         .then(function(data){
+//             console.log(data);
+//             throw new Error("HAHAHA");
+//             renderRepos(data);
+//         })
+ 
+//         .catch(function(error){
+//             console.log(error.message);
+//         })
+//         .then(function(){   
+//             console.log("final then!")
+//         })
 
-let filterbutton = document.querySelector('#filterbutton')
-filterbutton.addEventListener('click', function(event) {
-    console.log("filter button clicked");
-    filterList();
-})
+//     console.log("do more stuff"); //there is no data yet
 
-function sortList() {
-    console.log ("sorting");
-}
 
-function filterList() {
-    console.log ("filtering");
+    
+ })
+
+
+function renderRepos(data){
+    $("#content").append("<ul>...")
 
 }
-

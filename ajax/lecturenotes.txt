@@ -3,7 +3,7 @@ slides.com
 bring up visual code
 
 Administrative stuff:
-Grading is really slow. Still shooting for Friday, but it might slip to saturday.
+Grading is done. You will find a set of issues in github from stage 1 that you will need to resolve in stage 2. 
 
 By end of today we will have covered everything you need for stage 2.
 
@@ -23,26 +23,34 @@ Slide 4
 HTML Forms
 But first, let's talk about HTML Forms...
 
-THis is a way to gather data from a user.
+This is a way to gather data from a user.
 
 This is a simple form on the demo screen
 
 There's an input element
 There's a button to submit
 
+It's nested inside of a form element
+Users can provide input
+
+
 Slide 5
-When you click submit, the browser sends out an http request, just as if you had clicked on a hyperlink but the content of the form
-will dependon what was on the form.
+When you click submit, the browser sends out an http request, just as if you had clicked on a hyperlink but the content of the form will dependon what was on the form.
 
 In this example we are using "method=get" could use post
 
 Get adds parameters to the query string
 
-The Action attribute provides the URI. In this example the URI is "/signup", this is where we want to send the request to.
+The Action attribute provides the URI. In this example on the slide the URI is "/signup", this is where we want to send the request to.
+
+The action attribute in the sample code goes to "https://api.github.com/search/repositories"
+And the two input elements end up providing the 2 query parameters ('react' and 'stars')
 
 If we go to live server, you can see what is on the query string ... react and stars are added as parameters
 
 So you can see through a form, we can make a get call to this api with some query parameters and get back the data in json format.
+
+So this is shows how you can get back a json file from an api using a form.
 
 We want to do this in code so that we get the data for our program.
 
@@ -61,9 +69,11 @@ SLIDE 7
 
 XML is a syntax  of structured data. You can define your own tags
 
+HTML is a subset of XML
+
 Talk about the TAXSaver use of XML
 
-HTML is a subset of XML
+Here on the slide we have xml which describes a person
 
 SLIDE 8
 XML is wordy and awkward
@@ -92,6 +102,10 @@ Example code where we are intercepting the event with our own from.
 
 Now that we've prevented the form from doing what it normally would do we can make the http request through javascript
 
+We're doing this just for the demo
+
+We go do the form and add an event listener for submit events and intercept it and do our own code itself.
+
 SLIDE 12
 AJAX requests are built on browser provided xmlhttprequest, but we don't do this. It's too
 complicated. 
@@ -100,14 +114,13 @@ This was developed in the 90's.
 
 SLIDE 13
 
-We use the fetch() method which is available in the DOM's API on modern browsers.
+We use the fetch() method which is available in the DOM's API on modern browsers. We're still making a request. It's a wrapper around the xmlhttprequest, but it's easier and cleaner.
 
-Fetch is not supported by all browsers
+Fetch is not supported by all browsers. Fetch is new. So older browsers can't use this.
 
 Look at the caniuse site 
 
-For those browsers that don't support fetch(), we can use polyfill that replicates the api for older
-browsers
+For those browsers that don't support fetch(), we can use polyfill that replicates the api for older browsers
 
 You have to include this library in your html file like other libraries
 
@@ -120,6 +133,11 @@ Grab the library from a CDN
 All you have to do is include the script file and it will work because the script is there. It defines fetch() for us that works on non-supported browswers.
 
 SLIDE 14
+
+Here's the hard part
+
+Your code continues to run. It does not wait for the fetch call to come back.
+
 AJAX requests are asynchronous... 
 At some point in the future the response comes back.
 
@@ -139,6 +157,8 @@ When it's your turn, it'll buzz
 SLIDE 15
 When the promise if fulfilled, we have a callback function that can be used with the .then method
 
+So we call the .then method to register the call back method(s)
+
 You provide the call back with the line of code
 promise.then(successCallback, rejectCallback)
 
@@ -148,12 +168,11 @@ We provide the callback. What we want to do when the promise is fulfilled.
 
 When it's ready, execute this function.
 
-The function is passed in the response that we got from the request. So when the buzzer buzzes, it gives
-us information in the parameter telling us about what we got buzzed about.
+The function is passed in the response that we got from the request. So when the buzzer buzzes, it gives us information in the parameter telling us about what we got buzzed about.
 
 If the function gets denied, we can provide that second parameter
 
-It reads a little like english.
+It reads a little like english... fetch my data, then do this anonymous function. 
 
 Sending the request for data and handling it don't happen at the same time. 
 
@@ -169,14 +188,12 @@ Now demo the pause with the first version of fetch (not the cascading version)
 
 SLIDE 16
 
-Here's the tricky part 
+Here's the slightly tricky part 
 But wait... the return to the callback is still not actually the data.
 
 Why? because the return is actually the response
 
-Think about getting waiting for a package, yet when it comes, you have another big task to do before
-you can actually get to the data. It's like ordering an ikea table or something and you get the box
-but you can't do anything with it for a while.
+Think about getting waiting for a package, yet when it comes, you have another big task to do before you can actually get to the data. It's like ordering an ikea table or something and you get the box but you can't do anything with it for a while.
 
 The info is actually in there, but it's encoded and just a bunch of 0's and 1's.
 
@@ -203,8 +220,11 @@ SecondPromise.then(function(secondData))
 In this slide (17), the upper function returns a NewPromise which is the "secondData" parameter passed to the outerPromise.then callback
 
 The return new promise is a way of reassigning the original promise with this new second promise...
+
 I mean, not just wait until the second buzzer actually occurs?
 
+Asynchronous calls have a .then() method that you can register a callback.
+And we're doing this twice. Once for the initial fetch() and once for the .json() call to extrac t data from the promise.
 
 SLIDE 18
 We can clean all this up with this syntax. We get rid of alot of the intermediate variables
