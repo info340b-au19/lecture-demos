@@ -1,0 +1,364 @@
+
+Slide 3
+Two sets of interactions
+Click on something (it changes something), then click on something else and it changes that as well.
+
+Not just toggling on and off
+
+SLIDE 4
+Checkin
+Left and right 
+left (i haven't started)
+right (all done)
+top (things are going okay)
+bottom (terrible, confused)
+
+For the other class, not as far as people would hope, but it's going okay for the most part.
+
+What can I do to help?
+
+Help debugging
+More time
+
+----------------------
+
+SLIDE 4 continued ... hat we are talking about today
+Syntax features of ES6
+Supported by most modern browsers
+There are ways to get around
+React will get around it because it already has the work around
+
+These topics are all used by React. YOu need to know these things to user React
+
+You are not required to use this syntax in Stage 2
+But feel free to do so.
+
+Something you will need for next week (Thursday and beyond)
+
+This is a subset of what you will need to know for the assignments and the project.
+These are the main points. The text has some additional detail you will want to read.
+
+----------------------
+
+Slide 5
+Classes
+Have all of you done classes in Java
+
+Let's do a 3 minute review of classes in Java
+
+What's a class? Why do we make classes?
+
+The metaphore for class : blueprint, template, defines state behavior for describing things.
+Data and behaviors.
+
+A unit in our program.
+
+Declare a class - by using class keyword
+
+Classes have fields, instance variables, attributes - we might mix and match all 3 of these terms
+because they are all the same thing in this classes
+
+Classes have constructors - which is the method we call when we want to make a new or instantiate a class.
+
+If I have a person class, here's a template. If we want a person, the new operator is called on the class which calls constructor.
+
+Generally the constructor takes parameters
+
+We have methods that access the paramters which generally use the "this" keyword
+
+this "t-his" 
+
+We can access through gettors, we can modify through setters
+
+Once we have an object we can pass that object into other methods and interact with other fields
+
+So we have 2 new people and aida can say hello to bob.
+
+-----------------------
+SLIDE 6
+
+Toggle back and forth between slide 6 (java) and slide 7 (jscript)
+
+See how there are a limited number of differences
+
+jscript still define groupings of data and behavior
+
+Things that are different:
+javascript is untyped. In java script we aren't going to declare variables ahead of time. java script don't have a type. we assume that they will gain whatever properties they want
+
+Instead we need to assign values to the variables which tell what the types are.
+
+These are generally assigned in the constructor
+
+"Constructor" keyword. This is better than in Java public void in java. 
+In jscript its much clearer. We call it "constructor"
+
+We don't declar the types in javascript... because it's javascript
+
+We don't declare the fields ahead of time
+
+Instance variables often just get assigned the arguments that are passed in. It's still a property 
+of the object but we don't need to predefine them.
+
+Getters and setters (methods)
+Look alot like java functions, but they don't have the function keyword in front of them
+
+It's just methodname()
+
+Anytime we define a method inside the class block, we just put down the name of the method. no "public void" there's no access modifiers and no return types. Here's the name 
+of the function.
+
+Everything is public in javascript classes
+
+We still use the "this" keyword
+
+We still use the "new" keyword in jscript.
+
+Almost the exact same syntax as java with a few differences. mostly getting rid of access modifiers. In jscript everything is public.
+
+So getters are useful if you want encapsulation. But it's true that the data is public so you don't absolutely need them, but if you are manipulating the attributes (like concatenating first and last name in a getter for name), then it's nice to have a getter.
+
+We won't do alot of getters in this class.
+
+--------------------------
+
+NOW LETS MAKE A CLASS
+
+Demo 
+
+SLIDE 7
+
+Here's the card
+
+There are two methods:
+
+The constructor - note it's called a constructor
+
+The render() method - Using jQuery :
+    1. we create a new div with class of "card"
+    2. we set the text to be the this.message
+    3. we return the cardDiv
+
+Then we can use this class in //main work
+    1. We create a new card - notice using the new keyword
+    2. Then we call the card.render() method
+    3. We use jQuery to append the rendered Card to the DOM at the #content element using the CSS selector
+
+
+This is useful because if we want to make lots of different cards we can do so quickly
+
+See how we can add the additional card quickly on the fly (snow day)
+
+-----------------------
+SLIDE 8
+ES6 Demo 2
+
+So now lets use our class to do just that. 
+
+Create an array of card objects using the map function
+
+Use the forEach to render each Card
+
+See how they render!
+
+So once we have created this class so we can work with cards
+
+
+----------------------
+
+SLIDE 9
+Example 3
+
+Now let's show how we can keep state of attributes within the object
+Add another parameter "initial" to the argument list
+Add clickedCount to the object (notice we don't declare it in jscript, we just assign it and it becomes real)
+
+Add some additional formatting to the render function to include the "this.ClickCount"
+
+And it works. It doesn't currently show the clicked count, but instead the index, but that's okay
+
+--------------------
+SLIDE 10
+Now that we keep track of the amount of time they've been clicked,
+Let's add the code to actually do that
+
+When we click on the item we get an unexpected result "You clicked on undefined"
+
+Why???
+
+Doesn't it seem like it should be working? Anything obvious? It's not that clearn
+
+----------------------
+
+SLIDE 11
+
+Aside: Working with this
+
+In JavaScript, functions are called on objects. In a function, this is a "local" variable that is 
+implicitly assigned that object as its value.
+
+It is ALWAYS called on an object
+
+Anytime you call a function, you are always calling function in some way.
+That thing is what is assigned to the "this" variable.
+
+This gets weird because funtions are variables and can move around and be assigned
+
+Look at this silly dog Example
+
+Both objects have bark functions
+
+When calling doggy.bark it does the "woof"
+
+doggo.bark it "yips"
+
+But you can actually move them around. 
+
+So you can see that we can reassign and the next time we are using the reassigned function, but 
+will still use the attribute from the other object.
+
+
+So whenever you call a function and you want to access the this variable, which object are you calling that function on?
+
+See the function foo() example
+
+------------------
+
+SLIDE 12
+
+Person I want to access this person's name, I'm doing it inside of a function
+Which function am I don't this inside of?
+
+This function is an anonymous function... what "this" is it referring to? It's an anonymous function?
+It might not be obvious to you, but the anonymous function is not actually part of the class. 
+So the "this" is not actually the object.
+
+When using anonymous callback functions, you don't actually have access to the this variable for the
+object
+
+Thus in the example when we try to access the "this.message" in the demo, there isn't a this.message 
+as part of the anonymous function. That's why we get "undefined". The anonymous function is not part of the class.
+
+It's actually called on the global "window" variable which doesn't have a .message method... and if it did you'd see a different issue (bug)
+
+
+So in the code
+
+When we log out this in the code... you'll see that you get the DOM element when clicked on
+instead of the object
+
+Think about it this way... these anonymous functions aren't actually member functions of the class. They are just functions. They will take on the "this" of something other than the object.
+
+Regardless of what it is...it is most certainly not the object this.
+
+----------------------
+
+SLIDE 13
+Arrow functions
+
+The cleanest way to fix this is to use something called an Arrow function.
+
+To make sure we don't lose access to the "this" we use this syntactic shortcut.
+
+It's a bit painful because it's kind of hard to read. ES6 allows us to do this. it's new
+
+Anonymous function. Arrows functions allow you to get rid of the "function" 
+
+This => replaces the "function"
+
+We can also make it more concise
+
+If there is only one line of code, we don't need the block '{}'
+
+And since we don't have angle brackets, we can also delete the return statement
+
+If you don't have the block or return statement, the assumption is whatever this single expression is, is the return value.
+
+You can take that block of code and have this concise body. More painful to read, but cool.
+
+You can read it like this: These parameters 'lead to' this results
+
+let foo = (params) => 'foo' +params;
+
+So look at Example 4a
+
+I've swapped all of the anonymous functions to use the arrow syntax
+
+The last example cards.forEach() is kind of scary
+
+If you don't have any arguments it can be confusing for sure
+
+let foo = () => 'foo and more foo';
+console.log(foo());
+
+--------------------------
+
+SLIDE 14
+Arrow functions 2
+
+Further
+if you have single parameter then putting the parenthis is optional 
+
+Don't do this. Put the '()' to make it more readible
+
+If there are no parameters you can have arrow functions that look like this 
+let foo = () => 'foo '+paramters
+
+looks like you have a random set of parens floating in space
+
+-----------------------
+SLIDE 15
+this & Arrow Functions
+
+You should aways be using arrow functions particularly for anonymous callback functions.
+
+Fix scoping issues for the "this"
+
+Syntactical transformation
+
+Go back to the map function... turn it into an arrow function.
+
+The way the interpreter looks at arrows is special. They are always called on their
+parent 'this' context. 
+
+the 'this' is the same value. it gets passed automatically.
+
+when we use arrow functions we don't change the value of the this... we can automatically pass in the 'this'.
+
+It's still an anonymous call back. It's a specific kind of an anonymous call back function.
+
+So now when we go back to the cards... the 'this' is correct. It takes on the this context that 'this' was outside of the arrow function. whereas it changes when it's called normally.
+
+---------------------
+SLIDE 16
+ES6 Demo 4a with Arrow
+
+Probably already have shown this in the demo code, but you can see it clean here on the slide
+
+
+-------------------------
+SLIDE 17
+ES5 Demo 5
+
+In practice, we might have other things we want to do like have a click count and increment by 1
+So when I click on this card, we can increment
+
+using this.incrementCount()
+
+
+In java if you leave off the "this". it'll look for the variable in the class
+
+In jScript you have to be explicit. it looks for a local variable if you don't put this.
+
+
+Use the arrow syntax
+
+The arrow 'wraps' a function to make sure we get the 'this' passed along
+
+The syntax is annoying, but it works.
+
+-----------------------
+SlIDE 18, 19, 20
+Lots to do. 
+
+The middle problem will be covered in the lab. Ian's gonna do it with you. come to lab
