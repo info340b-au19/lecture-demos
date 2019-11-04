@@ -1,34 +1,27 @@
 
-Slide 3
+Slide 2
 Two sets of interactions
 Click on something (it changes something), then click on something else and it changes that as well.
 
 Not just toggling on and off
 
-SLIDE 4
+SLIDE 3
 Checkin
-Left and right 
-left (i haven't started)
-right (all done)
-top (things are going okay)
-bottom (terrible, confused)
+4 options...
 
 For the other class, not as far as people would hope, but it's going okay for the most part.
 
 What can I do to help?
 
-Help debugging
-More time
-
 ----------------------
 
-SLIDE 4 continued ... hat we are talking about today
+SLIDE 4 continued ... what we are talking about today
 Syntax features of ES6
 Supported by most modern browsers
 There are ways to get around
 React will get around it because it already has the work around
 
-These topics are all used by React. YOu need to know these things to user React
+These topics are all used by React. You need to know these things to use React
 
 You are not required to use this syntax in Stage 2
 But feel free to do so.
@@ -51,12 +44,11 @@ What's a class? Why do we make classes?
 The metaphore for class : blueprint, template, defines state behavior for describing things.
 Data and behaviors.
 
-A unit in our program.
+A unit in our program. A data structure.
 
-Declare a class - by using class keyword
+In Java we declare a class - by using class keyword
 
-Classes have fields, instance variables, attributes - we might mix and match all 3 of these terms
-because they are all the same thing in this classes
+Classes have fields, instance variables, attributes - we might mix and match all 3 of these terms because they are all the same thing in this classes
 
 Classes have constructors - which is the method we call when we want to make a new or instantiate a class.
 
@@ -77,6 +69,8 @@ So we have 2 new people and aida can say hello to bob.
 -----------------------
 SLIDE 6
 
+We can do very similar things in javascript
+
 Toggle back and forth between slide 6 (java) and slide 7 (jscript)
 
 See how there are a limited number of differences
@@ -84,7 +78,7 @@ See how there are a limited number of differences
 jscript still define groupings of data and behavior
 
 Things that are different:
-javascript is untyped. In java script we aren't going to declare variables ahead of time. java script don't have a type. we assume that they will gain whatever properties they want
+javascript is untyped. In java script we aren't going to declare variables ahead of time. java script attributes don't have a type. we assume that they will gain whatever properties they want
 
 Instead we need to assign values to the variables which tell what the types are.
 
@@ -93,12 +87,11 @@ These are generally assigned in the constructor
 "Constructor" keyword. This is better than in Java public void in java. 
 In jscript its much clearer. We call it "constructor"
 
-We don't declar the types in javascript... because it's javascript
+We don't declare the types in javascript... because it's javascript
 
 We don't declare the fields ahead of time
 
-Instance variables often just get assigned the arguments that are passed in. It's still a property 
-of the object but we don't need to predefine them.
+Instance variables often just get assigned the arguments that are passed in. It's still a property of the object but we don't need to predefine them.
 
 Getters and setters (methods)
 Look alot like java functions, but they don't have the function keyword in front of them
@@ -106,7 +99,7 @@ Look alot like java functions, but they don't have the function keyword in front
 It's just methodname()
 
 Anytime we define a method inside the class block, we just put down the name of the method. no "public void" there's no access modifiers and no return types. Here's the name 
-of the function.
+of the function. (an access modified is the keywords "public", "private", "default") in java.
 
 Everything is public in javascript classes
 
@@ -128,6 +121,8 @@ Demo
 
 SLIDE 7
 
+We're going to making classes that generally represent part of a page. We might make cards for example as a class. 
+
 Here's the card
 
 There are two methods:
@@ -140,7 +135,7 @@ The render() method - Using jQuery :
     3. we return the cardDiv
 
 Then we can use this class in //main work
-    1. We create a new card - notice using the new keyword
+    1. We create a new card - notice using the "new" keyword
     2. Then we call the card.render() method
     3. We use jQuery to append the rendered Card to the DOM at the #content element using the CSS selector
 
@@ -150,24 +145,30 @@ This is useful because if we want to make lots of different cards we can do so q
 See how we can add the additional card quickly on the fly (snow day)
 
 -----------------------
-SLIDE 8
+SLIDE 8 - Click again to show animation to demo comments for "map" and "foreach")
+
 ES6 Demo 2
+
+Example 2: 
 
 So now lets use our class to do just that. 
 
-Create an array of card objects using the map function
+Create an array of card objects using the map function. Here in example 2, we use map to create a new array of cards.
 
-Use the forEach to render each Card
+Use the forEach to render each Card (see we loop through and append each "card.render" to the #content id. card.render() returns the div element with 'class="card" and text from the "msg" that was passed in each iteration.
 
 See how they render!
 
-So once we have created this class so we can work with cards
+So once we have created this class, we can work with cards
 
 
 ----------------------
 
-SLIDE 9
-Example 3
+SLIDE 9 (Animated to show what we add, click again)
+
+Example 3 - Here we just show how we add the index value to the card (not yet showing the "this" issue)
+
+We can do extra work by giving cards additional attributes (like the number of times a card has been clicked.
 
 Now let's show how we can keep state of attributes within the object
 Add another parameter "initial" to the argument list
@@ -178,7 +179,9 @@ Add some additional formatting to the render function to include the "this.Click
 And it works. It doesn't currently show the clicked count, but instead the index, but that's okay
 
 --------------------
-SLIDE 10
+SLIDE 10 (Animated slide, click twice, then again (thrice) to show)
+
+Example 4 (Click listener. First stop for example 4 we are just logging it was clicked)
 Now that we keep track of the amount of time they've been clicked,
 Let's add the code to actually do that
 
@@ -186,7 +189,15 @@ When we click on the item we get an unexpected result "You clicked on undefined"
 
 Why???
 
-Doesn't it seem like it should be working? Anything obvious? It's not that clearn
+Doesn't it seem like it should be working? Anything obvious? It's not that clear
+
+So what's going on here?
+
+This is one of the confusing thing in java script.
+
+In java script you are always calling on something. You are always calling a function on something in some way.
+
+Whatever that something is, is assigned to the "this" valiiable. 
 
 ----------------------
 
@@ -194,8 +205,7 @@ SLIDE 11
 
 Aside: Working with this
 
-In JavaScript, functions are called on objects. In a function, this is a "local" variable that is 
-implicitly assigned that object as its value.
+In JavaScript, functions are called on objects. In a function, this is a "local" variable that is implicitly assigned that object as its value.
 
 It is ALWAYS called on an object
 
@@ -214,11 +224,10 @@ doggo.bark it "yips"
 
 But you can actually move them around. 
 
-So you can see that we can reassign and the next time we are using the reassigned function, but 
-will still use the attribute from the other object.
+So you can see that we can reassign and the next time we are using the reassigned function, but will still use the attribute from the other object.
 
 
-So whenever you call a function and you want to access the this variable, which object are you calling that function on?
+So whenever you call a function and you want to access the this variable, the question is always: which object are you calling that function on?
 
 See the function foo() example
 
@@ -231,25 +240,25 @@ Which function am I don't this inside of?
 
 This function is an anonymous function... what "this" is it referring to? It's an anonymous function?
 It might not be obvious to you, but the anonymous function is not actually part of the class. 
-So the "this" is not actually the object.
+So the "this" is not actually the class object.
 
-When using anonymous callback functions, you don't actually have access to the this variable for the
-object
+When using anonymous callback functions, you don't actually have access to the "this: variable for the object
 
-Thus in the example when we try to access the "this.message" in the demo, there isn't a this.message 
-as part of the anonymous function. That's why we get "undefined". The anonymous function is not part of the class.
+Thus in the example when we try to access the "this.message" in the demo, there isn't a this.message as part of the anonymous function. That's why we get "undefined". The anonymous function is not part of the class.
 
 It's actually called on the global "window" variable which doesn't have a .message method... and if it did you'd see a different issue (bug)
 
 
-So in the code
+So in the code for example 4, in the .click method, the "this" is undefined, because it's within an anymous callback function that isn't really part of the class. 
 
 When we log out this in the code... you'll see that you get the DOM element when clicked on
 instead of the object
 
 Think about it this way... these anonymous functions aren't actually member functions of the class. They are just functions. They will take on the "this" of something other than the object.
 
-Regardless of what it is...it is most certainly not the object this.
+Regardless of what it is...it is most certainly not the object this. 
+
+It's being run by the java interpreter as a callback, which isn't part of the class.
 
 ----------------------
 
@@ -280,7 +289,7 @@ You can read it like this: These parameters 'lead to' this results
 
 let foo = (params) => 'foo' +params;
 
-So look at Example 4a
+So look at EXAMPLE 4A (Fixed the issue)
 
 I've swapped all of the anonymous functions to use the arrow syntax
 
@@ -297,7 +306,7 @@ SLIDE 14
 Arrow functions 2
 
 Further
-if you have single parameter then putting the parenthis is optional 
+if you have single parameter then putting the parenthesis is optional 
 
 Don't do this. Put the '()' to make it more readible
 
@@ -335,6 +344,8 @@ ES6 Demo 4a with Arrow
 
 Probably already have shown this in the demo code, but you can see it clean here on the slide
 
+Example 4a first fixes the "this" issue in the anonymous callback... then you can swap the map, and foreach code to also use the arrow, even though they don't display the issue (because neither block of code attempts to refer to "this".
+
 
 -------------------------
 SLIDE 17
@@ -361,4 +372,4 @@ The syntax is annoying, but it works.
 SlIDE 18, 19, 20
 Lots to do. 
 
-The middle problem will be covered in the lab. Ian's gonna do it with you. come to lab
+The middle problem will be covered in the lab. Elisa is gonna do it with you
