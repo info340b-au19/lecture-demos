@@ -1,9 +1,9 @@
 
 How are you guys doing with stage2?
 
-You have a few days before we ramp up with stage 3. Take some time to recover. 
+This lecture is not required for stage 2, but we don't have class on Monday and so we need to cover this first part. This is required for Stage 3.
 
-Plan for today - React is kind of weird.
+Plan for today - React is kind of weird. It's a pretty large topic too. So this will likely take more than an hour. But I hope there will still be time for people to work on stage 2 at the end of lecture.
 
 We'll walk through getting setup with React. Here are the basics. There are a lot more details in the course text. Alot is detailed in the text. We'll hit the big main pieces.
 
@@ -11,10 +11,14 @@ The text is updated and should be helpful.
 
 Also I would recommend looking at the official documentation: https://reactjs.org/docs/getting-started.html which has a couple of tutorials like the "guide to main concepts"
 
-I'll be playing with the react-intro code in the lecture-demos
+
+
 
 SLIDE 3
-React is a javascript library. But it's really more than a framework.
+
+I'll be playing with the react-intro code in the lecture-demos
+
+React is a javascript library. But it's really more than a framework. 
 
 It's a set of functions that allow us to do a bunch of work.
 
@@ -53,10 +57,29 @@ Sometimes there are issues with using libraries from folks... but
 SLIDE 5
 Create React App
 
+Look at the slide (and the text) it shows how to create a react app.
+
+If you start from scratch:
+npx create-react-app appname
+
+If you want to migrate an existing project, then cd into that direcory and type:
+"npx create-react-app ."
+
+where the '.' is telling it to create in the current directory
+
+
+Once done creating the app, then you still need to run npm install
+
 Take a look at the package.json file... it shows the dependencies that get installed for you.
+
+The hardest part of react is getting started. There is a ton of scaffolding to get in place just to get a react app to run. 
+
+It's run in it's own weird form of javascript. We have to translate it into normal javascript, and hook everything together. 
 
 The easiest way to get started is to use the create-react-app command line application
 It generates the scaffolding (starter code) for a react website.
+
+Luckily there is a comman line app from face book called create react app.
 
 Gets you up and running
 
@@ -66,13 +89,14 @@ It combines code into a single file
 It does some warnings and linting
 It automatically updates
 
-It creates a "package.json file that includes a bunch of different dependencies react and react scripts
-that render and run scripts
+It creates a "package.json file that includes a bunch of different dependencies react and react scripts that render and run scripts
 
 
 note that the link "create-react-app" is a repo with really good documentation
 
 in the table of contents you can get lots of help... how to use bootstrap, etc..
+
+it comes with it's own version of live-server.
 
 ---
 bring up a terminal
@@ -101,10 +125,7 @@ The HTML file is in a public directory
 
 index.js is the start of our program
 
-It's worth noting that the index.html doesn't have a script tag anywhere
-That's because the react bundler that does the compilation (transpiling)
-automatically combines take the java script files into one file and then inject that 
-into the page. It adds the script tag itself. 
+It's worth noting that the index.html doesn't have a script tag anywhere That's because the react bundler that does the compilation (transpiling) automatically combines take the java script files into one file and then inject that into the page. It adds the script tag itself. 
 We do very little with the html file.
 
 ------------
@@ -118,9 +139,11 @@ Different syntax, but does the same thing
 
 
 --------------
-SLIDE 7
+SLIDE 7 (Animated slide 1 click)
 Hello React
 Here's a syntax for doing the same thing in React
+
+React library provides a createElement, which is alot like document.createElement
 
 React.createElement()
 
@@ -138,14 +161,19 @@ ReactDOM.render takes the react elemment, and the location of where we want it r
 
 It's basically the same as what jQuery and DOM manipulation. 
 
+
+DEMO EXAMPLE 1
+
 So we get the React library by doing the "import React from 'react' and import ReactDom from 'react-dom'
 
 React handles react elements, ReactDOM handles the DOM
 
-DEMO EXAMPLE 1
+This syntax stinks
+
+
 -----------------------
 
-SLIDE 8
+SLIDE 8 (Animated slide 2 clicks)
 There is an XML syntax extention for JavaScript called JSX that we use in React which makes the statements look much more like HTML. It stands for JavaScript Extension Language
 
 It's a shortcut to the syntax in slide 7
@@ -164,22 +192,40 @@ This is not valid javascript code. It is legal JSX code
 
 DEMO EXAMPLE 1a
 
-DEMO EXAMPLE 2
-We do a little more complicated by adding a class and embedding the h1 inside a header element
+
 
 -------------------
 
 SLIDE 9
-Transpiling
+Transpiling (using babel)
 
 JSX isn't really valid java script. It's a shortcut
 
 This is where "transpiling" comes in. When you use "create-react-app". Babel is doing the translation
 webpack is doing the bundling code into one file.
 
+You don't really need to know all the gory the details of babel
+
+But if you get and error says "babel" then you know it's likely translating from jsx to javascript
+
+DEMO EXAMPLE 2
+We do a little more complicated by adding a class and embedding the h1 inside a header element
+
+here's we have a div with a classname "jumbotron" and an h1 element within
+
+Note again that in JSX we use "className" rather than "class"
+
+Normally in JSX you want to have things with line breaks so it looks like it would in HTML
+But in jscript, if you put a line break in javascript it often tries to put a semicolon
+
+
+So in react, we wrap everying in a set of parenthesis ()
+
+So it's one expression.
+
 
 ----------------------
-SLIDE 10 (DEMO)
+SLIDE 10 (DEMO) very basic
 
 Just show that in React we are building most everything in javascript. 
 
@@ -189,7 +235,11 @@ And the code in our index.js is what the transpiling manages to get this to work
 
 
 -----------------------------
-SLIDE 11
+SLIDE 11 (animated slide 3 clicks)
+
+So now we can start mixing and matching our javascript variables with our html.
+
+We use inline expressions to do this.
 
 2nd piece of JSX syntax - How do we the content in the JSX be dynamic... that is, how do 
 we get variables inserted into the JSX syntax? 
@@ -204,6 +254,8 @@ You can put in alot of different types of expressions
 
 Try to keep the expressions simple. 
 
+These any valid javascript that will result in a single value can become one of these variables. They can be complex, or functions. they can be numbers, strings, arrays, other components
+
 Inline expressions can be used anywhere in JSX 
 
 When we put line breaks within JSX we typically put parenthesis around the expression make it clear it's one expression and sometimes javascript interprets line breaks, this fixes that.
@@ -214,15 +266,15 @@ All elements have to be closed in React.
 
 
 -----------------------
-SLIDE 12
-EXAMPLE 3 DEMO
+SLIDE 12 (Animated slide - 2 clicks)
+EXAMPLE 3 DEMO (click twice, this is animated)
 
 Showing some different things we can inline in JSX
 
 Notice the difference between the two "hello world" lines
 
 -----------------------------
-SLIDE 13
+SLIDE 13 (Animated, it'll move from the wireframe to the jsx code)
 
 React Components
 In particular - React is designed to describe pages in Components
@@ -241,13 +293,23 @@ but for development this is useful.
 
 These elements can be as complex or detailed as we need them to be
 
-THis is what makes react really cool. We can create these individual components as we need
-and React will put them all together for us.
+This is what makes react really cool. We can create these individual components as we need and React will put them all together for us.
 
 In effect we're going to create our own XML Elements
 
+So here, rather than writing things as 12 nested Divs, we can say:
+I have an app element
+who's children are a home page and employee page
+the home page has a header element, a search bar element, and an employee list element and the list has a bunch of list items
+
+This becomes a nice way of describing a web page.
+
+If I want to change the search bar, I can just change it. and we can think of it as components.
+Under the covers there are divs, etc..
+
+
 -----------------------
-SLIDE 14
+SLIDE 14 (animated slide 4- clicks)
 React Components
 
 We're going to define components using classes, just like java classes
@@ -265,6 +327,7 @@ We override the render() function with our own version.
 
 We have to provide the overridden render() function
 
+It has one job that it must do... to return is to be shown.
 The render() function will return the elements that we want to be shown on the screen
 
 For example in this slide, we want <h1>Hello World!</h1> to be shown
@@ -274,6 +337,10 @@ We don't call the new operator, we instead use JSX
 let instance = <HelloMessage />
 
 Make sense?
+
+Render is just a method (function). It can do more than the one thing it must to (return the elements to be shown), and we will do that sometimes.
+It just has to return some DOM elements 
+
 
 --------------------
 SLIDE 15 DEMO (it's the same code from slide 14)
@@ -318,12 +385,13 @@ But they don't do inside of index.js
 SLIDE 17 DEMO 5 (Move the component to the app.js file)
 EXAMPLE 5
 
-Uncomment the lines from app.js and 
+Uncomment the lines from app.js and index.js
+
 
 
 -----------------
 
-SLIDE 18
+SLIDE 18 (Animated slide - 1 click)
 Composing Components
 
 We can define a bunch of different components into one big thing
@@ -386,15 +454,22 @@ We can name them whatever we want.
 
 These are the properties that go into the component. This is how we pass information
 
+Example one: we are passing in hard coded "hello property" as a prop
+
+Example two: we can pass it in as an expression (variable) with the {}
+
+Example three: we can pass in multiple props
 
 ---------------------
 
-Slide 22
+Slide 22 (Animated slide 2 clicks)
 We can then use these input values
 
 We utilize these input variables inside the "this.props" object
 
 "this.props" has the variables we are passing in
+
+this is how we access the props this.props.propname
 
 you can't change props... you can assign it to another variable and change the variable
 
@@ -403,9 +478,13 @@ See that we pass in the number for the button text as a prop
 
 ---------------
 
-Slide 23
+Slide 23 (animiated slide 3 clicks)
 
-You can pass functions as callbacks - this is done alot
+arrays
+functions
+other components
+
+You can pass functions as callbacks - this is done alot. we'll come back to this next week
 
 You can pass in other components as a prop ... maybe not done that often
 
@@ -421,9 +500,11 @@ we pass in this array "messages" as a prop to the MessageList component
 
 We use the map method to instantiate message items, and pass the element prop down to the subcomponent and map creates a new array called msgComponents which contains the messageitem components
 
+The slide does not show the "MessageItem" component.
+
 In the render, when we return the array of items, each individual item in the array will be rendered.
 
-
+Because including an array of Components as an inline expression in JSX will render those elements as siblings, it’s easy to render this list from within the parent:
 
 The warning in react has to do with the fact that each element doesn't have a "key/id/identifier"
 
@@ -432,7 +513,6 @@ The way to do this, is add a "key"
 
 Action Items
 
-You'll do stage 3 in partners... so you'll have someone else to work with 
 
 
 
