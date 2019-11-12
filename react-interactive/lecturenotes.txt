@@ -1,0 +1,464 @@
+Demo Overview
+-------------------
+SLIDE 2:
+
+We'll spend today going over most of the rest of React
+
+We'll try and pack this into 2 hours.
+
+Any extra time you'll have time to do work time. Lab similarly is going to be about worktime going forward
+
+--------------------
+SlIDE 3:
+
+Stage 3 (Due next Tuesday)
+
+You will rewrite the code in REact. It's a clean-up step. We've hit a nice milestone.
+Now the task here is to clean things up before we add more functionality
+Fix bugs
+Make it cleaner and more organized.
+
+React does a nice job of making your code organized.
+
+You will do this in pairs.
+
+The intention of working in pairs is that you have someone else to work through issues
+and so that we can start narrowing down to a smaller set of projects.
+
+Pick one persons project. 
+
+You can merge stuff if you want, but its not required.
+
+As you are finishing this up... you should fill in the missing things. 
+Make it more useable and make it more polished. But you don't need to build some new feature to add.
+
+It's designed to be an easier stage.
+
+
+Stage2 functionality
+
+Use an external component... It could be the bootscrap, or font-awesome
+If you did it in stage 2, this will pretty easy for you.
+
+Feedback on user interactions, it should be clear
+Don't have it change way down the page
+
+Accessible
+
+We will deploy to firebase hosting instead of -gh
+
+This will resolve a number of wierd  things 
+
+There are instructions for how to do this in the assignment writeup.
+
+------------------------
+
+SLIDE 4
+
+Find your partner today!
+
+---------------------
+SLIDE 5
+
+Calendar
+
+We're getting to the end of the quarter and new material. Today is kind of the last big lecture. React Router won't be as long of a lecture 
+Firebase isn't trivial, but it's not as big of a topic. 
+
+-----------------
+
+SLIDE 6 
+
+Before starting Slide 6, have them get the Demo in place on their machine
+
+If you want to follow along. You can grab the demo from "interactive-react" demo
+
+cd into the react-interactive
+run npm install to install dependencies to get everything installed
+
+This is the same TaskList assignment you built previously. Only now
+we're building this with React
+
+What components do we see as options?
+
+Task list
+Tasks
+input box (form)
+
+----React Review
+
+We use "components" as pieces in React
+Extending the React Component Class
+
+Each component has it's own render method
+
+We use JSX to define these components
+
+We can pass things in as props as attribute to show what should be showing
+
+We can use {} to pass things in inline.
+----------------------------
+
+SLIDE 7
+
+Bring up App.js, use outline view to show 
+
+App
+Tasklist
+Task
+AddTaskForm
+
+GO THROUGH THE SLIDE 7 BEFORE WALKING THROUGH IT IN Visual Studio
+
+
+START WITH with index.js
+
+The first thing we are doing...
+
+We have an array of task objects called SAMPLE_TASKS
+
+And we Render() an App component and we pass in the array as a prop called "tasks"
+--- 
+THAT TAKES us to the app.js file
+
+The app component has a render() component
+
+It takes in the intial prop  initialTasks which was passed in as a prop. This calculation will be used in the paragraph above the task list to show how many items are left to be completed. 
+Notice it's passed in with a {} which is an inline expression which resolves to the number 2
+
+We have some data processing to look for incomplete tasks using the filter method off of th earray
+
+It renders() a div element which contains another element "TaskList" which passes along the prop tasks which we assigned at the top of the render() method. So it continues to cascade down
+
+Finally we add the <AddTaskForm> component
+
+Does this syntax seem okay?
+
+-----
+
+NOW LETS LOOK at the TaskList component:
+
+It returns an ol embedded with taskComponents in the render() method
+
+It has a basic render() method
+It takes in the task component array as a prop, and as we talked about at last lecture we can use the .map() array method to instantiate each of the items in the array as a "<Task>" component which makes "taskComponents" and array of Tasks components and not just the array of objects.
+
+Remember we set the key as well as the task in our initial array because of the warning react gives.
+
+Then we render the list of <taskComponent>
+
+----
+
+FINALLY WE LOOK at the Task component
+
+Each Task element renders as an 'li' with the classname (strike or not), and the task description
+
+The "getClassName() is a helper method to determine if the task is complete or not and set the className to font-strike or not
+---------------
+
+Whew, that's the overview.
+
+
+Any Questions so far
+
+-------------
+SLIDE 8
+
+Concepts we'll be covering
+
+------------------
+SLIDE 9
+REACT EVENTS
+
+
+There are 2 interactions we want to support
+
+Clicking on the "Add task to List" and Clicking on items to mark them complete
+
+<click once to see onClick special prop part of slide>
+We add add event handling pretty much the same way as DOM and jQuery
+
+We register a listener
+
+We do this give it a special Property called "onClick={ }
+Where we pass the callback as a inline value {}
+
+
+EXAMPLE 1 - Adding event handler to handle clicks to mark complete
+in app.js, on the Task component (about line 152)
+
+Here we create a function "handleClick()", there is nothing special in the name
+
+We include "handleClick" without the () in the callback {} because we are passing the recipe not executing it.
+
+Look at the clicky clicky
+
+It should fail because of a lack of arrow function
+
+
+---------------------------------------
+
+
+SLIDE 10 and SLIDE 11
+Retaining this
+
+There is perhaps a benefit this method for perf reasons because the function isn't instantiated again each time they
+render method is called which it is when the anonomous function is included (wrapped in an arrow function).
+
+EXAMPLE 1A will fix this
+Uncomment the code and it works
+
+Notice what is different between the two arguments in the li...
+the this.getClassName() is actually running the function so the this is correct
+But the this.handleClick is passing the recipe, so the this is lost when not using an arrow
+
+CLICK to show using an arrow function
+
+CLICK again to show how you can use a public class field
+
+See that it shows which task is clicked on.
+---------------
+
+SLIDE 12
+
+So now we want to toggle the state of the item
+
+Rather than logging out "clicky clicky", we'd like to toggle the state of the item.
+
+In this example, we are receiving a function called 'howToToggle' as a prop that we will call to toggle the task each click.
+
+The way we determine is to look at the this.props.task.complete
+
+But the issue is that we can't change a prop...
+
+So looking at the code on the slide, we can't actually change the prop, we need the function to change state.
+
+
+SLIDE 13
+Jumping ahead, the second interaction we want to complete is the clicking on the "Add task to list" button.
+
+Click again to show the onClick code
+
+Notice that we are updating "state" rather than trying to use props
+
+Why
+
+-----
+
+SLIDE 14
+
+React Props
+
+props are immutable (unchangeable) and come from elements up the hierarchy
+
+------------------
+SLIDE 15
+State
+
+Reserved for interactivity... data that changes over time
+
+It looks alot like props but they are very different
+
+
+Props are initial values.. what goes into the constructor
+
+State data that keeps track of things that change over time
+
+That data can't be stored in props because props don't change
+
+Each componenet keeps track of it's own state
+
+-------------------
+SLIDE 16
+
+Using State
+
+How to add in state
+
+
+We need to initial state in the constructor
+
+Add this to the Task constructor
+
+Always takes in a single argument "props": constructor(props)
+
+
+We always call the parents version of the constructor  "super(props)"
+
+Click once - component constructor takes in props
+
+Click twice - Must call the superclass constructor too
+
+Click 3 - Set the state value. It must be an object
+
+Click 4 - You can access state like with props {this.state.count}
+
+Don't use something as a state var if it doesn't get used in render()
+
+
+EXAMPLE STATE --- SWITCH TO Example 2 on the Task element
+
+-----------
+SLIDE 17
+
+Changing state -
+this.setState(stateChanges);
+
+This will both change state and cause a re-render
+
+Click - you only need to change the object values that are changing.
+
+This is an Asynchronous process.
+
+It's done for efficiency. It speeds things up by bundling renders.
+
+We have to call this.setState() rather than assigning a value
+
+It takes as an argument what we want set
+
+AFter setstate gets done, the render is called
+
+It causes the app to re-render
+
+EXAMPLE 2A
+
+There are 3 lines of code to note:
+
+1) We set the this.state in the constructor
+2) We have a line to set the class to strike-through in the getClassName() helper function
+3) We use setState to change clickcount in the handleClick function
+
+
+----------------
+SLIDE 18
+
+setState() is Asynchronous
+
+It takes time...
+
+See how the code on the slide works... the console.log will not show the updated value
+
+
+----------------
+Slide 19
+
+EXAMPLE 2B - modifying something based on current state
+
+
+If you wanted to increase this count (modify something based on current state)
+Then you need to call this.setState() with a callback function rather than an object
+
+It's annoying, but this is how it works
+
+Example 2B
+
+let's store this stuff in state
+let's set stuff based on the initial value passed in the props
+let's get the toggle to work
+
+-------------------------------------------------------
+
+
+Bug in the title showing the number
+
+The 2 at the top should be based on the tasks are complete
+Currently the state info is being tracked by the individual task
+
+But no-one else knows what's going on (parents up the chain)
+
+If we need some value that can be used by multiple components, then we want to be able to share this for all to see what the value is because the whole app is tracking this.
+
+
+See the <app> renders the number (Look at the App component)
+
+THe way we fix this is by lifting up the state
+-----------------
+
+SLIDE 20
+Let's have the Tasklist keep track of the state rather than the individual elements
+
+
+Click once - show that the property is now held in the parent
+
+click twice - show how you can pass state to the child through a prop to tell them how many they have
+
+EXAMPLE 3
+Moving state up all the way to the App (we could pass to the tasklist, but it doesn't really need that info, so we are moving all the way to app). The app needs to know because it needs to know how many things are complete
+
+So we put in an array of tasks into the APP
+
+this.state = { tasks: [] }
+
+or set it to the initial tasks
+
+{tasks: this.props.initialTasks}
+
+-----------------------------
+
+SLIDE 21
+Passing callbacks - 
+
+The parent component needs to do something when an event occur, so it passes callback functions to the chile component to execute. For example in the slide, there is a callback passed in the prop when the button is clicked. 
+
+Click 1 - Lift the method to parent
+Pass the method as prop
+Call the method in the child
+This is how you get the handler to update state in the parent!
+
+
+Do not call setState directly within render(), you'll get into an infinite loop
+
+
+-------------------------------
+
+SLIDE 22
+
+Demo Example - App Component - What we've done with the TaskForm
+
+Click 1 will show 
+
+---------------------------
+SLIDE 23
+
+Click 1 will show how this the taskform now updates state in the parent by calling the callback that was passed in as a prop
+
+---------------------
+SLIDE 24
+
+Use the onChange event handler to set state in the similar way we are dealing with onClick
+
+Grab the value out of the event object in your event handler, and set the value in to the state variable
+
+SEE THE CODE for AddTaskForm to show how this works
+
+
+
+--------------------
+
+SLIDE 25
+Making your app Interactive
+
+
+------------------
+
+SLIDE 26
+Here's how you get fetch() to work in React
+
+----------------------
+
+SLIDE 27
+
+Component LifeCycle
+
+componentDidMount() is the one that is called when all components have been put on the screen 
+
+------------------
+SLIDE 28
+AJAX and React
+
+Do your AJAX requests in the componentDidMount method... set call setState() within this function to set you values... which will then call render!
+
+
+
+
+
