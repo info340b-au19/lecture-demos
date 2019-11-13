@@ -230,7 +230,7 @@ Slide 11
 Second:
 Wrapping our callback in an arrow function
 
-There is perhaps a benefit this method for perf reasons because the function isn't instantiated again each time they render method is called which it is when the anonomous function is included (wrapped in an arrow function).
+There is perhaps a benefit to the bind method for perf reasons because the function isn't instantiated again each time they render method is called which it is when the anonomous function is included (wrapped in an arrow function).
 
 Slide 12
 Third:
