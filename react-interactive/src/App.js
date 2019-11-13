@@ -1,32 +1,53 @@
 import React, { Component } from 'react';
 
-// // // BASE DEMO with example 1 code
-// class App extends Component {
+// BASE DEMO with example 1 code
+class App extends Component {
 
-//   render() {
-//     //do data processing
-//     let tasks = this.props.initialTasks;
-//     let incomplete = tasks.filter((task) => !task.complete);
-//     //console.log("Number of tasks:", incomplete.length);
+  render() {
+    //do data processing
+    let tasks = this.props.initialTasks;
+    let incomplete = tasks.filter((task) => !task.complete);
+    //console.log("Number of tasks:", incomplete.length);
 
-//     return (
-//       <div className="container">
-//         <p className="lead">Things I have to do ({incomplete.length})</p>
-//         <TaskList tasks={tasks} />
-//         <AddTaskForm />
-//       </div>
-//     );
-//   }
-// }
+    return (
+      <div className="container">
+        <p className="lead">Things I have to do ({incomplete.length})</p>
+        <TaskList tasks={tasks} />
+        <AddTaskForm />
+      </div>
+    );
+  }
+}
 
 
+class TaskList extends Component {  
+  render() {
+    //do data processing
+    let taskComponents = this.props.tasks.map((eachTask) => {
+      let singleTask = <Task 
+                          key={eachTask.id} 
+                          task={eachTask} /> 
+      return singleTask;
+    })
+
+    return (
+      <ol>
+        {taskComponents}
+      </ol>
+    );
+  }
+}
+
+// // EXAMPLE 1B - adding a callback to toggle as a prop
 // class TaskList extends Component {  
 //   render() {
 //     //do data processing
 //     let taskComponents = this.props.tasks.map((eachTask) => {
 //       let singleTask = <Task 
 //                           key={eachTask.id} 
-//                           task={eachTask} /> 
+//                           task={eachTask} 
+//                           howToToggle={this.props.howToToggle}
+//                           /> //pass callback down
 //       return singleTask;
 //     })
 
@@ -38,29 +59,31 @@ import React, { Component } from 'react';
 //   }
 // }
 
-// // // EXAMPLE 1B - adding a callback to toggle as a prop
-// // class TaskList extends Component {  
-// //   render() {
-// //     //do data processing
-// //     let taskComponents = this.props.tasks.map((eachTask) => {
-// //       let singleTask = <Task 
-// //                           key={eachTask.id} 
-// //                           task={eachTask} 
-// //                           howToToggle={this.props.howToToggle}
-// //                           /> //pass callback down
-// //       return singleTask;
-// //     })
-
-// //     return (
-// //       <ol>
-// //         {taskComponents}
-// //       </ol>
-// //     );
-// //   }
-// // }
 
 
+class Task extends Component {
+  //helper method
+  getClassName() {
+    let className = '';
+    if(this.props.task.complete){
+      className = 'font-strike';
+    }
+    return className;    
+  }
 
+  render() {
+    let thisTask = this.props.task; //can give local name for readability
+    console.log("The Task: ", this.props.task);
+    
+    return (
+      <li className={this.getClassName()} >
+        {thisTask.description}
+      </li>
+    );
+  }
+}
+
+// // EXAMPLE 1 Adding Event handler to handle clicks to mark Complete
 // class Task extends Component {
 //   //helper method
 //   getClassName() {
@@ -71,85 +94,66 @@ import React, { Component } from 'react';
 //     return className;    
 //   }
 
+//   handleClick () {
+//     // console.log("clicky clicky", this.props.task.description);
+//     console.log("Clicky clicky");
+//  }
+
+// // // EXAMPLE 1A - using a public class field
+// //   handleClick = () => {    // public class field: use arrow here with an anonymous function rather than typing in the {}
+// //      console.log("clicky clicky", this.props.task.description);
+
+// //     // //  // EXAMPLE 1B
+// //     //  this.props.howToToggle(this.props.task.key);  // Won't work in it's current form
+// //     //  }
+
+ 
+
 //   render() {
 //     let thisTask = this.props.task; //can give local name for readability
 //     return (
-//       <li className={this.getClassName()} >
+//       <li className={this.getClassName()} onClick={this.handleClick} >
 //         {thisTask.description}
 //       </li>
 //     );
 //   }
 // }
 
-// // // EXAMPLE 1 Adding Event handler to handle clicks to mark Complete
-// // class Task extends Component {
-// //   //helper method
-// //   getClassName() {
-// //     let className = '';
-// //     if(this.props.task.complete){
-// //       className = 'font-strike';
-// //     }
-// //     return className;    
-// //   }
+class AddTaskForm extends Component {
+  constructor(props){
+    super(props);
+    this.state = {newTask: ''}; //what is typed in
+  }
 
-// // // EXAMPLE 1A - using a public class field
-// //   handleClick = () => {    // public class field: use arrow here with an anonymous function rather than typing in the {}
-// //      console.log("clicky clicky", this.props.task.description);
+  handleChange = (event) => {    
+    //let whichElement = event.target;
+    //let whatValue = whichElement.value;
+    let value = event.target.value;
+    console.log("I changed to:", value);
+    this.setState({newTask: value})
+  }
 
-// //     //  // EXAMPLE 1B
-// //     //  this.props.howToToggle(this.props.task.key);  // Won't work in it's current form
-// //      }
+  handleClick = (event) => {
+    event.preventDefault();
+    this.props.howToAdd(this.state.newTask)
+  }
 
-
-// // //   handleClick () {
-// // //     console.log("clicky clicky", this.props.task.description);
-// // //  }
-
-// //   render() {
-// //     let thisTask = this.props.task; //can give local name for readability
-// //     return (
-// //       <li className={this.getClassName()} onClick={this.handleClick} >
-// //         {thisTask.description}
-// //       </li>
-// //     );
-// //   }
-// // }
-
-// class AddTaskForm extends Component {
-//   constructor(props){
-//     super(props);
-//     this.state = {newTask: ''}; //what is typed in
-//   }
-
-//   handleChange = (event) => {    
-//     //let whichElement = event.target;
-//     //let whatValue = whichElement.value;
-//     let value = event.target.value;
-//     console.log("I changed to:", value);
-//     this.setState({newTask: value})
-//   }
-
-//   handleClick = (event) => {
-//     event.preventDefault();
-//     this.props.howToAdd(this.state.newTask)
-//   }
-
-//   render() {
-//     return (
-//       <form>
-//         <input 
-//           className="form-control mb-3"
-//           placeholder="What else do you have to do?"
-//           value={this.state.newTask}
-//           onChange={this.handleChange}
-//           />
-//         <button className="btn btn-primary" onClick={this.handleClick}>
-//           Add task to list
-//         </button>
-//       </form>
-//     );
-//   }
-// }
+  render() {
+    return (
+      <form>
+        <input 
+          className="form-control mb-3"
+          placeholder="What else do you have to do?"
+          value={this.state.newTask}
+          onChange={this.handleChange}
+          />
+        <button className="btn btn-primary" onClick={this.handleClick}>
+          Add task to list
+        </button>
+      </form>
+    );
+  }
+}
 
 //---------------------------------------------------------------------------------------------------------
 
@@ -206,7 +210,7 @@ import React, { Component } from 'react';
 //   getClassName() {
 //     let className = '';
    
-//    // if(this.props.task.complete){
+//   //  if(this.props.task.complete){
 
 //    //EXAMPLE 2A (and 2B) - using state object for toggline strikethrough
 //    if(this.state.isComplete){
@@ -287,151 +291,151 @@ import React, { Component } from 'react';
 
 //---------------------------------------------------------------------------------------------
 
-//EXAMPLE 3 - Lifting state
-class App extends Component {
-  constructor(props){
-    super(props); //pass up to parent
+// //EXAMPLE 3 - Lifting state
+// class App extends Component {
+//   constructor(props){
+//     super(props); //pass up to parent
 
-    //initialize state
-    this.state = {
-      tasks: [] //SAMPLE_TASKS //store the tasks in the STATE, initialize
-    };
+//     //initialize state
+//     this.state = {
+//       tasks: [] //SAMPLE_TASKS //store the tasks in the STATE, initialize
+//     };
 
-  }
+//   }
 
-  componentDidMount() {
-    //fetch('https://api.github.com/repos/info340a-au18/lecture-demos/issues')
-    fetch('./tasks.json') //local file
-      .then((res) => res.json())
-      .then((data) => {
-        let issueTasks = data.map((issue) => {
-          return {
-            id: issue.id,
-            description: issue.description,
-            complete: false
-          }
-        })
-        this.setState({tasks:issueTasks})        
-      })
-  }
+//   componentDidMount() {
+//     //fetch('https://api.github.com/repos/info340a-au18/lecture-demos/issues')
+//     fetch('./tasks.json') //local file
+//       .then((res) => res.json())
+//       .then((data) => {
+//         let issueTasks = data.map((issue) => {
+//           return {
+//             id: issue.id,
+//             description: issue.description,
+//             complete: false
+//           }
+//         })
+//         this.setState({tasks:issueTasks})        
+//       })
+//   }
 
-  toggleComplete = (taskId) => {
-    this.setState((currentState) => { //update the state and RE-RENDER
-      let updatedTasks = currentState.tasks.map((task) => {
-        if(task.id === taskId)
-          task.complete = !task.complete;      
-        return task;
-      })
-      return {tasks: updatedTasks}
-    })
-  }
+//   toggleComplete = (taskId) => {
+//     this.setState((currentState) => { //update the state and RE-RENDER
+//       let updatedTasks = currentState.tasks.map((task) => {
+//         if(task.id === taskId)
+//           task.complete = !task.complete;      
+//         return task;
+//       })
+//       return {tasks: updatedTasks}
+//     })
+//   }
 
-  addTask = (newDescription) => {
-    this.setState((currentState) => {
-      let newTask = {
-        id: currentState.tasks.length+1,
-        description: newDescription,
-        complete: false
-      }
-      currentState.tasks.push(newTask); //add task, better to copy array
-      return {tasks: currentState.tasks}
-    })
-  }
+//   addTask = (newDescription) => {
+//     this.setState((currentState) => {
+//       let newTask = {
+//         id: currentState.tasks.length+1,
+//         description: newDescription,
+//         complete: false
+//       }
+//       currentState.tasks.push(newTask); //add task, better to copy array
+//       return {tasks: currentState.tasks}
+//     })
+//   }
 
-  render() {
-    //do data processing
-    let incomplete = this.state.tasks.filter((task) => !task.complete);
-    //console.log("Number of tasks:", incomplete.length);
+//   render() {
+//     //do data processing
+//     let incomplete = this.state.tasks.filter((task) => !task.complete);
+//     //console.log("Number of tasks:", incomplete.length);
 
-    return (
-      <div className="container">
-        <p className="lead">Things I have to do ({incomplete.length})</p>
-        <TaskList howToToggle={this.toggleComplete} tasks={this.state.tasks} />
-        <AddTaskForm howToAdd={this.addTask} />
-      </div>
-    );
-  }
-}
+//     return (
+//       <div className="container">
+//         <p className="lead">Things I have to do ({incomplete.length})</p>
+//         <TaskList howToToggle={this.toggleComplete} tasks={this.state.tasks} />
+//         <AddTaskForm howToAdd={this.addTask} />
+//       </div>
+//     );
+//   }
+// }
 
-class TaskList extends Component {  
-  render() {
-    //do data processing
-    let taskComponents = this.props.tasks.map((eachTask) => {
-      let singleTask = <Task 
-                          key={eachTask.id} 
-                          task={eachTask} 
-                          howToToggle={this.props.howToToggle}
-                          /> //pass callback down
-      return singleTask;
-    })
+// class TaskList extends Component {  
+//   render() {
+//     //do data processing
+//     let taskComponents = this.props.tasks.map((eachTask) => {
+//       let singleTask = <Task 
+//                           key={eachTask.id} 
+//                           task={eachTask} 
+//                           howToToggle={this.props.howToToggle}
+//                           /> //pass callback down
+//       return singleTask;
+//     })
 
-    return (
-      <ol>
-        {taskComponents}
-      </ol>
-    );
-  }
-}
+//     return (
+//       <ol>
+//         {taskComponents}
+//       </ol>
+//     );
+//   }
+// }
 
-class Task extends Component {
-  //helper method
-  getClassName() {
-    let className = '';
-    if(this.props.task.complete){
-      className = 'font-strike';
-    }
-    return className;    
-  }
+// class Task extends Component {
+//   //helper method
+//   getClassName() {
+//     let className = '';
+//     if(this.props.task.complete){
+//       className = 'font-strike';
+//     }
+//     return className;    
+//   }
 
-  handleClick = () => {
-    this.props.howToToggle(this.props.task.id);
-  }
+//   handleClick = () => {
+//     this.props.howToToggle(this.props.task.id);
+//   }
 
-  render() {
-    let thisTask = this.props.task; //can give local name for readability
-    return (
-      <li className={this.getClassName()} onClick={this.handleClick} >
-        {thisTask.description}
-      </li>
-    );
-  }
-}
+//   render() {
+//     let thisTask = this.props.task; //can give local name for readability
+//     return (
+//       <li className={this.getClassName()} onClick={this.handleClick} >
+//         {thisTask.description}
+//       </li>
+//     );
+//   }
+// }
 
 
-class AddTaskForm extends Component {
-  constructor(props){
-    super(props);
-    this.state = {newTask: ''}; //what is typed in
-  }
+// class AddTaskForm extends Component {
+//   constructor(props){
+//     super(props);
+//     this.state = {newTask: ''}; //what is typed in
+//   }
 
-  handleChange = (event) => {    
-    //let whichElement = event.target;
-    //let whatValue = whichElement.value;
-    let value = event.target.value;
-    console.log("I changed to:", value);
-    this.setState({newTask: value})
-  }
+//   handleChange = (event) => {    
+//     //let whichElement = event.target;
+//     //let whatValue = whichElement.value;
+//     let value = event.target.value;
+//     console.log("I changed to:", value);
+//     this.setState({newTask: value})
+//   }
 
-  handleClick = (event) => {
-    event.preventDefault();
-    this.props.howToAdd(this.state.newTask)
-  }
+//   handleClick = (event) => {
+//     event.preventDefault();
+//     this.props.howToAdd(this.state.newTask)
+//   }
 
-  render() {
-    return (
-      <form>
-        <input 
-          className="form-control mb-3"
-          placeholder="What else do you have to do?"
-          value={this.state.newTask}
-          onChange={this.handleChange}
-          />
-        <button className="btn btn-primary" onClick={this.handleClick}>
-          Add task to list
-        </button>
-      </form>
-    );
-  }
-}
+//   render() {
+//     return (
+//       <form>
+//         <input 
+//           className="form-control mb-3"
+//           placeholder="What else do you have to do?"
+//           value={this.state.newTask}
+//           onChange={this.handleChange}
+//           />
+//         <button className="btn btn-primary" onClick={this.handleClick}>
+//           Add task to list
+//         </button>
+//       </form>
+//     );
+//   }
+// }
 
 export default App;
