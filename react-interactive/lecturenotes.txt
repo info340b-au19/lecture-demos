@@ -285,7 +285,7 @@ React Props
 props are immutable (unchangeable) and come from elements up the hierarchy
 
 ------------------
-SLIDE 16
+SLIDE 16 - 
 State
 
 Reserved for interactivity... data that changes over time
@@ -333,7 +333,7 @@ EXAMPLE STATE --- SWITCH TO Example 2 on the Task element
 In example 2 initially we are still only showing the strikethrough.
 
 -----------
-SLIDE 18
+SLIDE 18 
 
 Changing state -
 this.setState(stateChanges);
@@ -364,7 +364,7 @@ There are 3 lines of code to note:
 
 
 ----------------
-SLIDE 19
+SLIDE 19 -- This is where we will start for Lecture2
 
 setState() is Asynchronous
 
@@ -383,6 +383,15 @@ If you wanted to increase this count (modify something based on current state)
 Then you need to call this.setState() with a callback function rather than an object
 
 It's annoying, but this is how it works
+
+The syntax is shown on the slide, on the demo, and in the text
+setState((prevState, prevProps) => {
+	let updateState = {countClick: prevState.countClick+1,
+			   isComplete: !prevState.isComplete
+			  }
+	return updateState;
+	})
+
 
 Example 2B
 
@@ -409,7 +418,7 @@ THe way we fix this is by lifting up the state
 -----------------
 
 SLIDE 21
-Let's have the Tasklist keep track of the state rather than the individual elements
+We could have the Tasklist keep track of the state rather than the individual elements
 
 
 Click once - show that the property is now held in the parent
@@ -432,7 +441,7 @@ or set it to the initial tasks
 SLIDE 22
 Passing callbacks - 
 
-The parent component needs to do something when an event occur, so it passes callback functions to the chile component to execute. For example in the slide, there is a callback passed in the prop when the button is clicked. 
+The parent component needs to do something when an event occur, so it passes callback functions to the child component to execute. For example in the slide, there is a callback passed in the prop when the button is clicked. 
 
 Click 1 - Lift the method to parent
 Pass the method as prop
@@ -445,19 +454,44 @@ Do not call setState directly within render(), you'll get into an infinite loop
 
 -------------------------------
 
-SLIDE 23
+SLIDE 23 (Animated with one click)
 
 Demo Example - App Component - What we've done with the TaskForm
 
-Click 1 will show 
+Click 1 will show what happens in the App
+
+Notice that this slide only shows the addTask() method being moved up to the App
+We also have added toggleComplete() up there. Walk through that code too in the demo code.
+
+
+So the addTask has been moved to the App (top red callout)
+And in the render, we instantiate the TaskList and pass the tasks, and the callback to toggle
+And also in the render we instantiate the AddTaskForm and pass the callback "howtoAdd")
+
+So the toggleComplete() code is in the App, gets passed down as "howToToggle" to the TaskList, which also passes down to the Task 
 
 ---------------------------
-SLIDE 24
+SLIDE 24 (Animated with one click)
 
 Click 1 will show how this the taskform now updates state in the parent by calling the callback that was passed in as a prop
 
+We still have our own "handleClick" which is a public class field (so we don't lose the 'this')
+
+
+Each task has to have it's own howtoToggle callback attached as a prop. Notice in the mapping code in the render function for TaskList, that we've added hoToToggle as a prop that also gets passed down when the task is instantiated. 
+Then in the render() of the Task component, it is registered as the onClick handler.
+
+At this point you should have walked through the code for both clicking, and adding tasks.
+
+
 ---------------------
 SLIDE 25
+Forms are their own special beast.
+The input in the normal case is handled by itself. In react we have to be able to fetch this on our own. We don't use the html to keep track of what's been typed into the form form.
+
+It's called a "controlled form". It's the correct way to do this in React.
+
+We add an event listener to the input to do this:
 
 Use the onChange event handler to set state in the similar way we are dealing with onClick
 
@@ -478,11 +512,31 @@ Making your app Interactive
 SLIDE 27
 Here's how you get fetch() to work in React
 
+
+Inside the public folder is a json file for showing how to get fetch to work.
+
+Couple of steps:
+First we install it for react (the polyfill)
+
+Go to the terminal
+npm install whatwg-fetch
+
+--save is to save it in the package.json, but it happens now anyway
+
+Then import 'whatwg-fetch' inside the app.js
+
 ----------------------
 
 SLIDE 28
 
 Component LifeCycle
+
+Remember that fetch is an asynchronous call. We can't call from the constructor.
+So we need to wait to make sure that everything is loaded.
+
+It's a lifecycle event in the life of your code.
+
+When a component is first rendered and attached to the dom tree, the "componentdidmount" is executed.
 
 componentDidMount() is the one that is called when all components have been put on the screen 
 
@@ -493,6 +547,28 @@ AJAX and React
 Do your AJAX requests in the componentDidMount method... set call setState() within this function to set you values... which will then call render!
 
 
+SLIDE 30
+HOw to get in libraries
 
+ReactStrap
+
+Use this one.
+
+3 steps
+
+1 find it (https://reactstrap.github.io/)
+2. install (using npm install)
+3. import it (just like we import from our own classes) 
+import {Button} from 'reactstrap'
+
+so find the <button>
+replace <Button> </Button> and then look at the syntax, it's a little different
+
+
+Try to pick either reactstrap or bootstrap. Don't switch between. 
+
+Reactstrap's documentation isn't as good as bootstrap. 
+
+You can't use jquery with react.
 
 
