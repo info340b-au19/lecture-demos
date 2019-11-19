@@ -1,0 +1,590 @@
+﻿Slide 1
+We're almost done with the class
+
+Slide 2
+Overall plan
+React lifeCyle + AJAX Review
+React Libraries 
+React Router
+------------------------
+SLIDE 3 - 
+
+Stage 3
+Have you already met up with your partners?
+I'm still working on finishing the grading. Hope to be done by Friday
+
+Let me know which of the 2 projects you are going to go with for Stage 3 so I can prioritize feedback.
+
+If you are getting data that isn't real yet there is data available from api, try and get that working for stage 3
+
+---------------------
+SLIDE 4 
+
+Today our demo is with a blog page
+
+Bring up the Demo
+
+Open Visual Code
+----------DESCRIPTION OF EXISTING APP START----------
+Start at index.js
+
+We've got a Blog_posts data, and array with key
+
+Passed in as a prop to my app
+
+Then in app.js
+
+You can see that the initialPosts prop
+Get's added to my state, so I can change later
+
+I have an addpost function - it's how we add posts
+
+My App render() function takes state and maps it to some 
+ convert to a list of link elements which will be part of the navigation...
+
+See that the <nav> contains home, about, blog, then the dates I pass in {postlinks}
+
+Then 3 components
+NewPostPage
+AboutPage
+BlogPostList
+
+The ABOUT page just returns static content
+--- 
+The BlogPostList - takes in a prop of list of posts and maps them to blogpost elements
+---
+The blogpost elements renders a div that says post on some date, then the content
+
+It's similar to the same pattern, in the to-do list
+We have a list that calls an item component
+
+----
+The form is a control form ("form-control") so whenever you modify the the date, or the text input ("what do you want to do"), That will cause the onChange so handleChange gets called 
+That function looks at each event that happens to see if it came from the text or the date, 
+and use that to setState which will change the state of the form component, changing the state of the form causes it to re-render and then do display the content in the bottom that i typed in.
+
+It gets saved in the state.
+
+Then if I click the button, the onclick will call the handle click function. 
+We hijack, and call the callback function that was passed
+
+Whatever was given we will pass in the current values of state
+
+postCallback is handed as props to my new post page, and the function which is called is addPost method (addPost is a public class field - remember)
+
+---
+addPost
+Don't get too caught up in this code for addPost right now...
+When ever addPost is called, setState is called with text and state
+We use the callback version of doing this where we provide a callback
+
+This part of the code isn't worth spending alot of time
+
+Make copy of object
+Modify object
+Return object
+
+that's what it is doing
+
+Then by calling setState, it causes render to be called again (with the new state)
+
+Whew... Very similar to what we did with the todo example... 
+
+So this is great.
+----------DESCRIPTION OF EXISTING APP END----------
+------------------------------
+-------------
+
+FETCHING DATA
+The next step, what happens if having BlogPosts as a variable I instead want to load from a data file, or a database, 
+
+In the folder
+
+We have a blogposts.json file
+
+How do we fetch this into our code?
+
+It's a little trickier with pure java script so let's walk through that.
+
+----------------------
+SLIDE 4
+Loading Data
+
+In React we need the fetch to work, we need to build it into our react app.
+Webpack needs to know what it is, so we need to install it and use it
+
+So what we do
+
+In our project folder we install the library
+
+Bring up a terminal
+
+Type npm whatwg-fetch
+
+If you look at the package.json file, you'll see tht fetch is listed.
+
+And when we want to use it, we have to import it
+
+*********
+in index.js
+
+import 'whatwg-fetch';
+
+And now it's available to use
+
+-----------------
+
+SLIDE 5
+Component Lifecycle
+
+fetch('blogPosts.json')
+
+So now the question is, where do we fetch?
+
+We can load it fine by just fetching in the constructor, but we need to setState() to put the data where we want it.
+
+The catch is this... 
+
+When we call this.setState we cause a render to occur
+
+If we call this in the constuctor, we can have problems. We create elements, then things get attached. It's possible that we ask to refresh the DOM tree before the DOM has been rendered.
+So we need to know when the DOM has been rendered
+
+There is a lifecycle for Components
+
+We can override these lifecycle callbacks
+
+There are 3 that we care about
+
+the component is put on the screen at componentDidMount() - it's been added to the tree
+
+It's visible on the screen.
+
+This is when we call AJAX requests
+
+*******
+Add Fetch code within componentDidMount() Example
+
+Place to update code - App.js  add the component dismount override
+
+
+If we don't put it in componentDidMount() it will crash some of the time
+
+When we refresh the page, first the component created, then it's mounted, which calls render
+with the data that was passed in from the index.js
+
+Then componentDidMount() get called where fetch shows up and you get that data
+
+So you need to fetch your data in the componentDidMount()
+
+----------------------------
+
+componentWillUnmount when component is getting removed from teh screen. It gets called right as the component retires. 
+
+You guys probably won't have to override these.
+
+Commonly you'd initialize your data with an empty data in the constructor
+
+-------------------------
+
+SLIDE 6
+
+We just went over this
+
+Here's how you do it again
+
+
+----------------------
+
+SLIDE 7
+React Libraries
+
+React applications are made to use components
+
+These componentes are designed to be self contained and reusable
+
+For example we could re-use the form component that we've created here and use it elsewhere
+
+Alot of folks have previously built components 
+
+Click on the "lots" link
+
+for exmaple to put a calendar - "react calendar", or "react date picker", you can grab these components, download them and use them yourself
+
+Demo - reactstrap
+
+goto google and search for "reactstrap"
+
+It is bootstrap within react
+
+Use this one... it's version 4. 
+
+carousel, navbar... this is how you do this
+
+bootstrap uses jQuery, so we need to use this library instead.
+
+1) find the component (via npm, or google)
+2) install it
+3) import it
+4) render it
+
+so looking at reactstrap, we have an example
+
+******DO THIS
+npm install reactstrap
+
+Look in the json - see we now have "reactsrap" in package.json
+
+*****DO This
+import it in app.js (at top)
+
+
+*****DO THIS
+Change the button on the form to the bootstrap version
+
+*****Do This
+
+Use the bootstrap cards insteadof divs in the blogpost at bottom of app file
+
+
+Pretty cool. This is how you can continue to use bootstrap, or how to grab 
+
+Find and use an external library. If you use reactstrap, then do more than one button please
+
+--------------------------------------------
+
+SLIDE 8
+Slide again showing how to get reactstrap included in your files (also react-router)
+
+-----------------
+
+SLIDE 9
+REACT ROUTER
+
+Designed to make single page applications, that look and act like its multiple pages on the internet
+
+--------------
+
+SLIDE 10
+Single page applications
+
+When you click on the nav on the right, the URL changes but the nav doesn't re-render
+It only renders part of the page, but it has a different URL
+IF you watch the left nav... the page doesn't reload
+It's almost like I'm making an AJAX call
+it looks like you are going to a new page, but really it's the same page
+
+We are making a single page application, and it re-renders with a new URL, but it doesn't rerender everything
+
+We can cut the URL and paste into a new browser and it'll render the whole page
+
+We're going to do this with react
+
+It's not as complicated as it might seem
+
+
+One page (index.html). Looks like multiple pages
+
+
+----------------
+SLIDE 11
+This is client side routing. We are actually still rendering index.html
+
+We are basically having a set of if statements included in the render()
+
+If the URL is this... then render this component
+else if it's this... then render that
+
+
+What is shown is dependent on the URL
+
+When we change the URL, state changes and we re-render
+
+That's the concept
+
+React-router gives us the components to do this for us.
+
+Client-side Routing
+
+So how do we do this in React?
+
+If the URL matches a route, render this component!
+
+Render a react component... but we use conditional rendering
+
+WE use an if statement to determine which component we want to show...
+
+Do we show the "my drive" component? Or do we show the "folder" component
+
+WE make that determination based on what's in the URL bar
+Look at the Slide
+
+We can look at the current urls
+
+If the url is home - we renter <homepage>
+
+If it's <about> we render <aboutpage>
+---------
+
+
+SLIDE 12
+react-router
+
+It's another library we install and use
+We don't actually install react-router because it's for command line user
+We install react-router-dom - which is for the browser with the DOM
+
+*****DO This
+
+npm install react-router-dom
+
+*****DO THIS 
+add the code to import react-router-dom in app.js at the top
+add the code to import react-router-dom in index.js at the top (browserrouter)
+
+WE import three components: route, switch and navlink to app.js
+We import browserrouter to app.js
+
+
+****DO THIS
+add the <browserrouter> set of code to index.js to get the component working
+
+
+
+Browserrouter is a component that listens to changes to the URL
+
+It's like an event listener that keeps track of the state of the URL
+
+We encapsulate the app within the browser router
+
+So it can handle listening to the state of the url state
+
+It will pass that state as aproperty to app whenever it gets rendered!!!
+
+
+We wrap the app inside of the browserrater
+
+so now the app is aware of the URL
+
+AND now we can do some conditional rendering work
+
+******DO THIS
+in the Render() for thh app Near line 66
+
+Show the 1st version with routes
+
+
+Only things that have the route, are conditional
+
+going to /about shows about
+going to /info shows more info
+
+notice if i use the / to specify the path
+
+It's basically a "starts with" so if you have "/" 
+It looks at the part of the path
+
+using "exact" gets around this...
+
+
+*******DO THIS
+
+SWap to the Switch version
+
+Using the switch allows you to pick just 1
+
+
+
+Now try adding something... it doesnt' work
+
+
+****************Swap to the Finalversion of app.js to clean things up
+
+***** Look at the renderBlogForm()
+
+This is a callback. Instead of passing in a component and a class to render
+We can pass in a render prop 
+
+         <Route path="/" render={this.renderBlogForm} />
+
+
+See you can instantiate the components in the route using "component" or "render"
+component works great if the component keeps track of it's own state
+
+But Use the "render" if you want to pass in props, then you have to use render
+
+
+PROPS get passed even if there are no props in teh component because it comes from teh route component (URL info)
+
+
+When we use the "render" method to instantiate the component we lose these props that came along with the route component (history, location, match)
+
+syntax is ({...routerProps}, postCallback={this.addProps})
+
+It's called the "spread operator". It automatically spreads out the routerprops to the key value pairs.
+
+So this is how we fix that
+
+**** uncomment that in the renderBlogForm in app.js
+
+
+-------------
+
+
+NAVLINK
+
+The anchor tag sends a get request and it goes to a separate webpage
+
+We can use this in the nav so that it doesn't re-render the whole page
+
+It instead just loads the things we want
+
+
+
+End of lecture!
+--------------------------
+
+
+
+The anchor tag sends a get request and it goes to a separate webpage
+
+SLIDE 12
+BrowserRouter
+
+To get this to work... we need to make the <BrowserRouter> the parent of everything that you are going to adjust based
+on a route 
+
+So we put the BrowserRouter outside of everything
+It just watches the URL bar. It basically has an eventhandler
+
+It adjust state and rerenders everything inside of it.
+
+
+SLIDE 13
+<Route>
+
+Then to get the conditionally displayed component we use the <route> 
+
+<route takes two props, the path (to match) and the Component to render
+
+The matching ... does the current path "start with" /
+if it has the start, then it's a match unless you use "exact"
+
+
+SLIDE 14
+SWITCH
+1 To enforce mutual exclusivity you can use "switch" statement
+
+2 Or you can play with "exact"
+
+
+Exact can be useful
+
+Switch will try and match the first in the list, if it does, then it'll render that and head outside
+
+So if you have a '/' at the top, you probably won't drop into any of the other options
+
+
+"Starts with" a particular path
+That's the way to think of it.
+
+
+SLIDE 15
+Tricky part is getting props to the component in <route>
+
+The most confusing thing about reactrouter... 
+
+
+<Route path="/blog" component={BlogPostList} />
+
+We're not passing in the prop... how do we get these props into this route?
+
+
+It crashed... we get a null error
+
+40:31
+
+use the render prop rather than the component
+
+create a new function to be a call back
+
+that you pass with the "render"
+
+set the posts=this.state.posts
+
+SLIDE 16
+Props passed to the callback from "render"
+
+...routerProps - to also get the existing routerProps that was passed in
+it's called "spreading" or destructuring
+
+This is an ES6 feature.
+It's doing the work of creating all the individual variables and pass them all
+It takes the keys for all those objects and make them the prop names and assign the values
+
+
+use render whenever you want to pass your own props
+
+use component whenever you can
+but you have to use render if you need to provide your own props
+
+
+How do we get other parameters from the URL?
+
+SLIDE 17
+API URIs
+Inside of a URI there are parameters. 
+
+We can use this same structure when specifying a route that we want to show
+
+SLIDE 18
+
+Here "PostID" is the variable
+
+NOthing renders because there are no props passed
+
+Following our normal process, you might think we pass the props in the component=
+part of the statement
+
+But we don't 
+
+SLIDE 19
+Example: Using that variable from the URI
+
+We can use the "this.props.match.params.postID" variable
+
+This is just another prop
+
+
+SLIDE 20
+Here's an example in the demo where we are actually using the postID variable we
+created to specify which blog post to render
+
+Think of these things as "if" statements
+
+When the URL is something, what do I want to display
+
+
+SLIDE 21
+
+
+"links"
+
+The reason the links refresh the page
+
+Anchor elements take you to the web page and causes the refresh
+
+Make it so that when clicking the link... we'd rather just changes
+the URL and rerender the component
+
+
+While specifying <Route> elements will allow you to show different “pages” at different URLs, in order for a Single Page Application to function you need to be able to navigate between routes without causing the page to reload. Thus you can’t just use normal <a> elements to link between “pages”—browsers interpret clicking on <a> elements as a command to send a new HTTP request, and you instead just want to change the URL and re-render the App.
+
+Instead, React Router provides a <Link> element that you can use to create a hyperlink to another route within the application. This component takes to prop that you use to specify the route that it links to:
+
+The component will render as an <a> element with a special onClick handler that keeps the browser from loading a new page. Thus you can specify an content that you would put in the <a> (such as the hyperlink text) as child content of the <Link>.
+
+If you look at what actually happens in the console,
+the anchor tag does eventually get written, but a bunch of other stuff happens that hijack
+the normal flow. 
+
