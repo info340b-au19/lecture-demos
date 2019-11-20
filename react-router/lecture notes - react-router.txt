@@ -10,10 +10,7 @@ React Router
 SLIDE 3 - 
 
 Stage 3
-Have you already met up with your partners?
-I'm still working on finishing the grading. Hope to be done by Friday
-
-Let me know which of the 2 projects you are going to go with for Stage 3 so I can prioritize feedback.
+Due today for an extra 3 points. Okay to turn in by Friday. That will give you only 2 weeks to finish stage 4.
 
 If you are getting data that isn't real yet there is data available from api, try and get that working for stage 3
 
@@ -80,6 +77,8 @@ We use the callback version of doing this where we provide a callback
 
 This part of the code isn't worth spending alot of time
 
+the code is a little different from Monday with the todo list because this is an object, rather than an array.
+
 Make copy of object
 Modify object
 Return object
@@ -121,7 +120,7 @@ Bring up a terminal
 
 Type npm whatwg-fetch
 
-If you look at the package.json file, you'll see tht fetch is listed.
+If you look at the package.json file, you'll see that fetch is listed.
 
 And when we want to use it, we have to import it
 
@@ -179,7 +178,7 @@ So you need to fetch your data in the componentDidMount()
 
 ----------------------------
 
-componentWillUnmount when component is getting removed from teh screen. It gets called right as the component retires. 
+componentWillUnmount when component is getting removed from the screen. It gets called right as the component retires. 
 
 You guys probably won't have to override these.
 
@@ -209,7 +208,7 @@ Alot of folks have previously built components
 
 Click on the "lots" link
 
-for exmaple to put a calendar - "react calendar", or "react date picker", you can grab these components, download them and use them yourself
+for example to put a calendar - "react calendar", or "react date picker", you can grab these components, download them and use them yourself
 
 Demo - reactstrap
 
@@ -240,11 +239,12 @@ import it in app.js (at top)
 
 
 *****DO THIS
-Change the button on the form to the bootstrap version
+Change the button on the form to the bootstrap version - Notice capital "B"
 
 *****Do This
 
 Use the bootstrap cards insteadof divs in the blogpost at bottom of app file
+Uncomment the carbody code, comment out the existing <div> </div>
 
 
 Pretty cool. This is how you can continue to use bootstrap, or how to grab 
@@ -266,7 +266,7 @@ Designed to make single page applications, that look and act like its multiple p
 --------------
 
 SLIDE 10
-Single page applications
+Single page applications - Demo Google mydrive
 
 When you click on the nav on the right, the URL changes but the nav doesn't re-render
 It only renders part of the page, but it has a different URL
@@ -361,20 +361,20 @@ So it can handle listening to the state of the url state
 
 It will pass that state as aproperty to app whenever it gets rendered!!!
 
-
-We wrap the app inside of the browserrater
+*****DO THIS
+We wrap the app inside of the browserrouter in the index.js
 
 so now the app is aware of the URL
 
 AND now we can do some conditional rendering work
 
 ******DO THIS
-in the Render() for thh app Near line 66
+in the Render() for the app Near line 66 of app.js
 
 Show the 1st version with routes
 
 
-Only things that have the route, are conditional
+Only things that have the route, are conditional. Everything else shows
 
 going to /about shows about
 going to /info shows more info
@@ -386,6 +386,7 @@ It looks at the part of the path
 
 using "exact" gets around this...
 
+So in our example if we didn't use exact, the '/' route is always going to show.
 
 *******DO THIS
 
@@ -411,10 +412,10 @@ We can pass in a render prop
 See you can instantiate the components in the route using "component" or "render"
 component works great if the component keeps track of it's own state
 
-But Use the "render" if you want to pass in props, then you have to use render
+But use the "render" if you want to pass in props, then you have to use render
 
 
-PROPS get passed even if there are no props in teh component because it comes from teh route component (URL info)
+PROPS get passed even if there are no props in the component because it comes from the route component (URL info)
 
 
 When we use the "render" method to instantiate the component we lose these props that came along with the route component (history, location, match)
@@ -451,8 +452,7 @@ The anchor tag sends a get request and it goes to a separate webpage
 SLIDE 12
 BrowserRouter
 
-To get this to work... we need to make the <BrowserRouter> the parent of everything that you are going to adjust based
-on a route 
+To get this to work... we need to make the <BrowserRouter> the parent of everything that you are going to adjust based on a route 
 
 So we put the BrowserRouter outside of everything
 It just watches the URL bar. It basically has an eventhandler

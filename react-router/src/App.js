@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { Card, CardText, CardBody,
+  CardTitle, Button } from 'reactstrap';
+
+import {Route, Switch, NavLink} from 'react-router-dom';
 
 class App extends Component {
   constructor(props){
@@ -6,8 +10,18 @@ class App extends Component {
     this.state = {posts: this.props.initialPosts};
   }
 
+  componentDidMount() {
+    fetch('./blogPosts.json').then((response) => {
+        return response.json()
+    })
+      .then((data) => {
+        console.log(data);
+        this.setState({posts: data})
+      })
+      .catch((err) => {})
+  }
+
   addPost = (text, date) => {
-    console.log("adding post");
     this.setState((prevState) => {
       let shallowCopy = Object.assign({}, prevState.posts); //don't modify prevState!
       shallowCopy[date] = text; //add new entry  
@@ -15,11 +29,22 @@ class App extends Component {
     })
   }
   
+  // renderBlogForm = () => {
+  //   return <NewPostPage postCallback={this.addPost} />
+  // }
+
+  renderBlogForm = (routerProps) => {
+    console.log(routerProps);
+    return <NewPostPage {...routerProps} postCallback={this.addPost} />
+  }
+
   render() {
+    console.log(this.state);
+
     let postLinks = Object.keys(this.state.posts).map((date) => {
       return (
         <li key={date}>
-          <a href={'/blog/posts/'+date} className="nav-link">{date}</a>
+          <NavLink to={'/blog/posts/'+date} className="nav-link">{date}</NavLink>
         </li>
       )
     });
@@ -30,10 +55,11 @@ class App extends Component {
         <nav>
           <ul className="nav">
             <li>
-              <a href='/' className="nav-link">Home</a>
+              <NavLink to="/" className="nav-link">Home</NavLink>
+              {/* <a href='/' className="nav-link">Home</a> */}
             </li>
             <li>
-              <a href='/about' className="nav-link">About</a>
+              <NavLink to="/about" className="nav-link">About</NavLink>
             </li>
             <li>
               <a href='/blog' className="nav-link">Blog</a>
@@ -41,9 +67,15 @@ class App extends Component {
             {postLinks}
           </ul>
         </nav>
-        <NewPostPage postCallback={this.addPost} />
-        <AboutPage />
-        <BlogPostList posts={this.state.posts} />
+        {/* <NewPostPage postCallback={this.addPost} /> */}
+        
+        <Switch>
+          <Route path="/about" component={AboutPage} />
+          <Route path="/info" component={MoreInfoPage} />
+          <Route path="/" render={this.renderBlogForm} />
+        </Switch>
+
+        <BlogPostList {...this.state} />
       </div>
     );
   }
@@ -66,11 +98,12 @@ class NewPostPage extends Component {
 
   handleClick = (event) => {
     event.preventDefault();
+    console.log(this.props);
     this.props.postCallback(this.state.text, this.state.date);
   }
 
   render() {
-    console.log(this.state);
+    console.log("form props", this.props);
     return (
       <form>
         <input type="date"
@@ -84,9 +117,12 @@ class NewPostPage extends Component {
           onChange={this.handleChange}
           value={this.state.text}
           />
-        <button className="btn btn-primary mb-3" onClick={this.handleClick}>
+        <Button color="success" className="mb-3" onClick={this.handleClick}>
+          Post! 
+        </Button> 
+        {/* <button className="btn btn-primary mb-3" onClick={this.handleClick}>
           Post!
-        </button>
+        </button> */}
       </form>
     );
   }
@@ -95,10 +131,22 @@ class NewPostPage extends Component {
 
 class AboutPage extends Component {
   render() {
+    console.log(this.props);
     return (
       <div>
         <h2>About</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, amet cumque. Quasi esse facilis quisquam recusandae quam deleniti suscipit, libero dolore tenetur dignissimos expedita neque repellendus accusantium mollitia, dicta id.</p>
+      </div>
+    );
+  }
+}
+
+class MoreInfoPage extends Component {
+  render() {
+    return (
+      <div>
+        <h2>More Info</h2>
+        <p>I AM MORE INFO!!!</p>
       </div>
     );
   }
@@ -121,10 +169,12 @@ class BlogPost extends Component {
     let post = this.props.post;
 
     return (
-      <div>
-        <h2>Post on {date}</h2>
-        <p>{post}</p>
-      </div>
+      <Card>
+        <CardBody>
+          <CardTitle>Post on {date}</CardTitle>
+          <CardText>{post}</CardText>
+        </CardBody>
+      </Card>
     );
   }
 }
