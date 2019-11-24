@@ -1,0 +1,465 @@
+﻿Get the lecture Repo 
+npm install
+get the demo running (npm start)
+Login to Slides
+Login to Firebase
+
+
+SLIDE 2 ----------------
+Plan for today
+
+---------------
+SLIDE 3
+Calendar
+
+Today we'll cover firebase authentication
+Tonight stage 3 is due.
+
+Stage 4 we'll talk about on Thursday. I will have the instructions posted Wednesday.
+
+Thursday we'll cover Firebase database
+
+Lab will be work time and figuring out who is going to work with who on stage 4
+
+Then next week we will use Tuesday as a work day and I can cover some things that folks would like reviewed. Otherwise it's like extended office hours
+
+
+Next Thursday is demo day. 
+
+SLIDE 4
+React Checkin
+
+
+
+SLIDE 5 ----------------
+
+Example 1 of state to determine what to render. See how we add a state variable in the constructor. Then have if/else statements to render if it's true
+
+-------------
+
+SLIDE 6
+
+Example 2 using state to determine what to render. This is just a little different syntax. Same idea as above, but maybe a little cleaner
+
+------------------
+SLIDE 7
+
+Example 3
+Here's a way to add a warning/or error but still render the rest of the page
+When you use {} the expression inside will get evaluated.
+And when you have a conditional like this, the element will get rendered if the conditional is true.
+
+---------------------
+
+SLIDE 8
+
+componentDidMount()
+
+This slide shows a constructor for the SignupForm from today's demo
+
+Notice you can initialize state in the constructor, however you can't call setState() in the constructor. It would cause errors.
+
+componentDidMount() is used:
+If you read in data initially and need to set state to get the correct state data setup in order to render things correctly, you can't do this in the constructor
+
+It's an asynchronous process and it is likely that the DOM won't be rendered before setState() is called. This will cause problems.
+
+The componentDidMount() callback function takes care of this issue.
+If you overridde this, then this will be called right after the DOM is rendered and setState() will workable
+
+SLIDE 9 ----------------------
+
+componentDidMount 2
+
+Here's an example from the demo that we will get to in the demo, but it illustrates when this might occur
+We'll be grabbing data from firebase and will want to call this.setState on our state variables right off the bat
+But we can't do it in the constructor
+
+
+SLIDE 10 ------------------------
+How to organize components
+Let's look at this example
+
+IF you break this page into chunks, or boxes
+
+The top purple could be the QuestionBox
+
+Then the next list of questions is another box
+
+Yes, it's a box that contains subcomponents
+
+And it's dynamic
+
+So we might need to create a component that contains sub components (the answers)
+
+
+
+SLIDE 11 --------------------
+
+So here is some sample code for how we might do this
+We create a QuestionBox element
+We create an AnswerBox element
+And the AnswerBox then takes as a prop an array of individual answer elements
+
+We've seen this before
+
+There is no perfect way to organize. Try and keep the levels to 2 or 3 deep. 
+
+
+SLIDE 12 --------------------
+
+Our Demo today
+
+******* Bring up Firebase
+
+Firebase is a backend web services
+It's a website that will provide you a server to run on
+They handle hosting
+They also provide a database 
+We'll work with the realtime db
+They supply user authentication (today)
+So there's a way to create user accounts and save passwords
+Very little work to do this
+
+So we can have a db without having to do alot of work
+
+It makes our app feel more like a real app
+
+
+The problem set this week is about 85% the same as the demo of what we are doing this week. So you could almost work with the problem-set
+
+But walking through this will certainly be helpful
+
+
+First let's walk through the demo code
+
+SLIDE 13 -------------------
+
+App.js
+we have a signupform component which we import
+we render the <signupform/>
+
+Index.js
+The normal stuff
+
+
+SLIDE 14 ------------------
+
+Signup.js part 1
+
+Just shows the constructor
+
+Notice we initialize 3 state variables:
+Email
+password 
+username
+
+These are 3 things in our form. You will see that these are 3 things
+that firebase also stores
+
+
+SLIDE 15 ------------------
+
+Signup.js part 2
+
+Here are the callback placeholders in the files
+
+In our demo we ae going to update 3 of these callbacks
+handleSignup
+handleSignIn
+handleSignOut
+
+The handlechange callback is already coded. it takes care of userinput
+in the form
+
+
+SLIDE 16 ------------------
+
+Signup.js part 3 (1st half of render())
+
+Notice at the top, there's code which will render an error based on 
+whether a state variable for error has been set
+
+Notice at the top there's code to render who is logged in if a state variable
+has been set
+
+Then notice that the email and password are saved in state variables
+
+
+
+SLIDE 17 ------------------
+
+Signup.js part 4 (2nd half of render())
+
+Again, username (displayname) is stored in state variable
+
+Here's where the buttons are, and the callbacks shown above are registered
+
+
+
+
+SLIDE 18 ---------------------
+
+Firebase Demo - Go online and show Firebase
+
+Create a new project
+
+Make it a unique 
+
+Free Service, you have plenty of storage space for your projects
+
+Accept terms
+
+This gets everything set up
+
+Now we have a project and we are taken to the dashboard for our
+project
+
+What data is in the db, what users have signed up.
+
+There are tabs on the left
+
+Authentication - we are doing this today
+DB is on the left too, we'll cover this on Thursday
+
+To interact we need to access the firebase object from our project 
+
+****Click the </> to get the code to add firebase to your web app
+
+It's defining a configuration object with a bunch of api keys
+
+here's the access info for this project
+
+it runs some code to do the configuration
+
+So we don't need to include the firebase stuff from the web because we're going to intall it locally using NPM (next step)
+
+But we do need to include it in our index.js
+
+****** added 1 in index.js
+So add the 2 blocks of code 
+-- import firebase from 'firebase/app' 
+-- var config = {...
+}
+
+
+
+Then we also need to grab all the access keys we need from that <> in firebase
+
+Boot the app, and see that it's working (might need to do the next step first)
+
+
+SLIDE 19 -------------
+
+Firebase integration with React app
+
+***** To get it running we need to install and load the firebase library
+
+Just like how we install the router, react strap
+
+******npm install firebase
+
+There are lots of different subcomponents for firebase
+
+The firebase app does the general firebase methods
+
+You only need to import the things you care about using
+
+When our index loads, this will run and firebase will be ready to roll
+
+
+
+SLIDE 20 ---------------
+
+Here's what it looks like in our demo:
+
+Firebase modules are imported. 
+
+Firebase config script is added along wih the initialize call
+
+
+
+SLIDE 21 ------------------
+
+*****Click on the Authentication nav item on the left in firebase
+
+When you first log in there are no users in our sytem
+
+Authentication on firebase console
+There are lots of providers that work with firebase
+
+Click on the "sign-in method"
+
+We'll use Email/Password for this demo. It's less complicated
+
+You have to flip the switch to enable this.
+
+Now you have this enabled...
+
+Clicking on the user tab will show you the list of users who have been added
+
+Currently we have no users
+
+How to get this signup to work
+
+In the form, type in the 3 things into the form and we'll add a user
+
+
+
+SLIDE 22 -----------------
+
+Creating users in your React code
+
+use createUserWithEmailAndPassword method - incredibly descriptive method name!
+
+createUser method is called on the firebase.auth() object. 
+
+This is a an asynchronous method that returns a userCredential object
+
+
+
+SLIDE 23 ---------------------
+
+Signup Component - The button that does the signup is "handleSignUp"
+
+We keep track of email,etc from the state (this.state.email) 
+
+in our code:
+To do this we need import the 'firebase/auth'
+
+If we don't include the /auth stuff we won't have those functions available
+
+Need to import the firebase object here too
+import firebase from 'firebase/app';
+
+createUserWithEmailAndPassword() Takes in two arguments, the email and password, which we are storing in state.
+
+See the arrows...
+
+This is code you guys have seen before
+
+These return promises are just like what we see with fetch()
+
+It gets passed in an object representing that firebase user "userCredential"
+
+Note that this demo code uses a state variable errorMessage which we
+set when an error is caught (in other places in the code as well)
+
+Show how an error in the email shows an error
+
+In this example we are also going to store a DisplayName "username"
+There's also a url for a photograph
+
+Those are the only other things we can store in the firebase auth object
+
+The updateProfile() is also asynchronous
+
+So again we get a promises
+
+We have the return upDatePromise so that the cascading works
+
+***** Uncomment the code in Visual Studio (Step 3)
+
+
+Now try creating an account in in your app and look 
+a@a.com
+password
+
+Look at it in firebase
+
+
+
+SLIDE 24 ---------------------
+
+Authentication Events signin or signout
+
+Register a listener to determine which user is signed in and to manage when a user signs out or logs in
+
+So the firebase().auth.onAuthStateChanged() method returns the call back which will turn off the listener.
+
+****STEP 4
+
+
+
+SLIDE 25 -------------------
+
+Authentication events in your React code
+
+Here's the code in our demo
+There are two snippets, 
+
+one to register the listener in componentDidMount()
+one to unregister when the component is removed from the DOM
+
+Notice that in order to keep the scoping of the variables here, we use 
+a instance variable "this.authUnSubFuntion"
+
+This is one place where we can conveniently handle out of scope.
+
+Can't demo this because our demo doesn't unmount
+
+State is only used for rendering so we use an instance variable.
+
+
+
+
+
+SLIDE 26 -------------------
+
+Signing in and out in your React code
+
+The firebase.auth() variable will keep track of which Firebase User is currently logged in—and this information persists even after the browser is closed. This means that every time you reload the page, the firebase.auth() function will perform the authentication and “re-login” the user.
+
+Signin in and out in your React code
+
+
+
+Again use the firebase.auth object
+The methods are well named again
+
+The onAuthStateChanged() method takes a callback as a parameter, which will be handed a value representing the current Firebase User (or undefined if no one is logged in).
+
+The most common practice is to then take this passed in object and assign it to a more global variable, such as a state variable in a React function (e.g., this.setState({currentUser: firebaseUser})).
+
+
+
+
+SLIDE 27 -------------------------
+
+When you initially sign up, you are signed in, in firebase
+
+Demo this in the form
+
+***** Uncomment code for sign in and Sign out STEP 5
+There are 2 blocks of code, one for sign-in, other for sign out
+
+
+Notice that the user is displayed at the top of the form because our code
+has the code in the render(), checking to see if there is a user logged
+in then we use the DisplayName
+
+
+
+
+Review what we just did
+
+Setup firebase stuff 
+import firebase
+create user 
+sign in
+sign out
+add event listener for log in and logout
+
+We use the listener to update the state which calls setState() which rerenders which will show the new user.
+
+
+
+
+
+
+
+
+
+
+
+

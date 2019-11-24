@@ -1,0 +1,324 @@
+LectureNotes FireBase - DB
+
+SLIDE 4 ---------------------
+Think of Firebase database as being JSON in the cloud
+
+We will be able to add new elements to this JSON db in the cloud
+as if it were local
+
+GOTO the firebase DB and walk through the staps
+
+NOTICE the Left Nav and pick Database
+
+Scroll down to real time - Click the giant blue DB button to create a DB
+
+Start in Test mode 
+
+Notice you don't have any data in your JSON object yet, but it's there.
+
+1- real-time database
+2- can be simultaneously accessed by mutlipe clients
+3- can be edited, modified, added to, deleted from and viewed directly from console
+4- each element of JSON object is accessible via AJAX requests
+
+Show how you can add add
+Click the + button 
+
+message: hello world
+
+more complicated
+teacher
+    name: prof ross
+
+task
+    description: use firebase
+
+Can change these in the the console
+
+Colors change when you alter, delete, add
+
+SLIDE 5 ------------
+Firebase Realtime Database
+
+See how you database object can be represented in your js file on Left
+and how it would look in the firebase object 
+
+these are the essentially the same thing
+
+
+SLIDE 6 --------------------------
+
+Firebase Database Security Rules
+
+We set our DB up in test mode which sets read/write to true
+
+Credentialing is important since all elements are easily accessible via AJAX requests
+
+
+SLIDE 7 -----------------------
+App.js : Review the tasklist demo code
+
+Let's review the Tasklist code. You've gone through it a couple times, but Lets 
+quickly look at the basics so it's easier to see what we do differently 
+with the firebase integration
+
+In app.js
+
+we import the signupform and taskapp components
+as well as the firebase/app object
+
+in the constructor we have a state variable to keep track of which user (if any)
+is logged in
+
+In the componentDidMount() we add the listener for changes to who's logged in
+
+We remove the listener when the component is removed
+
+We have an if statement to conditionally show the login component if no user 
+is logged on. Otherwise we show the <taskapp> component.
+
+SLIDE 8 ----------------------
+
+Tasks.js Part 1 (it's broken into 5 slides)
+
+We import the signup and taskapp components
+
+We have a stage variable (here is't an array) that we store in state
+
+Currently there's an empty componentDidMount() to load data
+
+We have an empty addTask method (for now)
+
+
+SLIDE 9 --------------------------
+
+Tasks.js Part2
+
+We have the empty toggleComplete() method 
+
+We render() the app in which we return a TaskList() with two props:
+The tasks and a callback "howToToggle"
+And the AddTaskForm with a callback "howToAdd"
+
+
+SLIDE 10 -------------------------
+
+Tasks.js part3
+
+We have the taskList component
+
+Which walks the task array instantiating each task in the list 
+
+
+
+SLIDE 11 --------------------------
+
+Tasks.js Part4
+
+We have the Task component
+
+There's a helper method which will set "className" to fon-strike if the
+task toggleComplete
+
+We have a handleClick method which is passed as a prop for "onClick"
+
+It returns a task with font-strike className if appropriate
+
+
+SLIDE 12 -------------------------------
+
+Tasks.js Part5
+
+We have the AddTaskForm component
+
+We have a onChange callback method
+
+The form is hijacked so that we can have React handle the default behavior
+
+The form has handlers for onChange and onClick
+
+
+SLIDE 13 ---------------------
+
+Now let's walk through the things to get the TAsklist working with firebase db
+
+
+SLIDE 14 -------------------------
+
+in index.js we need to include the firebase/database module
+
+
+SLIDE 15 ---------------------
+
+Firebase Database Reading and Writing Database
+
+Access is gotten through the firebase.database().ref() method.
+
+It takes a key-path of the element as a parameter
+
+
+
+SLIDE 16-----------------------
+
+
+Access elements within the Firebase Database
+
+It's a URI style notation which uses / instead of . notation
+
+You can also use the .child() method
+
+
+SLIDE 17 ----------------------
+
+Changing Demo code to use firebase DB
+Tasks.js
+
+The 3rd arrow on this slide shows where we get the reference to the 
+firebase tasks element
+
+
+First we include the firebase object
+
+Note that the state object is now an object containing a task object.
+
+We get the firebase reference to the tasks node
+
+We also add a listener for changes to the tasks node in case something changes 
+underneath us in firebase. We would then update the state to the new value
+
+
+SLIDE 18 ----------------------
+
+Setting and Modifying Database
+
+you can modify an entry using .set()
+
+It takes an object containing the key/value pairs to assign as a parameter
+
+
+.set() overwrites values for specified keys
+Believe it keeps other values unchanged if they aren't specified.
+
+
+If the key didn't previously exist, the key will be created in firebase db
+
+
+SLIDE 19 ----------------------
+
+AddTasks
+
+So the demo doesn't show set(). It works.
+
+Push() is supported by firebase.
+
+A key is automatically generated.
+
+
+
+SLIDE 20 ----------------------
+
+Firebase provides an eventlister "on()" allowing apps to respond
+and update
+
+It takes 2 params:
+- an event name (we'll use value in the demo which is the most common)
+- a callback function - we'll use the callback to set state to the
+new data
+
+
+
+
+SLIDE 21 ---------------------
+
+Firebase, listening for Data changes
+
+listeners are asynch
+
+need to be registered in the componentDidMount() callback
+
+cleanup in the componentWillUnmount() callback
+
+
+
+
+
+
+SLIDE 22 -----------------------
+
+Demo Code - Adding a listener for DB changes
+
+Here's the code again to add a listener
+
+state is changed with the new data which was returned in the 
+snapShot object. You can get it by calling .val()
+
+
+
+
+SLIDE 23----------------------------
+
+Firebase Arrays
+
+Firebase doesn't directly support Arrays
+
+Concurency is the reason
+
+So all items are objects with key/value pairs
+
+Push is still supported
+
+
+
+SLIDE 24 -----------------------------
+ 
+ Example of push being used
+
+ Notice how the method automatically generates a unique key
+
+ Instead of iterating from 0 to lenth as in an array, you use the key as
+ an index
+
+
+
+
+
+ SLIDE 25 ----------------------------
+
+ Array'ifying firebase objects
+
+ However, sometimes you kind of need to use an array
+
+ For example we've had a template-like approach to using .map() to transform
+ data from our array to our components
+
+
+ The way you do it is to 
+
+ Call object.keys on the snapshot.val() to get an array of keys
+
+
+ Remember to save the key for later referencing
+
+
+
+
+ SLIDE 26 ------------------------
+
+
+In our demo in the taskApp render function we get an array of the task Ids which we then can use to as our tasks array for the Tasklist component
+
+
+
+
+
+
+Now bring up two browsers to show how it is real-time
+
+
+
+
+
+
+
+
+
