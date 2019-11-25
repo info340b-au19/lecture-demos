@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 // //added 1
 // import firebase from 'firebase/app';     //add firebase - give us access to the global firebase variable
 
+
 // //added 2
 // import 'firebase/auth';     //gives us access to the auth stuff so it will turn on the firebase auth features
 
@@ -10,17 +11,21 @@ import 'bootstrap/dist/css/bootstrap.css'; //bootstrap (bundled)
 import './style.css';
 import App from './App';
 
-// //added 1
-// //copied from the firebase site... we don't need the script tags because we loaded firebase via npm locally
-// var config = {
-//     apiKey: "AIzaSyD2Hh_MTM-oMdxVBBXGaEU8MnbaPn4JAuc",
-//     authDomain: "info340b-wi19-demo.firebaseapp.com",
-//     databaseURL: "https://info340b-wi19-demo.firebaseio.com",
-//     projectId: "info340b-wi19-demo",
-//     storageBucket: "info340b-wi19-demo.appspot.com",
-//     messagingSenderId: "757736727613"
+// // //added 1
+//   // Your web app's Firebase configuration
+//   var firebaseConfig = {
+//     apiKey: "AIzaSyBw_xGkU3UPbD3r4XjXpm-QUgbiS8vvfnc",
+//     authDomain: "timcas-test.firebaseapp.com",
+//     databaseURL: "https://timcas-test.firebaseio.com",
+//     projectId: "timcas-test",
+//     storageBucket: "timcas-test.appspot.com",
+//     messagingSenderId: "640049955043",
+//     appId: "1:640049955043:web:8a550ffa81e92113b345d6",
+//     measurementId: "G-YKFSK3XY7Z"
 //   };
-//   firebase.initializeApp(config);
+//   // Initialize Firebase
+//   firebase.initializeApp(firebaseConfig);
+// //   firebase.analytics();
 
 
 ReactDOM.render(<App />, document.getElementById('root'));

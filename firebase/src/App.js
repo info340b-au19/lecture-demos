@@ -25,11 +25,11 @@ export class SignUpForm extends Component {
 
     }
 
-    // // Authentication - register state changes STEP 4
+    // Authentication - register state changes STEP 4
 
     // componentDidMount() {     //since it's an asynchronous process we do it in component did mount
 
-    //     //when I signed in or signed out
+    //     //when I signed in or signed out - add this listener 
     //     firebase.auth().onAuthStateChanged((firebaseUser) => {
     //         if (firebaseUser) {                 //if exists, then we logged in
     //             console.log("Logged in as", firebaseUser.email);
