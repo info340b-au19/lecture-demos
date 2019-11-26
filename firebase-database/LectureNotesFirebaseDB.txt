@@ -1,0 +1,569 @@
+LectureNotes FireBase - DB
+
+SLIDE 2
+Plan for today
+
+------------
+Slide 3
+Stage 4
+Objective:
+The goal is to finish up the app
+We're going to add "one more piece"
+
+Add in an additional feature about the same level of complexity or to add another feature to add about double the complexity.
+I expect just about all of you to leverage your stage 3 react features and merge them as the 2nd feature
+
+We are doing this in teams because we like this in the iSchool.
+
+You'll team up with another pair. 4 people. Finish up a single application
+
+We don't have a ton of topic overlap, so it's going to be okay if your projects don't merge super well. 
+
+I'll also let you stay in a group of 2, but you'll need to extend your feature with more depth for your feature for stage 2 if you decide to go that route.
+
+--------------
+
+SLIDE 4
+Requirments
+
+YOu are adding a second feature
+
+Client-Side Routing
+
+Firebase auth or db, you don't have to do both, but kind of have to do both to make it meaningful.
+
+User Accounts need to do something, not just logging in. It's feature once that does something. Why do they have an account? Can they save history, preferences?
+
+Chat or comments are a weak feature... If that's not the purpose of your app, then don't add it.
+
+You'll need client side routing
+
+Please don't just copy the UI from the example demo.
+
+Take stage 3, make it bigger, cleaner, make it do one more thing.
+
+
+SLIDE 5
+Firebase Database Demo (with login)
+
+In the demo, we've moved the sign-in form into the App so the app handles user login.
+Ususally you want to do this in the top level component
+
+That way all the sub components can be passed in if the user is signed in
+
+It makes it easy to pass the info that info.
+
+How to get a cool new better login form with your own UI
+
+One way to do that is using an external library called firebaseUI
+
+Set of libraries that are designed to provide html, styling, to do user authentication.
+
+install firebase react
+*****npm install --save react-firebaseui
+
+--------------
+
+SLIDE 6
+We can do some basic work with a configuration option... what i want 
+
+It has a set of react components that has a login form
+
+It's an object where we can setup what we want our login to look like
+
+plain old java script object
+assigning it to a local instance variable (public class field)
+
+Signin obptions list - array of different signin forms we want to support
+
+here we have email, google
+
+signin flow - if we want to use google then it'll pop up a sign in window for google which will redirect to a different window.
+
+------------
+SLIDE 7
+Still have the onAuthStateChanged
+We still have the componentDidMount retain the tracking the onauthstatechanged listener so when the user logs in or out we can modify state the same way we did tuesday.
+
+Keep the same signout button. firebase doesn't provide a signout button
+
+Get rid of all the sign in code and signup code because it goes done automatically.
+
+All this stuff gets done automatically
+
+We have render()
+
+And it's a very simple call
+
+StyledFirebaseAuth component, we pass in the config
+
+And once you've said you want to render that sign in for it works!
+
+-----------------------
+
+SLIDE 8
+
+Click on the button and 
+
+If you sign out...
+
+It remembers who you were and allows you to just click on it
+
+You can click to sign in with a new account
+
+It prompts you for First and Last name... this is the display name
+
+It saves the displayname automatically!!!
+
+All the user creation sign up stuff happens for you with a nice UI
+
+IF you try to sign up wiht google, you'll get an error
+
+We can change that
+
+We can enable google signin in firebase
+
+And now it just works with google!!!
+
+very cool.
+
+Not too terrible right?
+
+You should use this instead of plagiarizing the demo code from the other day.
+
+All that is saved in the auth, is the authentication information. Everything else needs to go into the database
+
+
+-----------------
+SLIDE 9
+Think of Firebase database as being JSON in the cloud
+
+We will be able to add new elements to this JSON db in the cloud
+as if it were local
+
+GOTO the firebase DB and walk through the steps
+
+NOTICE the Left Nav and pick Database
+
+Scroll down to real time - Click the giant blue DB button to create a DB -- DONT CLICK THE ADD CREATE BUTTON AT THE TOP, IT'S FIRESTORE and its an add
+
+
+We are using the Realtime Database
+
+It's a giant json object
+
+Start in Test mode - "who's allowed access to the database"
+
+Anyone is able to read and write all the data in the database
+
+It makes it easier for testing
+
+Notice you don't have any data in your JSON object yet, but it's there.
+
+1- real-time database
+2- can be simultaneously accessed by mutlipe clients
+3- can be edited, modified, added to, deleted from and viewed directly from console
+4- each element of JSON object is accessible via AJAX requests
+
+Show how you can add add
+Click the + button 
+
+message: hello world
+
+more complicated
+teacher
+    name: prof ross
+
+task
+    description: use firebase
+
+Can change these in the the console
+
+Colors change when you alter, delete, add
+
+SLIDE 10 ------------
+Firebase Realtime Database
+
+See how you database object can be represented in your js file on Left
+and how it would look in the firebase object 
+
+these are the essentially the same thing
+
+
+SLIDE 11 --------------------------
+
+Firebase Database Security Rules
+
+We set our DB up in test mode which sets read/write to true
+
+Credentialing is important since all elements are easily accessible via AJAX requests
+
+
+SLIDE 12 -----------------------
+App.js : Review the tasklist demo code
+
+Let's review the Tasklist code. You've gone through it a couple times, but Lets 
+quickly look at the basics so it's easier to see what we do differently 
+with the firebase integration
+
+In app.js
+
+we import the signupform and taskapp components
+as well as the firebase/app object
+
+in the constructor we have a state variable to keep track of which user (if any)
+is logged in
+
+In the componentDidMount() we add the listener for changes to who's logged in
+
+We remove the listener when the component is removed
+
+We've added the config parameters for FireBaseUI auth
+-------------
+SLIDE 13
+App.js 
+
+Finish the app component code
+
+We handle the signout with a callback like before. Remember that the firebaseAuth component handles signup and signin, but doesn't have a signout so we'll keep our code in there
+
+We instantiate the StyledFirebaseAuth component if the state shows no-one is logged in bye setting {content = to that component
+
+Otherwise we set {content = to the displayname banner, the signout button and the <taskapp>
+
+In the return, we have the error banner 
+
+and we render {content>
+
+-----------------
+SLIDE 14 
+Tasks.js Part 1 (it's broken into 5 slides)
+
+We import the signup and taskapp components
+
+We have a stage variable (here is't an array) that we store in state
+
+Currently there's an empty componentDidMount() to load data
+
+We have an empty addTask method (for now)
+
+
+SLIDE 15 --------------------------
+
+Tasks.js Part2
+
+We have the empty toggleComplete() method 
+
+We render() the app in which we return a TaskList() with two props:
+The tasks and a callback "howToToggle"
+And the AddTaskForm with a callback "howToAdd"
+
+
+SLIDE 16 -------------------------
+
+Tasks.js part3
+
+We have the taskList component
+
+Which walks the task array instantiating each task in the list 
+
+
+
+SLIDE 17 --------------------------
+
+Tasks.js Part4
+
+We have the Task component
+
+There's a helper method which will set "className" to fon-strike if the
+task toggleComplete
+
+We have a handleClick method which is passed as a prop for "onClick"
+
+It returns a task with font-strike className if appropriate
+
+
+SLIDE 18 -------------------------------
+
+Tasks.js Part5
+
+We have the AddTaskForm component
+
+We have a onChange callback method
+
+The form is hijacked so that we can have React handle the default behavior
+
+The form has handlers for onChange and onClick
+
+
+SLIDE 19 ---------------------
+
+Now let's walk through the things to get the TAsklist working with firebase db
+
+
+SLIDE 20 -------------------------
+
+in index.js we need to include the firebase/database module
+import 'firebase/database';
+
+We just import it once. Then we know that it's available for us to use
+
+We also need to add firebase/app into the Tasks.js file since it wasn't firebase enabled before.
+
+"import firebase from 'firebase/app';
+
+
+SLIDE 21 ---------------------
+
+Firebase Database Reading and Writing Database
+
+Access is gotten through the firebase.database().ref() method.
+
+It takes a key-path of the element as a parameter
+
+
+
+SLIDE 22-----------------------
+
+
+Access elements within the Firebase Database
+
+It's a URI style notation which uses / instead of . notation
+
+You can also use the .child() method
+
+in our example,
+We have 
+user_info/name or 
+
+ref('user_info').child('name');
+
+
+SLIDE 23 ----------------------
+
+Changing Demo code to use firebase DB
+Tasks.js
+
+
+Let's look at componentDidMount
+These calls are basically ajax calls which are async, so since we are loading this at the boot time, we need to do this stuff in componentDidMount
+
+The 3rd arrow on this slide shows where we get the reference to the 
+firebase tasks element
+
+
+First we include the firebase object
+
+Note that the state object is now an object containing a task object.
+
+*****In this example here we have 2 things we are reading from the database, the messages, and the tasks. 
+
+Both have a setState called after the data is read in
+
+We get the firebase reference to the tasks node
+
+firebase.database() is the object and we are calling the "ref" method and we refer to an individual key 
+
+So to get access to the "message key" 
+let messageRef = firebase.database().ref('message')
+
+We also add a listener for changes to the tasks node in case something changes 
+underneath us in firebase. We would then update the state to the new value
+".on()" listener
+
+a value event occurs when something changes underneath. so listen for any value change and handle the new data. 
+
+the event handler gets passed back a "snapshot" so we take that snapshot and call the ".val() method to grab that new value.
+
+Then we call this.setState to update our message to this new value
+
+We are doing this so we can refresh when this happens...
+
+SO NOW GOTO the DB and update that field
+
+Real time database access
+
+
+
+SLIDE 24 ----------------------
+
+Setting and Modifying Database
+
+you can modify an entry using .set()
+
+It takes an object containing the key/value pairs to assign as a parameter
+
+
+.set() overwrites values for specified keys
+Believe it keeps other values unchanged if they aren't specified.
+
+
+If the key didn't previously exist, the key will be created in firebase db
+
+
+Note we've added the paragraph in the render to show our message
+
+Bring up two instance of the app, and chat away. Need to use a different browser
+
+Your assignment is basically cloning twitter this week
+
+
+
+SLIDE 25 ----------------------
+
+AddTasks
+
+Notice in our original task list, Tasks was represented by an Array. This is a problem if multiple people can update and change things at the same time. Things will break.
+
+//modify tasks[1].description = "changed"
+//delete tasks[1]
+
+Depending on the order, this will cause problems
+
+Thus we don't use arrays in firebase.
+
+Can name these keys to be 
+
+All of the arrays have to be saved as objects
+
+Instead of using 0,1,2 we use a unique identifier
+
+So instead we're going to use an object
+
+
+
+So the demo doesn't show set(). It works.
+
+Push() is supported by firebase.
+
+A key is automatically generated.
+
+Comment out the "messages" sample code
+
+Uncomment out the "tasks sample code... add a task and show how it updates in the db
+
+
+
+SLIDE 26 ----------------------
+
+Firebase: Listening for Data Changes
+
+So how do we update our app with the new tasks?
+
+Firebase provides an eventlister "on()" allowing apps to respond
+and update
+
+It takes 2 params:
+- an event name (we'll use value in the demo which is the most common)
+- a callback function - we'll use the callback to set state to the
+new data
+
+
+
+
+SLIDE 27 ---------------------
+
+Firebase, listening for Data changes
+
+listeners are asynch
+
+need to be registered in the componentDidMount() callback
+
+cleanup in the componentWillUnmount() callback
+
+
+
+
+
+
+SLIDE 28 -----------------------
+
+Demo Code - Adding a listener for DB changes
+
+Here's the code again to add a listener
+
+state is changed with the new data which was returned in the 
+snapShot object. You can get it by calling .val()
+
+We have to convert this object back to an array because that's what our code expects
+
+First get an array of keys (let taskIDs=Object.keys(value)
+
+Then use the map method to generate a new "tasks" array
+
+
+We use the spread operator to clean things up
+
+Go to the app and notice the tasks are now displaying
+We can add tasks and they update
+
+
+
+
+SLIDE 29----------------------------
+
+Firebase Arrays
+
+Firebase doesn't directly support Arrays
+
+Concurency is the reason
+
+So all items are objects with key/value pairs
+
+Push is still supported
+
+
+
+SLIDE 30 -----------------------------
+ 
+ Example of push being used
+
+ Notice how the method automatically generates a unique key
+
+ Instead of iterating from 0 to lenth as in an array, you use the key as
+ an index
+
+
+
+
+
+ SLIDE 32 ----------------------------
+
+ Array'ifying firebase objects
+
+ However, sometimes you kind of need to use an array
+
+ For example we've had a template-like approach to using .map() to transform
+ data from our array to our components
+
+
+ The way you do it is to 
+
+ Call object.keys on the snapshot.val() to get an array of keys
+
+
+ Remember to save the key for later referencing
+
+
+
+
+ SLIDE 33 ------------------------
+
+
+In our demo in the taskApp render function we get an array of the task Ids which we then can use to as our tasks array for the Tasklist component
+
+
+
+
+
+
+Now bring up two browsers to show how it is real-time
+
+
+
+
+
+
+
+
+
