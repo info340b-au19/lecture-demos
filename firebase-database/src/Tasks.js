@@ -25,7 +25,7 @@ export default class TaskApp extends Component {
     }
   }
   componentDidMount() {
-    let messageRef = firebase.database().ref('message')
+    let messageRef = firebase.database().ref('message')  //here's how we get access to the message key
     messageRef.on('value', (snapshot) => {
       let value = snapshot.val();
 
@@ -42,7 +42,7 @@ export default class TaskApp extends Component {
       
       //allowing us to make a new array of objects by using the map method
       let tasks = taskIds.map((taskId) => {
-        // return {id: taskId, complete: value[taskId], description: value[taskID]}
+        // return {id: taskId, complete: value[taskId].complete, description: value[taskID].description}
         return {id: taskId, ...value[taskId]}
       })
 

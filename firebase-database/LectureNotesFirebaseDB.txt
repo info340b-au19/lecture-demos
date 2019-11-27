@@ -5,21 +5,23 @@ Plan for today
 
 ------------
 Slide 3
+
 Stage 4
 Objective:
 The goal is to finish up the app
 We're going to add "one more piece"
 
 Add in an additional feature about the same level of complexity or to add another feature to add about double the complexity.
+
 I expect just about all of you to leverage your stage 3 react features and merge them as the 2nd feature
 
 We are doing this in teams because we like this in the iSchool.
 
-You'll team up with another pair. 4 people. Finish up a single application
+2 or 4 people. Finish up a single application
 
 We don't have a ton of topic overlap, so it's going to be okay if your projects don't merge super well. 
 
-I'll also let you stay in a group of 2, but you'll need to extend your feature with more depth for your feature for stage 2 if you decide to go that route.
+I'll also let you stay in a group of 2, but you'll need to clean up and complete your feature with more depth for your feature for stage 2 if you decide to go that route. 
 
 --------------
 
@@ -42,9 +44,12 @@ Please don't just copy the UI from the example demo.
 
 Take stage 3, make it bigger, cleaner, make it do one more thing.
 
+-------------------
 
 SLIDE 5
 Firebase Database Demo (with login)
+
+Here we're going to use an external library "firebaseui" to redo the signin.
 
 In the demo, we've moved the sign-in form into the App so the app handles user login.
 Ususally you want to do this in the top level component
@@ -62,6 +67,7 @@ Set of libraries that are designed to provide html, styling, to do user authenti
 install firebase react
 *****npm install --save react-firebaseui
 
+It handles alot of the stuff we did in lecture on Monday, (and in the problem set)
 --------------
 
 SLIDE 6
@@ -74,7 +80,7 @@ It's an object where we can setup what we want our login to look like
 plain old java script object
 assigning it to a local instance variable (public class field)
 
-Signin obptions list - array of different signin forms we want to support
+Signin options list - array of different signin forms we want to support
 
 here we have email, google
 
@@ -83,11 +89,11 @@ signin flow - if we want to use google then it'll pop up a sign in window for go
 ------------
 SLIDE 7
 Still have the onAuthStateChanged
-We still have the componentDidMount retain the tracking the onauthstatechanged listener so when the user logs in or out we can modify state the same way we did tuesday.
+We still have the componentDidMount retain the tracking the onauthstatechanged listener so when the user logs in or out we can modify state the same way we did monday
 
 Keep the same signout button. firebase doesn't provide a signout button
 
-Get rid of all the sign in code and signup code because it goes done automatically.
+***** Get rid of all the sign in code and signup code because it goes done automatically.*****
 
 All this stuff gets done automatically
 
@@ -95,7 +101,7 @@ We have render()
 
 And it's a very simple call
 
-StyledFirebaseAuth component, we pass in the config
+StyledFirebaseAuth component, we pass in the config, the firebaseauth component on how we want to connect
 
 And once you've said you want to render that sign in for it works!
 
@@ -141,7 +147,7 @@ Think of Firebase database as being JSON in the cloud
 We will be able to add new elements to this JSON db in the cloud
 as if it were local
 
-GOTO the firebase DB and walk through the steps
+**************GOTO the firebase DB and walk through the steps
 
 NOTICE the Left Nav and pick Database
 
@@ -241,7 +247,7 @@ Tasks.js Part 1 (it's broken into 5 slides)
 
 We import the signup and taskapp components
 
-We have a stage variable (here is't an array) that we store in state
+We have a state variable (here isn't an array) that we store in state
 
 Currently there's an empty componentDidMount() to load data
 
@@ -275,7 +281,7 @@ Tasks.js Part4
 
 We have the Task component
 
-There's a helper method which will set "className" to fon-strike if the
+There's a helper method which will set "className" to font-strike if the
 task toggleComplete
 
 We have a handleClick method which is passed as a prop for "onClick"
@@ -298,7 +304,7 @@ The form has handlers for onChange and onClick
 
 SLIDE 19 ---------------------
 
-Now let's walk through the things to get the TAsklist working with firebase db
+Now let's walk through the things to get the Tasklist working with firebase db
 
 
 SLIDE 20 -------------------------
@@ -321,6 +327,7 @@ Access is gotten through the firebase.database().ref() method.
 
 It takes a key-path of the element as a parameter
 
+We do this in 
 
 
 SLIDE 22-----------------------
@@ -356,7 +363,7 @@ First we include the firebase object
 
 Note that the state object is now an object containing a task object.
 
-*****In this example here we have 2 things we are reading from the database, the messages, and the tasks. 
+*****In this example here we have 2 things we are reading from the database: the messages, and the tasks. 
 
 Both have a setState called after the data is read in
 
@@ -371,9 +378,9 @@ We also add a listener for changes to the tasks node in case something changes
 underneath us in firebase. We would then update the state to the new value
 ".on()" listener
 
-a value event occurs when something changes underneath. so listen for any value change and handle the new data. 
+A "value" event occurs when something changes underneath. so listen for any value change and handle the new data. There are other events (delete for example) that you can listen for, but value will tell you anytime anything changes.
 
-the event handler gets passed back a "snapshot" so we take that snapshot and call the ".val() method to grab that new value.
+The event handler gets passed back a "snapshot" so we take that snapshot and call the ".val() method to grab that new value.
 
 Then we call this.setState to update our message to this new value
 

@@ -10,14 +10,16 @@ import './style.css';
 import App from './App';
 
 // Initialize Firebase
-var config = {
-  apiKey: "AIzaSyD2Hh_MTM-oMdxVBBXGaEU8MnbaPn4JAuc",
-  authDomain: "info340b-wi19-demo.firebaseapp.com",
-  databaseURL: "https://info340b-wi19-demo.firebaseio.com",
-  projectId: "info340b-wi19-demo",
-  storageBucket: "info340b-wi19-demo.appspot.com",
-  messagingSenderId: "757736727613"
+var firebaseConfig = {
+  apiKey: "AIzaSyAWnxCDCbWfws16cfhb0hVs-9TmULqxS9k",
+  authDomain: "signupform-67d3b.firebaseapp.com",
+  databaseURL: "https://signupform-67d3b.firebaseio.com",
+  projectId: "signupform-67d3b",
+  storageBucket: "signupform-67d3b.appspot.com",
+  messagingSenderId: "747468163961",
+  appId: "1:747468163961:web:20ea7896b5160a879d7da8"
 };
-firebase.initializeApp(config);
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
 ReactDOM.render(<App />, document.getElementById('root'));
